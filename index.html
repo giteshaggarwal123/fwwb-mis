@@ -129,6 +129,12 @@
             color: white;
             flex-shrink: 0;
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
         }
 
         .sidebar-header {
@@ -213,6 +219,7 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            margin-left: 260px;
         }
 
         .topbar {
@@ -1246,70 +1253,70 @@
                     <div class="nav-section">
                         <div class="nav-section-title">Main</div>
                         <div class="nav-item active" onclick="goToScreen('dashboard')">
-                            <span class="nav-icon">📊</span> Dashboard
+                            <span class="nav-icon">■</span> Dashboard
                         </div>
                     </div>
                     <div class="nav-section">
                         <div class="nav-section-title">Program Management</div>
                         <div class="nav-item" onclick="goToScreen('activities')">
-                            <span class="nav-icon">📋</span> Activities
+                            <span class="nav-icon">▪</span> Activities
                         </div>
                         <div class="nav-item" onclick="goToScreen('budget')">
-                            <span class="nav-icon">💰</span> Budget Management
+                            <span class="nav-icon">▪</span> Budget Management
                         </div>
                         <div class="nav-item" onclick="goToScreen('expenses')">
-                            <span class="nav-icon">🧾</span> Expenses & Bills
+                            <span class="nav-icon">▪</span> Expenses & Bills
                         </div>
                         <div class="nav-item" onclick="goToScreen('monitoring')">
-                            <span class="nav-icon">📈</span> Monitoring & Data
+                            <span class="nav-icon">▪</span> Monitoring & Data
                         </div>
                         <div class="nav-item" onclick="goToScreen('reports')">
-                            <span class="nav-icon">📄</span> Reports
+                            <span class="nav-icon">▪</span> Reports
                         </div>
                     </div>
                     <div class="nav-section">
                         <div class="nav-section-title">HRMS</div>
                         <div class="nav-item" onclick="goToScreen('recruitment')">
-                            <span class="nav-icon">👥</span> Recruitment
+                            <span class="nav-icon">▪</span> Recruitment
                         </div>
                         <div class="nav-item" onclick="goToScreen('employees')">
-                            <span class="nav-icon">👤</span> Employees
+                            <span class="nav-icon">▪</span> Employees
                         </div>
                         <div class="nav-item" onclick="goToScreen('attendance')">
-                            <span class="nav-icon">⏰</span> Attendance
+                            <span class="nav-icon">▪</span> Attendance
                         </div>
                         <div class="nav-item" onclick="goToScreen('leave')">
-                            <span class="nav-icon">🏖️</span> Leave Management
+                            <span class="nav-icon">▪</span> Leave Management
                         </div>
                         <div class="nav-item" onclick="goToScreen('performance')">
-                            <span class="nav-icon">⭐</span> Performance
+                            <span class="nav-icon">▪</span> Performance
                         </div>
                         <div class="nav-item" onclick="goToScreen('payroll')">
-                            <span class="nav-icon">💳</span> Payroll
+                            <span class="nav-icon">▪</span> Payroll
                         </div>
                         <div class="nav-item" onclick="goToScreen('ess')">
-                            <span class="nav-icon">🏠</span> Employee Self Service
+                            <span class="nav-icon">▪</span> Employee Self Service
                         </div>
                         <div class="nav-item" onclick="goToScreen('exit')">
-                            <span class="nav-icon">🚪</span> Exit Management
+                            <span class="nav-icon">▪</span> Exit Management
                         </div>
                     </div>
                     <div class="nav-section">
                         <div class="nav-section-title">Administration</div>
                         <div class="nav-item" onclick="goToScreen('assets')">
-                            <span class="nav-icon">🖥️</span> Asset Management
+                            <span class="nav-icon">▪</span> Asset Management
                         </div>
                         <div class="nav-item" onclick="goToScreen('insurance')">
-                            <span class="nav-icon">🛡️</span> Insurance
+                            <span class="nav-icon">▪</span> Insurance
                         </div>
                         <div class="nav-item" onclick="goToScreen('travel')">
-                            <span class="nav-icon">✈️</span> Travel Booking
+                            <span class="nav-icon">▪</span> Travel Booking
                         </div>
                         <div class="nav-item" onclick="goToScreen('stationery')">
-                            <span class="nav-icon">📎</span> Stationery
+                            <span class="nav-icon">▪</span> Stationery
                         </div>
                         <div class="nav-item" onclick="goToScreen('admin-expenses')">
-                            <span class="nav-icon">💵</span> Admin Expenses
+                            <span class="nav-icon">▪</span> Admin Expenses
                         </div>
                     </div>
                 </nav>
@@ -1319,8 +1326,8 @@
                 <div class="topbar">
                     <h1>Dashboard Overview</h1>
                     <div class="topbar-actions">
-                        <div class="notification-bell" onclick="alert('Notifications:\n- 5 pending approvals\n- 3 upcoming renewals\n- 2 overdue tasks')">
-                            🔔
+                        <div class="notification-bell" onclick="showNotifications()">
+                            <span style="font-size: 16px;">●</span>
                             <span class="notification-badge">10</span>
                         </div>
                         <div class="user-info">
@@ -1339,7 +1346,7 @@
                     </div>
 
                     <div class="alert alert-info">
-                        <span class="alert-icon">ℹ️</span>
+                        <span class="alert-icon">●</span>
                         <div>
                             <strong>Welcome to FWWB Integrated Management System</strong><br>
                             Empowering Millions of Indian Women through efficient program, HR, and administrative management.
@@ -1375,16 +1382,16 @@
                         <div class="card-title">Quick Actions</div>
                         <div class="btn-group">
                             <button class="btn btn-primary" onclick="goToScreen('activities')">
-                                ➕ New Activity
+                                + New Activity
                             </button>
                             <button class="btn btn-info" onclick="goToScreen('expenses')">
-                                📤 Submit Expense
+                                ↑ Submit Expense
                             </button>
                             <button class="btn btn-success" onclick="goToScreen('employees')">
-                                👤 Add Employee
+                                + Add Employee
                             </button>
                             <button class="btn btn-secondary" onclick="goToScreen('reports')">
-                                📊 Generate Report
+                                ■ Generate Report
                             </button>
                         </div>
                     </div>
@@ -1418,21 +1425,21 @@
                         <div class="card">
                             <div class="card-title">Upcoming Renewals & Alerts</div>
                             <div class="alert alert-warning">
-                                <span class="alert-icon">⚠️</span>
+                                <span class="alert-icon">●</span>
                                 <div>
                                     <strong>Medical Insurance</strong><br>
                                     Expires in 15 days - Action required
                                 </div>
                             </div>
                             <div class="alert alert-warning">
-                                <span class="alert-icon">⚠️</span>
+                                <span class="alert-icon">●</span>
                                 <div>
                                     <strong>Vehicle Insurance (GJ-01-AB-1234)</strong><br>
                                     Expires in 22 days
                                 </div>
                             </div>
                             <div class="alert alert-info">
-                                <span class="alert-icon">ℹ️</span>
+                                <span class="alert-icon">●</span>
                                 <div>
                                     <strong>Laptop Warranty (LP-2023-045)</strong><br>
                                     Expires in 45 days
@@ -1448,7 +1455,7 @@
                             <div class="widget">
                                 <div class="widget-header">
                                     <span class="widget-title">Women Reached</span>
-                                    <span class="widget-icon">👩</span>
+                                    <span class="widget-icon">●</span>
                                 </div>
                                 <div class="widget-value">2.5M+</div>
                                 <div class="widget-subtitle">Across all programs</div>
@@ -1456,7 +1463,7 @@
                             <div class="widget">
                                 <div class="widget-header">
                                     <span class="widget-title">Micro-Credit Disbursed</span>
-                                    <span class="widget-icon">💰</span>
+                                    <span class="widget-icon">●</span>
                                 </div>
                                 <div class="widget-value">₹125Cr</div>
                                 <div class="widget-subtitle">Through partner MFIs</div>
@@ -1464,7 +1471,7 @@
                             <div class="widget">
                                 <div class="widget-header">
                                     <span class="widget-title">Training Sessions</span>
-                                    <span class="widget-icon">🎓</span>
+                                    <span class="widget-icon">●</span>
                                 </div>
                                 <div class="widget-value">450+</div>
                                 <div class="widget-subtitle">Capacity building initiatives</div>
@@ -1559,86 +1566,84 @@
 
         // Generate sidebar navigation
         function generateSidebar(activeScreen = '') {
-            return `
+            const userType = selectedUserType;
+            const permissions = rolePermissions[userType] || [];
+
+            // Module definitions with cleaner icons
+            const modules = {
+                dashboard: { section: 'main', label: 'Dashboard', icon: '■' },
+                activities: { section: 'program', label: 'Activities', icon: '▪' },
+                budget: { section: 'program', label: 'Budget', icon: '▪' },
+                expenses: { section: 'program', label: 'Expenses & Bills', icon: '▪' },
+                monitoring: { section: 'program', label: 'Monitoring', icon: '▪' },
+                reports: { section: 'program', label: 'Reports', icon: '▪' },
+                recruitment: { section: 'hrms', label: 'Recruitment', icon: '▪' },
+                employees: { section: 'hrms', label: 'Employees', icon: '▪' },
+                attendance: { section: 'hrms', label: 'Attendance', icon: '▪' },
+                leave: { section: 'hrms', label: 'Leave', icon: '▪' },
+                performance: { section: 'hrms', label: 'Performance', icon: '▪' },
+                payroll: { section: 'hrms', label: 'Payroll', icon: '▪' },
+                ess: { section: 'hrms', label: 'Self Service', icon: '▪' },
+                exit: { section: 'hrms', label: 'Exit', icon: '▪' },
+                assets: { section: 'admin', label: 'Assets', icon: '▪' },
+                insurance: { section: 'admin', label: 'Insurance', icon: '▪' },
+                travel: { section: 'admin', label: 'Travel', icon: '▪' },
+                stationery: { section: 'admin', label: 'Stationery', icon: '▪' },
+                'admin-expenses': { section: 'admin', label: 'Admin Expenses', icon: '▪' }
+            };
+
+            // Group modules by section
+            const sections = {
+                main: { title: 'Main', modules: [] },
+                program: { title: 'Program Management', modules: [] },
+                hrms: { title: 'HRMS', modules: [] },
+                admin: { title: 'Administration', modules: [] }
+            };
+
+            // Filter and group modules based on permissions
+            Object.keys(modules).forEach(key => {
+                if (permissions.includes(key)) {
+                    const module = modules[key];
+                    sections[module.section].modules.push({ key, ...module });
+                }
+            });
+
+            // Build sidebar HTML
+            let sidebarHTML = `
                 <aside class="sidebar">
                     <div class="sidebar-header">
                         <h2>FWWB India</h2>
-                        <div class="org-name">Integrated Management System</div>
+                        <div class="org-name">Management System</div>
                         <div class="user-badge">${currentUser ? currentUser.role : 'User'}</div>
                     </div>
                     <nav class="nav-menu">
+            `;
+
+            // Add sections with modules
+            Object.keys(sections).forEach(sectionKey => {
+                const section = sections[sectionKey];
+                if (section.modules.length > 0) {
+                    sidebarHTML += `
                         <div class="nav-section">
-                            <div class="nav-section-title">Main</div>
-                            <div class="nav-item ${activeScreen === 'dashboard' ? 'active' : ''}" onclick="goToScreen('dashboard')">
-                                <span class="nav-icon">📊</span> Dashboard
+                            <div class="nav-section-title">${section.title}</div>
+                    `;
+                    section.modules.forEach(module => {
+                        sidebarHTML += `
+                            <div class="nav-item ${activeScreen === module.key ? 'active' : ''}" onclick="goToScreen('${module.key}')">
+                                <span class="nav-icon">${module.icon}</span> ${module.label}
                             </div>
-                        </div>
-                        <div class="nav-section">
-                            <div class="nav-section-title">Program Management</div>
-                            <div class="nav-item ${activeScreen === 'activities' ? 'active' : ''}" onclick="goToScreen('activities')">
-                                <span class="nav-icon">📋</span> Activities
-                            </div>
-                            <div class="nav-item ${activeScreen === 'budget' ? 'active' : ''}" onclick="goToScreen('budget')">
-                                <span class="nav-icon">💰</span> Budget Management
-                            </div>
-                            <div class="nav-item ${activeScreen === 'expenses' ? 'active' : ''}" onclick="goToScreen('expenses')">
-                                <span class="nav-icon">🧾</span> Expenses & Bills
-                            </div>
-                            <div class="nav-item ${activeScreen === 'monitoring' ? 'active' : ''}" onclick="goToScreen('monitoring')">
-                                <span class="nav-icon">📈</span> Monitoring & Data
-                            </div>
-                            <div class="nav-item ${activeScreen === 'reports' ? 'active' : ''}" onclick="goToScreen('reports')">
-                                <span class="nav-icon">📄</span> Reports
-                            </div>
-                        </div>
-                        <div class="nav-section">
-                            <div class="nav-section-title">HRMS</div>
-                            <div class="nav-item ${activeScreen === 'recruitment' ? 'active' : ''}" onclick="goToScreen('recruitment')">
-                                <span class="nav-icon">👥</span> Recruitment
-                            </div>
-                            <div class="nav-item ${activeScreen === 'employees' ? 'active' : ''}" onclick="goToScreen('employees')">
-                                <span class="nav-icon">👤</span> Employees
-                            </div>
-                            <div class="nav-item ${activeScreen === 'attendance' ? 'active' : ''}" onclick="goToScreen('attendance')">
-                                <span class="nav-icon">⏰</span> Attendance
-                            </div>
-                            <div class="nav-item ${activeScreen === 'leave' ? 'active' : ''}" onclick="goToScreen('leave')">
-                                <span class="nav-icon">🏖️</span> Leave Management
-                            </div>
-                            <div class="nav-item ${activeScreen === 'performance' ? 'active' : ''}" onclick="goToScreen('performance')">
-                                <span class="nav-icon">⭐</span> Performance
-                            </div>
-                            <div class="nav-item ${activeScreen === 'payroll' ? 'active' : ''}" onclick="goToScreen('payroll')">
-                                <span class="nav-icon">💳</span> Payroll
-                            </div>
-                            <div class="nav-item ${activeScreen === 'ess' ? 'active' : ''}" onclick="goToScreen('ess')">
-                                <span class="nav-icon">🏠</span> Employee Self Service
-                            </div>
-                            <div class="nav-item ${activeScreen === 'exit' ? 'active' : ''}" onclick="goToScreen('exit')">
-                                <span class="nav-icon">🚪</span> Exit Management
-                            </div>
-                        </div>
-                        <div class="nav-section">
-                            <div class="nav-section-title">Administration</div>
-                            <div class="nav-item ${activeScreen === 'assets' ? 'active' : ''}" onclick="goToScreen('assets')">
-                                <span class="nav-icon">🖥️</span> Asset Management
-                            </div>
-                            <div class="nav-item ${activeScreen === 'insurance' ? 'active' : ''}" onclick="goToScreen('insurance')">
-                                <span class="nav-icon">🛡️</span> Insurance
-                            </div>
-                            <div class="nav-item ${activeScreen === 'travel' ? 'active' : ''}" onclick="goToScreen('travel')">
-                                <span class="nav-icon">✈️</span> Travel Booking
-                            </div>
-                            <div class="nav-item ${activeScreen === 'stationery' ? 'active' : ''}" onclick="goToScreen('stationery')">
-                                <span class="nav-icon">📎</span> Stationery
-                            </div>
-                            <div class="nav-item ${activeScreen === 'admin-expenses' ? 'active' : ''}" onclick="goToScreen('admin-expenses')">
-                                <span class="nav-icon">💵</span> Admin Expenses
-                            </div>
-                        </div>
+                        `;
+                    });
+                    sidebarHTML += `</div>`;
+                }
+            });
+
+            sidebarHTML += `
                     </nav>
                 </aside>
             `;
+
+            return sidebarHTML;
         }
 
         // Generate topbar
@@ -1647,8 +1652,8 @@
                 <div class="topbar">
                     <h1>${title}</h1>
                     <div class="topbar-actions">
-                        <div class="notification-bell" onclick="alert('Notifications:\\n- 5 pending approvals\\n- 3 upcoming renewals\\n- 2 overdue tasks')">
-                            🔔
+                        <div class="notification-bell" onclick="showNotifications()">
+                            <span style="font-size: 16px;">●</span>
                             <span class="notification-badge">10</span>
                         </div>
                         <div class="user-info">
@@ -1695,11 +1700,11 @@
                     </div>
 
                     <div style="margin-bottom: 24px;">
-                        <button class="btn btn-primary" onclick="alert('Opening Add Activity form...')">
-                            ➕ Add New Activity
+                        <button class="btn btn-primary" onclick="showAddActivityForm()">
+                            + Add New Activity
                         </button>
-                        <button class="btn btn-info" onclick="alert('Exporting activities to Excel...')">
-                            📥 Export to Excel
+                        <button class="btn btn-info" onclick="exportToExcel('activities')">
+                            ↓ Export to Excel
                         </button>
                     </div>
 
@@ -1718,7 +1723,7 @@
                             <option>Completed</option>
                             <option>Delayed</option>
                         </select>
-                        <button class="btn btn-secondary">🔍 Search</button>
+                        <button class="btn btn-secondary">○ Search</button>
                     </div>
 
                     <div class="table-container">
@@ -1845,7 +1850,7 @@
                     </div>
 
                     <div class="alert alert-warning">
-                        <span class="alert-icon">⚠️</span>
+                        <span class="alert-icon">●</span>
                         <div>
                             <strong>Budget Alert:</strong> 2 projects are approaching their budget limits (>85% utilization)
                         </div>
@@ -1875,14 +1880,14 @@
                     </div>
 
                     <div style="margin-bottom: 24px;">
-                        <button class="btn btn-primary" onclick="alert('Opening budget allocation form...')">
-                            ➕ Allocate Budget
+                        <button class="btn btn-primary" onclick="showBudgetAllocationForm()">
+                            + Allocate Budget
                         </button>
-                        <button class="btn btn-info" onclick="alert('Generating budget report...')">
-                            📊 Budget Report
+                        <button class="btn btn-info" onclick="generateReport('budget')">
+                            ■ Budget Report
                         </button>
-                        <button class="btn btn-secondary" onclick="alert('Exporting to Excel...')">
-                            📥 Export Data
+                        <button class="btn btn-secondary" onclick="exportToExcel('budget')">
+                            ↓ Export Data
                         </button>
                     </div>
 
@@ -2025,14 +2030,14 @@
                     </div>
 
                     <div style="margin-bottom: 24px;">
-                        <button class="btn btn-primary" onclick="alert('Opening expense submission form...')">
-                            ➕ Submit Expense
+                        <button class="btn btn-primary" onclick="showExpenseSubmissionForm()">
+                            + Submit Expense
                         </button>
-                        <button class="btn btn-info" onclick="alert('Bulk upload expenses from Excel...')">
-                            📤 Bulk Upload
+                        <button class="btn btn-info" onclick="bulkUpload('expenses')">
+                            ↑ Bulk Upload
                         </button>
-                        <button class="btn btn-secondary" onclick="alert('Exporting expense report...')">
-                            📥 Export Report
+                        <button class="btn btn-secondary" onclick="exportToExcel('expenses')">
+                            ↓ Export Report
                         </button>
                     </div>
 
@@ -2046,7 +2051,7 @@
                             <option>Settled</option>
                         </select>
                         <input type="date" class="filter-select">
-                        <button class="btn btn-secondary">🔍 Search</button>
+                        <button class="btn btn-secondary">○ Search</button>
                     </div>
 
                     <div class="table-container">
@@ -2075,7 +2080,7 @@
                                     <td>Venue & Catering</td>
                                     <td>ABC Hotel</td>
                                     <td>₹45,000</td>
-                                    <td>📎 2 files</td>
+                                    <td>●2 files</td>
                                     <td><span class="status-badge status-approved">Approved</span></td>
                                     <td>
                                         <div class="action-links">
@@ -2091,7 +2096,7 @@
                                     <td>Travel & TA/DA</td>
                                     <td>Travel Reimbursement</td>
                                     <td>₹12,500</td>
-                                    <td>📎 5 files</td>
+                                    <td>●5 files</td>
                                     <td><span class="status-badge status-pending">Pending</span></td>
                                     <td>
                                         <div class="action-links">
@@ -2107,7 +2112,7 @@
                                     <td>Printing & Materials</td>
                                     <td>XYZ Printers</td>
                                     <td>₹28,000</td>
-                                    <td>📎 1 file</td>
+                                    <td>●1 file</td>
                                     <td><span class="status-badge status-pending">Pending</span></td>
                                     <td>
                                         <div class="action-links">
@@ -2123,7 +2128,7 @@
                                     <td>Training Materials</td>
                                     <td>DEF Stationery</td>
                                     <td>₹15,800</td>
-                                    <td>📎 3 files</td>
+                                    <td>●3 files</td>
                                     <td><span class="status-badge status-approved">Approved</span></td>
                                     <td>
                                         <div class="action-links">
@@ -2139,7 +2144,7 @@
                                     <td>Equipment Rental</td>
                                     <td>AV Equipment Hire</td>
                                     <td>₹8,500</td>
-                                    <td>📎 2 files</td>
+                                    <td>●2 files</td>
                                     <td><span class="status-badge status-rejected">Rejected</span></td>
                                     <td>
                                         <div class="action-links">
@@ -2165,7 +2170,7 @@
                     </div>
 
                     <div class="alert alert-info">
-                        <span class="alert-icon">ℹ️</span>
+                        <span class="alert-icon">●</span>
                         <div>
                             <strong>Field Data Collection:</strong> Offline mode available for areas with poor connectivity. Data will sync automatically when online.
                         </div>
@@ -2195,17 +2200,17 @@
                     </div>
 
                     <div style="margin-bottom: 24px;">
-                        <button class="btn btn-primary" onclick="alert('Opening field data entry form...')">
-                            ➕ New Field Entry
+                        <button class="btn btn-primary" onclick="showFieldDataEntryForm()">
+                            + New Field Entry
                         </button>
                         <button class="btn btn-success" onclick="captureGPSLocation('fieldGPS')">
-                            📍 Capture GPS Location
+                            ● Capture GPS Location
                         </button>
-                        <button class="btn btn-info" onclick="alert('Bulk upload from Excel template...')">
-                            📤 Bulk Upload
+                        <button class="btn btn-info" onclick="bulkUpload('monitoring')">
+                            ↑ Bulk Upload
                         </button>
-                        <button class="btn btn-secondary" onclick="alert('Download offline data collection app...')">
-                            📱 Offline App
+                        <button class="btn btn-secondary" onclick="downloadOfflineApp()">
+                            ↓ Offline App
                         </button>
                     </div>
 
@@ -2395,10 +2400,10 @@
                             </div>
                         </div>
                         <div class="btn-group" style="margin-top: 20px;">
-                            <button class="btn btn-primary" onclick="alert('Generating report... This will download automatically.')">
-                                📊 Generate Report
+                            <button class="btn btn-primary" onclick="generateCustomReport()">
+                                ■ Generate Report
                             </button>
-                            <button class="btn btn-secondary" onclick="alert('Clearing form...')">
+                            <button class="btn btn-secondary" onclick="clearReportForm()">
                                 Clear
                             </button>
                         </div>
@@ -2407,17 +2412,17 @@
                     <div class="card">
                         <div class="card-title">Quick Reports</div>
                         <div class="btn-group">
-                            <button class="btn btn-info" onclick="alert('Generating current month summary...')">
-                                📅 Current Month Summary
+                            <button class="btn btn-info" onclick="generateQuickReport('monthly')">
+                                ■ Current Month Summary
                             </button>
-                            <button class="btn btn-info" onclick="alert('Generating quarterly report...')">
-                                📈 Quarterly Report (Q3)
+                            <button class="btn btn-info" onclick="generateQuickReport('quarterly')">
+                                ■ Quarterly Report (Q3)
                             </button>
-                            <button class="btn btn-info" onclick="alert('Generating annual report...')">
-                                📊 Annual Report (FY 2024-25)
+                            <button class="btn btn-info" onclick="generateQuickReport('annual')">
+                                ■ Annual Report (FY 2024-25)
                             </button>
-                            <button class="btn btn-info" onclick="alert('Generating impact dashboard...')">
-                                🎯 Impact Dashboard
+                            <button class="btn btn-info" onclick="generateQuickReport('impact')">
+                                ■ Impact Dashboard
                             </button>
                         </div>
                     </div>
@@ -2428,33 +2433,33 @@
                             <div class="widget">
                                 <div class="widget-header">
                                     <span class="widget-title">Women Entrepreneurship</span>
-                                    <span class="widget-icon">👩‍💼</span>
+                                    <span class="widget-icon">●</span>
                                 </div>
                                 <div class="widget-value">78%</div>
                                 <div class="widget-subtitle">Overall Progress</div>
-                                <button class="btn btn-secondary btn-full" style="margin-top: 12px;" onclick="alert('Opening detailed dashboard...')">
+                                <button class="btn btn-secondary btn-full" style="margin-top: 12px;" onclick="viewProjectDashboard('women-entrepreneurship')">
                                     View Dashboard
                                 </button>
                             </div>
                             <div class="widget">
                                 <div class="widget-header">
                                     <span class="widget-title">Financial Literacy</span>
-                                    <span class="widget-icon">📚</span>
+                                    <span class="widget-icon">●</span>
                                 </div>
                                 <div class="widget-value">82%</div>
                                 <div class="widget-subtitle">Overall Progress</div>
-                                <button class="btn btn-secondary btn-full" style="margin-top: 12px;" onclick="alert('Opening detailed dashboard...')">
+                                <button class="btn btn-secondary btn-full" style="margin-top: 12px;" onclick="viewProjectDashboard('financial-literacy')">
                                     View Dashboard
                                 </button>
                             </div>
                             <div class="widget">
                                 <div class="widget-header">
                                     <span class="widget-title">Microfinance Support</span>
-                                    <span class="widget-icon">💰</span>
+                                    <span class="widget-icon">●</span>
                                 </div>
                                 <div class="widget-value">65%</div>
                                 <div class="widget-subtitle">Overall Progress</div>
-                                <button class="btn btn-secondary btn-full" style="margin-top: 12px;" onclick="alert('Opening detailed dashboard...')">
+                                <button class="btn btn-secondary btn-full" style="margin-top: 12px;" onclick="viewProjectDashboard('microfinance')">
                                     View Dashboard
                                 </button>
                             </div>
@@ -2530,7 +2535,7 @@
         }
 
         function generateAttendanceScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Attendance Management</span></div><div class="alert alert-info"><span class="alert-icon">ℹ</span><div><strong>GPS-based Attendance:</strong> Field staff can mark attendance using GPS location from mobile app. Biometric attendance available for Head Office.</div></div><div class="stats-grid"><div class="stat-card success"><div class="stat-label">Present Today</div><div class="stat-value">148</div><div class="stat-trend">95% attendance</div></div><div class="stat-card warning"><div class="stat-label">Absent</div><div class="stat-value">5</div><div class="stat-trend">3% absent</div></div><div class="stat-card info"><div class="stat-label">On Leave</div><div class="stat-value">3</div><div class="stat-trend">2% on leave</div></div><div class="stat-card"><div class="stat-label">Half Day</div><div class="stat-value">2</div><div class="stat-trend">Partial attendance</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-success" onclick="alert('GPS Location captured!\\nLatitude: 23.0225\\nLongitude: 72.5714\\nTime: ' + new Date().toLocaleTimeString())">Mark Attendance (GPS)</button><button class="btn btn-primary" onclick="alert('Opening manual attendance entry...')">Manual Entry</button><button class="btn btn-info" onclick="alert('Generating attendance report...')">Generate Report</button><button class="btn btn-secondary" onclick="alert('Exporting attendance data...')">Export Data</button></div><div class="card"><div class="card-title">Today's Attendance - ${new Date().toLocaleDateString()}</div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by employee name or ID..."><select class="filter-select"><option>All Status</option><option>Present</option><option>Absent</option><option>Half Day</option><option>On Leave</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container" style="box-shadow: none; border: none;"><table><thead><tr><th>Emp ID</th><th>Name</th><th>Department</th><th>Check In</th><th>Check Out</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>EMP-001</td><td>Priya Sharma</td><td>Programs</td><td>09:15 AM</td><td>06:30 PM</td><td>HO - Ahmedabad</td><td><span class="status-badge status-active">Present</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View details...')">View</a></div></td></tr><tr><td>EMP-042</td><td>Rahul Verma</td><td>Programs</td><td>08:45 AM</td><td>05:15 PM</td><td>GPS: Kheda</td><td><span class="status-badge status-active">Present</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View GPS location...')">View</a></div></td></tr><tr><td>EMP-089</td><td>Anjali Patel</td><td>Finance</td><td>09:30 AM</td><td>—</td><td>HO - Ahmedabad</td><td><span class="status-badge status-active">Present</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View details...')">View</a></div></td></tr><tr><td>EMP-025</td><td>Amit Shah</td><td>Admin</td><td>—</td><td>—</td><td>—</td><td><span class="status-badge status-overdue">Absent</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Mark attendance...')">Mark</a></div></td></tr></tbody></table></div></div></div>`;
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Attendance Management</span></div><div class="alert alert-info"><span class="alert-icon">●</span><div><strong>GPS-based Attendance:</strong> Field staff can mark attendance using GPS location from mobile app. Biometric attendance available for Head Office.</div></div><div class="stats-grid"><div class="stat-card success"><div class="stat-label">Present Today</div><div class="stat-value">148</div><div class="stat-trend">95% attendance</div></div><div class="stat-card warning"><div class="stat-label">Absent</div><div class="stat-value">5</div><div class="stat-trend">3% absent</div></div><div class="stat-card info"><div class="stat-label">On Leave</div><div class="stat-value">3</div><div class="stat-trend">2% on leave</div></div><div class="stat-card"><div class="stat-label">Half Day</div><div class="stat-value">2</div><div class="stat-trend">Partial attendance</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-success" onclick="alert('GPS Location captured!\\nLatitude: 23.0225\\nLongitude: 72.5714\\nTime: ' + new Date().toLocaleTimeString())">Mark Attendance (GPS)</button><button class="btn btn-primary" onclick="alert('Opening manual attendance entry...')">Manual Entry</button><button class="btn btn-info" onclick="alert('Generating attendance report...')">Generate Report</button><button class="btn btn-secondary" onclick="alert('Exporting attendance data...')">Export Data</button></div><div class="card"><div class="card-title">Today's Attendance - ${new Date().toLocaleDateString()}</div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by employee name or ID..."><select class="filter-select"><option>All Status</option><option>Present</option><option>Absent</option><option>Half Day</option><option>On Leave</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container" style="box-shadow: none; border: none;"><table><thead><tr><th>Emp ID</th><th>Name</th><th>Department</th><th>Check In</th><th>Check Out</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>EMP-001</td><td>Priya Sharma</td><td>Programs</td><td>09:15 AM</td><td>06:30 PM</td><td>HO - Ahmedabad</td><td><span class="status-badge status-active">Present</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View details...')">View</a></div></td></tr><tr><td>EMP-042</td><td>Rahul Verma</td><td>Programs</td><td>08:45 AM</td><td>05:15 PM</td><td>GPS: Kheda</td><td><span class="status-badge status-active">Present</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View GPS location...')">View</a></div></td></tr><tr><td>EMP-089</td><td>Anjali Patel</td><td>Finance</td><td>09:30 AM</td><td>—</td><td>HO - Ahmedabad</td><td><span class="status-badge status-active">Present</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View details...')">View</a></div></td></tr><tr><td>EMP-025</td><td>Amit Shah</td><td>Admin</td><td>—</td><td>—</td><td>—</td><td><span class="status-badge status-overdue">Absent</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Mark attendance...')">Mark</a></div></td></tr></tbody></table></div></div></div>`;
         }
 
         function generateLeaveScreen() {
@@ -2546,7 +2551,7 @@
         }
 
         function generateESSScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Employee Self Service</span></div><div class="alert alert-info"><span class="alert-icon">ℹ</span><div><strong>Employee Portal:</strong> Employees can view payslips, apply for leave, update profiles, and access company documents.</div></div><div class="widget-grid"><div class="widget"><div class="widget-header"><span class="widget-title">My Profile</span></div><div class="widget-value">Complete</div><div class="widget-subtitle">Last updated: 15-Nov-2024</div><button class="btn btn-secondary btn-full" style="margin-top: 12px;" onclick="alert('Update profile...')">Update Profile</button></div><div class="widget"><div class="widget-header"><span class="widget-title">Leave Balance</span></div><div class="widget-value">15.5</div><div class="widget-subtitle">Days remaining</div><button class="btn btn-secondary btn-full" style="margin-top: 12px;" onclick="alert('Apply for leave...')">Apply Leave</button></div><div class="widget"><div class="widget-header"><span class="widget-title">Attendance</span></div><div class="widget-value">96%</div><div class="widget-subtitle">This month</div><button class="btn btn-secondary btn-full" style="margin-top: 12px;" onclick="alert('View attendance...')">View Details</button></div></div><div class="card"><div class="card-title">Quick Actions</div><div class="btn-group"><button class="btn btn-primary" onclick="alert('Downloading latest payslip...')">Download Payslip</button><button class="btn btn-info" onclick="alert('Viewing Form 16...')">View Form 16</button><button class="btn btn-success" onclick="alert('Apply for leave...')">Apply Leave</button><button class="btn btn-secondary" onclick="alert('Raise IT ticket...')">IT Support</button></div></div><div class="card"><div class="card-title">Recent Payslips</div><div class="table-container" style="box-shadow: none; border: none;"><table><thead><tr><th>Month</th><th>Gross Salary</th><th>Deductions</th><th>Net Salary</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>December 2024</td><td>₹55,000</td><td>₹8,250</td><td>₹46,750</td><td><span class="status-badge status-active">Processed</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Downloading payslip...')">Download</a></div></td></tr><tr><td>November 2024</td><td>₹55,000</td><td>₹8,250</td><td>₹46,750</td><td><span class="status-badge status-active">Processed</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Downloading payslip...')">Download</a></div></td></tr><tr><td>October 2024</td><td>₹55,000</td><td>₹8,250</td><td>₹46,750</td><td><span class="status-badge status-active">Processed</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Downloading payslip...')">Download</a></div></td></tr></tbody></table></div></div></div>`;
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Employee Self Service</span></div><div class="alert alert-info"><span class="alert-icon">●</span><div><strong>Employee Portal:</strong> Employees can view payslips, apply for leave, update profiles, and access company documents.</div></div><div class="widget-grid"><div class="widget"><div class="widget-header"><span class="widget-title">My Profile</span></div><div class="widget-value">Complete</div><div class="widget-subtitle">Last updated: 15-Nov-2024</div><button class="btn btn-secondary btn-full" style="margin-top: 12px;" onclick="alert('Update profile...')">Update Profile</button></div><div class="widget"><div class="widget-header"><span class="widget-title">Leave Balance</span></div><div class="widget-value">15.5</div><div class="widget-subtitle">Days remaining</div><button class="btn btn-secondary btn-full" style="margin-top: 12px;" onclick="alert('Apply for leave...')">Apply Leave</button></div><div class="widget"><div class="widget-header"><span class="widget-title">Attendance</span></div><div class="widget-value">96%</div><div class="widget-subtitle">This month</div><button class="btn btn-secondary btn-full" style="margin-top: 12px;" onclick="alert('View attendance...')">View Details</button></div></div><div class="card"><div class="card-title">Quick Actions</div><div class="btn-group"><button class="btn btn-primary" onclick="alert('Downloading latest payslip...')">Download Payslip</button><button class="btn btn-info" onclick="alert('Viewing Form 16...')">View Form 16</button><button class="btn btn-success" onclick="alert('Apply for leave...')">Apply Leave</button><button class="btn btn-secondary" onclick="alert('Raise IT ticket...')">IT Support</button></div></div><div class="card"><div class="card-title">Recent Payslips</div><div class="table-container" style="box-shadow: none; border: none;"><table><thead><tr><th>Month</th><th>Gross Salary</th><th>Deductions</th><th>Net Salary</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>December 2024</td><td>₹55,000</td><td>₹8,250</td><td>₹46,750</td><td><span class="status-badge status-active">Processed</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Downloading payslip...')">Download</a></div></td></tr><tr><td>November 2024</td><td>₹55,000</td><td>₹8,250</td><td>₹46,750</td><td><span class="status-badge status-active">Processed</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Downloading payslip...')">Download</a></div></td></tr><tr><td>October 2024</td><td>₹55,000</td><td>₹8,250</td><td>₹46,750</td><td><span class="status-badge status-active">Processed</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Downloading payslip...')">Download</a></div></td></tr></tbody></table></div></div></div>`;
         }
 
         function generateExitScreen() {
@@ -2559,7 +2564,7 @@
         }
 
         function generateInsuranceScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Insurance Management</span></div><div class="alert alert-warning"><span class="alert-icon">⚠</span><div><strong>Renewal Alert:</strong> 3 insurance policies expiring within 30 days. Please review and renew.</div></div><div class="tabs"><div class="tab active" onclick="switchTab(event, 'medical')">Medical</div><div class="tab" onclick="switchTab(event, 'group-accident')">Group Accident</div><div class="tab" onclick="switchTab(event, 'vehicle')">Vehicle</div><div class="tab" onclick="switchTab(event, 'fire')">Fire & Safety</div><div class="tab" onclick="switchTab(event, 'do')">D&O</div></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Total Policies</div><div class="stat-value">8</div><div class="stat-trend">Across all categories</div></div><div class="stat-card success"><div class="stat-label">Active</div><div class="stat-value">6</div><div class="stat-trend">Currently valid</div></div><div class="stat-card warning"><div class="stat-label">Expiring Soon</div><div class="stat-value">3</div><div class="stat-trend">Within 30 days</div></div><div class="stat-card info"><div class="stat-label">Total Premium</div><div class="stat-value">₹12.5L</div><div class="stat-trend">Annual</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="alert('Add new policy...')">+ Add Policy</button><button class="btn btn-info" onclick="alert('Renewal dashboard...')">Renewal Dashboard</button><button class="btn btn-secondary" onclick="alert('Export policy register...')">Export Register</button></div><div class="table-container"><div class="table-header"><h3>Medical Insurance Policies</h3></div><table><thead><tr><th>Policy Number</th><th>Insurance Provider</th><th>Coverage Type</th><th>Employees Covered</th><th>Sum Insured</th><th>Start Date</th><th>Expiry Date</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>MED-2024-001</td><td>ICICI Lombard</td><td>Employee + Family</td><td>156</td><td>₹5,00,000</td><td>01-Apr-2024</td><td>31-Mar-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View policy details...')">View</a><a class="action-link" onclick="alert('Renew policy...')">Renew</a></div></td></tr><tr><td>MED-2024-002</td><td>Star Health</td><td>Top-up Coverage</td><td>42</td><td>₹10,00,000</td><td>01-Apr-2024</td><td>31-Mar-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View policy details...')">View</a><a class="action-link" onclick="alert('Renew policy...')">Renew</a></div></td></tr></tbody></table></div><div class="table-container" style="margin-top: 24px;"><div class="table-header"><h3>Vehicle Insurance</h3></div><table><thead><tr><th>Vehicle Number</th><th>Vehicle Type</th><th>Insurance Provider</th><th>Policy Number</th><th>Start Date</th><th>Expiry Date</th><th>Premium</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>GJ-01-AB-1234</td><td>Car (Maruti Ertiga)</td><td>Bajaj Allianz</td><td>VEH-2024-045</td><td>15-Feb-2024</td><td>14-Feb-2025</td><td>₹18,500</td><td><span class="status-badge status-warning">Expiring Soon</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View policy...')">View</a><a class="action-link" onclick="alert('Renew now...')">Renew</a></div></td></tr><tr><td>GJ-05-CD-5678</td><td>Bike (Honda Activa)</td><td>HDFC ERGO</td><td>VEH-2024-078</td><td>22-Jul-2024</td><td>21-Jul-2025</td><td>₹2,850</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View policy...')">View</a></div></td></tr></tbody></table></div></div>`;
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Insurance Management</span></div><div class="alert alert-warning"><span class="alert-icon">●</span><div><strong>Renewal Alert:</strong> 3 insurance policies expiring within 30 days. Please review and renew.</div></div><div class="tabs"><div class="tab active" onclick="switchTab(event, 'medical')">Medical</div><div class="tab" onclick="switchTab(event, 'group-accident')">Group Accident</div><div class="tab" onclick="switchTab(event, 'vehicle')">Vehicle</div><div class="tab" onclick="switchTab(event, 'fire')">Fire & Safety</div><div class="tab" onclick="switchTab(event, 'do')">D&O</div></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Total Policies</div><div class="stat-value">8</div><div class="stat-trend">Across all categories</div></div><div class="stat-card success"><div class="stat-label">Active</div><div class="stat-value">6</div><div class="stat-trend">Currently valid</div></div><div class="stat-card warning"><div class="stat-label">Expiring Soon</div><div class="stat-value">3</div><div class="stat-trend">Within 30 days</div></div><div class="stat-card info"><div class="stat-label">Total Premium</div><div class="stat-value">₹12.5L</div><div class="stat-trend">Annual</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="alert('Add new policy...')">+ Add Policy</button><button class="btn btn-info" onclick="alert('Renewal dashboard...')">Renewal Dashboard</button><button class="btn btn-secondary" onclick="alert('Export policy register...')">Export Register</button></div><div class="table-container"><div class="table-header"><h3>Medical Insurance Policies</h3></div><table><thead><tr><th>Policy Number</th><th>Insurance Provider</th><th>Coverage Type</th><th>Employees Covered</th><th>Sum Insured</th><th>Start Date</th><th>Expiry Date</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>MED-2024-001</td><td>ICICI Lombard</td><td>Employee + Family</td><td>156</td><td>₹5,00,000</td><td>01-Apr-2024</td><td>31-Mar-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View policy details...')">View</a><a class="action-link" onclick="alert('Renew policy...')">Renew</a></div></td></tr><tr><td>MED-2024-002</td><td>Star Health</td><td>Top-up Coverage</td><td>42</td><td>₹10,00,000</td><td>01-Apr-2024</td><td>31-Mar-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View policy details...')">View</a><a class="action-link" onclick="alert('Renew policy...')">Renew</a></div></td></tr></tbody></table></div><div class="table-container" style="margin-top: 24px;"><div class="table-header"><h3>Vehicle Insurance</h3></div><table><thead><tr><th>Vehicle Number</th><th>Vehicle Type</th><th>Insurance Provider</th><th>Policy Number</th><th>Start Date</th><th>Expiry Date</th><th>Premium</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>GJ-01-AB-1234</td><td>Car (Maruti Ertiga)</td><td>Bajaj Allianz</td><td>VEH-2024-045</td><td>15-Feb-2024</td><td>14-Feb-2025</td><td>₹18,500</td><td><span class="status-badge status-warning">Expiring Soon</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View policy...')">View</a><a class="action-link" onclick="alert('Renew now...')">Renew</a></div></td></tr><tr><td>GJ-05-CD-5678</td><td>Bike (Honda Activa)</td><td>HDFC ERGO</td><td>VEH-2024-078</td><td>22-Jul-2024</td><td>21-Jul-2025</td><td>₹2,850</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View policy...')">View</a></div></td></tr></tbody></table></div></div>`;
         }
 
         function generateTravelScreen() {
@@ -2571,7 +2576,7 @@
         }
 
         function generateAdminExpensesScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Admin Expenses</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Total Expenses (This Month)</div><div class="stat-value">₹3.8L</div><div class="stat-trend">December 2024</div></div><div class="stat-card warning"><div class="stat-label">Pending Approval</div><div class="stat-value">12</div><div class="stat-trend">₹85,000 worth</div></div><div class="stat-card success"><div class="stat-label">Approved</div><div class="stat-value">28</div><div class="stat-trend">₹2.4L settled</div></div><div class="stat-card info"><div class="stat-label">Budget Utilization</div><div class="stat-value">76%</div><div class="stat-trend">On track</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="alert('Submit new expense...')">+ Submit Expense</button><button class="btn btn-info" onclick="alert('View budget vs actual...')">Budget Dashboard</button><button class="btn btn-secondary" onclick="alert('Export expense report...')">Export Report</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by expense category, description, or ID..."><select class="filter-select"><option>All Categories</option><option>Office Rent</option><option>Utilities</option><option>Maintenance</option><option>Office Supplies</option><option>Communication</option></select><select class="filter-select"><option>All Status</option><option>Pending</option><option>Approved</option><option>Rejected</option><option>Settled</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>Admin Expenses</h3></div><table><thead><tr><th>Expense ID</th><th>Date</th><th>Category</th><th>Description</th><th>Amount</th><th>Bills</th><th>Submitted By</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>AEXP-2024-089</td><td>20-Dec-2024</td><td>Office Rent</td><td>December Rent - HO</td><td>₹85,000</td><td>📎 1 file</td><td>Admin Team</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View details...')">View</a><a class="action-link" onclick="alert('Download bills...')">Download</a></div></td></tr><tr><td>AEXP-2024-090</td><td>22-Dec-2024</td><td>Utilities</td><td>Electricity Bill - December</td><td>₹18,500</td><td>📎 1 file</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve...')">Approve</a><a class="action-link danger" onclick="alert('Reject...')">Reject</a></div></td></tr><tr><td>AEXP-2024-091</td><td>24-Dec-2024</td><td>Maintenance</td><td>AC Servicing - All Units</td><td>₹12,800</td><td>📎 2 files</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve...')">Approve</a><a class="action-link danger" onclick="alert('Reject...')">Reject</a></div></td></tr><tr><td>AEXP-2024-092</td><td>25-Dec-2024</td><td>Communication</td><td>Internet & Phone - Dec</td><td>₹8,900</td><td>📎 1 file</td><td>Admin Team</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View details...')">View</a><a class="action-link" onclick="alert('Download bills...')">Download</a></div></td></tr></tbody></table></div></div>`;
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Admin Expenses</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Total Expenses (This Month)</div><div class="stat-value">₹3.8L</div><div class="stat-trend">December 2024</div></div><div class="stat-card warning"><div class="stat-label">Pending Approval</div><div class="stat-value">12</div><div class="stat-trend">₹85,000 worth</div></div><div class="stat-card success"><div class="stat-label">Approved</div><div class="stat-value">28</div><div class="stat-trend">₹2.4L settled</div></div><div class="stat-card info"><div class="stat-label">Budget Utilization</div><div class="stat-value">76%</div><div class="stat-trend">On track</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="alert('Submit new expense...')">+ Submit Expense</button><button class="btn btn-info" onclick="alert('View budget vs actual...')">Budget Dashboard</button><button class="btn btn-secondary" onclick="alert('Export expense report...')">Export Report</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by expense category, description, or ID..."><select class="filter-select"><option>All Categories</option><option>Office Rent</option><option>Utilities</option><option>Maintenance</option><option>Office Supplies</option><option>Communication</option></select><select class="filter-select"><option>All Status</option><option>Pending</option><option>Approved</option><option>Rejected</option><option>Settled</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>Admin Expenses</h3></div><table><thead><tr><th>Expense ID</th><th>Date</th><th>Category</th><th>Description</th><th>Amount</th><th>Bills</th><th>Submitted By</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>AEXP-2024-089</td><td>20-Dec-2024</td><td>Office Rent</td><td>December Rent - HO</td><td>₹85,000</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View details...')">View</a><a class="action-link" onclick="alert('Download bills...')">Download</a></div></td></tr><tr><td>AEXP-2024-090</td><td>22-Dec-2024</td><td>Utilities</td><td>Electricity Bill - December</td><td>₹18,500</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve...')">Approve</a><a class="action-link danger" onclick="alert('Reject...')">Reject</a></div></td></tr><tr><td>AEXP-2024-091</td><td>24-Dec-2024</td><td>Maintenance</td><td>AC Servicing - All Units</td><td>₹12,800</td><td>●2 files</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve...')">Approve</a><a class="action-link danger" onclick="alert('Reject...')">Reject</a></div></td></tr><tr><td>AEXP-2024-092</td><td>25-Dec-2024</td><td>Communication</td><td>Internet & Phone - Dec</td><td>₹8,900</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View details...')">View</a><a class="action-link" onclick="alert('Download bills...')">Download</a></div></td></tr></tbody></table></div></div>`;
         }
 
         // Tab switching function
@@ -2800,6 +2805,100 @@
             } else {
                 alert('Geolocation is not supported by your browser.');
             }
+        }
+
+        // Notification functions
+        function showNotifications() {
+            const notifications = [
+                '● 5 pending expense approvals',
+                '● 3 insurance policies expiring within 30 days',
+                '● 2 budget alerts - projects at >85% utilization',
+                '● 12 leave requests awaiting approval',
+                '● 4 resignations in notice period'
+            ];
+            alert('Notifications:\n\n' + notifications.join('\n'));
+        }
+
+        // Activity Management functions
+        function showAddActivityForm() {
+            alert('Add New Activity Form\n\nIn production, this will open a modal form to:\n- Enter activity details\n- Select project\n- Assign team members\n- Set budget and timeline\n- Add LFA indicators');
+        }
+
+        // Export functions
+        function exportToExcel(type) {
+            const typeNames = {
+                'activities': 'Activities',
+                'budget': 'Budget Data',
+                'expenses': 'Expense Report',
+                'monitoring': 'Monitoring Data'
+            };
+            alert(`Exporting ${typeNames[type] || type} to Excel...\n\nFile will be downloaded as: ${type}_${new Date().toISOString().split('T')[0]}.xlsx`);
+        }
+
+        // Budget Management functions
+        function showBudgetAllocationForm() {
+            alert('Budget Allocation Form\n\nIn production, this will open a form to:\n- Select project\n- Allocate budget to activities\n- Set budget categories\n- Define spending limits');
+        }
+
+        // Expense Management functions
+        function showExpenseSubmissionForm() {
+            alert('Submit Expense Form\n\nIn production, this will open a form to:\n- Upload bills/receipts\n- Link to activity\n- Enter amount and description\n- Submit for approval workflow');
+        }
+
+        function bulkUpload(type) {
+            const typeNames = {
+                'expenses': 'Expenses',
+                'monitoring': 'Monitoring Data'
+            };
+            alert(`Bulk Upload ${typeNames[type]}\n\nIn production, this will:\n- Download Excel template\n- Allow bulk data upload\n- Validate data\n- Import into system`);
+        }
+
+        // Monitoring functions
+        function showFieldDataEntryForm() {
+            alert('Field Data Entry Form\n\nIn production, this will open a form to:\n- Capture beneficiary data\n- Upload photos\n- Tag GPS location\n- Update LFA indicators\n- Support offline mode');
+        }
+
+        function downloadOfflineApp() {
+            alert('Download Offline Data Collection App\n\nIn production, this will:\n- Provide mobile app download link\n- Support Android and iOS\n- Enable offline data capture\n- Auto-sync when online');
+        }
+
+        // Report functions
+        function generateReport(type) {
+            const typeNames = {
+                'budget': 'Budget Report',
+                'performance': 'Performance Report'
+            };
+            alert(`Generating ${typeNames[type]}...\n\nReport will include:\n- Current status\n- Historical trends\n- Visual charts\n- Export options (PDF/Excel)`);
+        }
+
+        function generateCustomReport() {
+            alert('Generating Custom Report...\n\nBased on your selections:\n- Report Type: Selected\n- Date Range: Selected\n- Projects/Activities: Selected\n- Format: Selected\n\nReport will download automatically.');
+        }
+
+        function clearReportForm() {
+            if (confirm('Clear all report selections?')) {
+                alert('Report form cleared.');
+            }
+        }
+
+        function generateQuickReport(type) {
+            const typeNames = {
+                'monthly': 'Current Month Summary',
+                'quarterly': 'Quarterly Report (Q3)',
+                'annual': 'Annual Report (FY 2024-25)',
+                'impact': 'Impact Dashboard'
+            };
+            alert(`Generating ${typeNames[type]}...\n\nReport includes:\n- Key metrics\n- Progress tracking\n- Beneficiary impact\n- Budget utilization\n\nDownloading...`);
+        }
+
+        function viewProjectDashboard(project) {
+            const projectNames = {
+                'women-entrepreneurship': 'Women Entrepreneurship Program',
+                'financial-literacy': 'Financial Literacy Campaign',
+                'microfinance': 'Microfinance Support Initiative'
+            };
+            alert(`Opening ${projectNames[project]} Dashboard\n\nDashboard will show:\n- Activities timeline\n- Budget vs actual\n- Beneficiaries reached\n- LFA indicators\n- Photos and reports`);
+            // In production, this would navigate to a dedicated project dashboard screen
         }
 
         // Initialize on page load

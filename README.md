@@ -1,9 +1,15 @@
 # FWWB India - Integrated Management System Wireframes
 
 ## Overview
-Complete, fully functional wireframes for FWWB (Friends of Women's World Banking) India's integrated management system covering Program Management, HRMS, and Administration modules.
+Complete, fully functional wireframes for FWWB (Friends of Women's World Banking) India's integrated management system covering AI Analytics, Program Management, HRMS, and Administration modules.
 
 ## Features
+
+### AI Insights (GPT Integration)
+- **Ask AI**: Natural language query interface powered by GPT for data insights
+- **Auto Reports**: Generate reports and summaries from organizational data
+- **Query History**: Track all AI queries and responses
+- **Export Insights**: Download AI-generated insights as PDF/Word
 
 ### Program Management
 - **Activities Management**: Track project activities with budget allocation, progress monitoring, and team assignments
@@ -19,6 +25,9 @@ Complete, fully functional wireframes for FWWB (Friends of Women's World Banking
 - **Leave Management**: Leave application, approval workflow, and balance tracking
 - **Performance Management**: Goal setting, performance reviews, and ratings
 - **Payroll**: Salary processing with statutory compliance (PF, ESIC, TDS, PT)
+- **Employee Engagement**: Surveys, recognition, feedback, and pulse checks
+- **HR Calendar & Events**: Events, holidays, birthdays, and work anniversaries
+- **Letter Generation**: Template-based letter creation (offer, appointment, experience, increment, etc.)
 - **Employee Self Service (ESS)**: Payslip download, leave application, profile updates
 
 ### Administration
@@ -30,12 +39,13 @@ Complete, fully functional wireframes for FWWB (Friends of Women's World Banking
 
 ## Role-Based Access Control
 
-The system implements role-based access with 4 user types:
+The system implements role-based access with 5 user types:
 
 1. **Management**: Full access to all modules
 2. **Program Team**: Access to Program Management modules, attendance, leave, and ESS
 3. **HR Team**: Access to all HRMS modules
 4. **Admin Team**: Access to Administration modules, attendance, leave, and ESS
+5. **Employee**: Access to dashboard, attendance, leave, engagement, calendar, and ESS
 
 ## Design & Branding
 
@@ -55,6 +65,7 @@ Select a user type on the login screen and credentials will auto-populate:
 - **Program Team**: program.user / demo123
 - **HR Team**: hr.user / demo123
 - **Admin Team**: admin.user / demo123
+- **Employee**: employee / demo123
 
 ## Technology Stack
 

@@ -441,67 +441,102 @@
 
         /* Buttons */
         .btn {
-            padding: 11px 24px;
+            padding: 12px 28px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 14px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
         }
 
         .btn-primary {
-            background: #2E3192;
+            background: linear-gradient(135deg, #2E3192 0%, #252b7a 100%);
             color: white;
+            box-shadow: 0 2px 8px rgba(46, 49, 146, 0.2), 0 1px 2px rgba(46, 49, 146, 0.1);
         }
 
         .btn-primary:hover {
-            background: #1e2266;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(46, 49, 146, 0.3);
+            background: linear-gradient(135deg, #252b7a 0%, #1e2266 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(46, 49, 146, 0.3), 0 2px 4px rgba(46, 49, 146, 0.2);
         }
 
         .btn-secondary {
-            background: #e2e8f0;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
             color: #4a5568;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .btn-secondary:hover {
-            background: #cbd5e0;
+            background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%);
+            border-color: #cbd5e0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .btn-success {
-            background: #48bb78;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
             color: white;
+            box-shadow: 0 2px 8px rgba(72, 187, 120, 0.2), 0 1px 2px rgba(72, 187, 120, 0.1);
         }
 
         .btn-success:hover {
-            background: #38a169;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(72, 187, 120, 0.3), 0 2px 4px rgba(72, 187, 120, 0.2);
         }
 
         .btn-danger {
-            background: #f56565;
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
             color: white;
+            box-shadow: 0 2px 8px rgba(245, 101, 101, 0.2), 0 1px 2px rgba(245, 101, 101, 0.1);
         }
 
         .btn-danger:hover {
-            background: #e53e3e;
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(245, 101, 101, 0.3), 0 2px 4px rgba(245, 101, 101, 0.2);
         }
 
         .btn-info {
-            background: #1BADE3;
+            background: linear-gradient(135deg, #1BADE3 0%, #1599c9 100%);
             color: white;
+            box-shadow: 0 2px 8px rgba(27, 173, 227, 0.2), 0 1px 2px rgba(27, 173, 227, 0.1);
         }
 
         .btn-info:hover {
-            background: #1599c9;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(27, 173, 227, 0.3);
+            background: linear-gradient(135deg, #1599c9 0%, #0e7ca8 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(27, 173, 227, 0.3), 0 2px 4px rgba(27, 173, 227, 0.2);
         }
 
         .btn-full {
@@ -2756,19 +2791,19 @@
         }
 
         function generateInsuranceScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Insurance Management</span></div><div class="alert alert-warning"><span class="alert-icon">●</span><div><strong>Renewal Alert:</strong> 3 insurance policies expiring within 30 days. Please review and renew.</div></div><div class="tabs"><div class="tab active" onclick="switchTab(event, 'medical')">Medical</div><div class="tab" onclick="switchTab(event, 'group-accident')">Group Accident</div><div class="tab" onclick="switchTab(event, 'vehicle')">Vehicle</div><div class="tab" onclick="switchTab(event, 'fire')">Fire & Safety</div><div class="tab" onclick="switchTab(event, 'do')">D&O</div></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Total Policies</div><div class="stat-value">8</div><div class="stat-trend">Across all categories</div></div><div class="stat-card success"><div class="stat-label">Active</div><div class="stat-value">6</div><div class="stat-trend">Currently valid</div></div><div class="stat-card warning"><div class="stat-label">Expiring Soon</div><div class="stat-value">3</div><div class="stat-trend">Within 30 days</div></div><div class="stat-card info"><div class="stat-label">Total Premium</div><div class="stat-value">₹12.5L</div><div class="stat-trend">Annual</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showAddPolicyForm()">+ Add Policy</button><button class="btn btn-info" onclick="alert('Renewal Dashboard\\n\\nShowing:\\n● Policies expiring soon\\n● Renewal quotes\\n● Comparison analysis\\n● Renewal timeline\\n● Payment tracking\\n● Action items\\n\\n[Opening renewal dashboard...]')">Renewal Dashboard</button><button class="btn btn-secondary" onclick="exportToExcel('insurance')">Export Register</button></div><div class="table-container"><div class="table-header"><h3>Medical Insurance Policies</h3></div><table><thead><tr><th>Policy Number</th><th>Insurance Provider</th><th>Coverage Type</th><th>Employees Covered</th><th>Sum Insured</th><th>Start Date</th><th>Expiry Date</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>MED-2024-001</td><td>ICICI Lombard</td><td>Employee + Family</td><td>156</td><td>₹5,00,000</td><td>01-Apr-2024</td><td>31-Mar-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewPolicyDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="renewPolicy(this.closest('tr').querySelector('td').textContent)">Renew</a></div></td></tr><tr><td>MED-2024-002</td><td>Star Health</td><td>Top-up Coverage</td><td>42</td><td>₹10,00,000</td><td>01-Apr-2024</td><td>31-Mar-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewPolicyDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="renewPolicy(this.closest('tr').querySelector('td').textContent)">Renew</a></div></td></tr></tbody></table></div><div class="table-container" style="margin-top: 24px;"><div class="table-header"><h3>Vehicle Insurance</h3></div><table><thead><tr><th>Vehicle Number</th><th>Vehicle Type</th><th>Insurance Provider</th><th>Policy Number</th><th>Start Date</th><th>Expiry Date</th><th>Premium</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>GJ-01-AB-1234</td><td>Car (Maruti Ertiga)</td><td>Bajaj Allianz</td><td>VEH-2024-045</td><td>15-Feb-2024</td><td>14-Feb-2025</td><td>₹18,500</td><td><span class="status-badge status-warning">Expiring Soon</span></td><td><div class="action-links"><a class="action-link" onclick="viewPolicyDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="renewPolicy(this.closest('tr').querySelector('td').textContent)">Renew</a></div></td></tr><tr><td>GJ-05-CD-5678</td><td>Bike (Honda Activa)</td><td>HDFC ERGO</td><td>VEH-2024-078</td><td>22-Jul-2024</td><td>21-Jul-2025</td><td>₹2,850</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewPolicyDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr></tbody></table></div></div>`;
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Insurance Management</span></div><div class="alert alert-warning"><span class="alert-icon">●</span><div><strong>Renewal Alert:</strong> 3 insurance policies expiring within 30 days. Please review and renew.</div></div><div class="tabs"><div class="tab active" onclick="switchTab(event, 'medical')">Medical</div><div class="tab" onclick="switchTab(event, 'group-accident')">Group Accident</div><div class="tab" onclick="switchTab(event, 'vehicle')">Vehicle</div><div class="tab" onclick="switchTab(event, 'fire')">Fire & Safety</div><div class="tab" onclick="switchTab(event, 'do')">D&O</div></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Total Policies</div><div class="stat-value">8</div><div class="stat-trend">Across all categories</div></div><div class="stat-card success"><div class="stat-label">Active</div><div class="stat-value">6</div><div class="stat-trend">Currently valid</div></div><div class="stat-card warning"><div class="stat-label">Expiring Soon</div><div class="stat-value">3</div><div class="stat-trend">Within 30 days</div></div><div class="stat-card info"><div class="stat-label">Total Premium</div><div class="stat-value">₹12.5L</div><div class="stat-trend">Annual</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showAddPolicyForm()">+ Add Policy</button><button class="btn btn-info" onclick="showRenewalDashboard()">Renewal Dashboard</button><button class="btn btn-secondary" onclick="exportToExcel('insurance')">Export Register</button></div><div class="table-container"><div class="table-header"><h3>Medical Insurance Policies</h3></div><table><thead><tr><th>Policy Number</th><th>Insurance Provider</th><th>Coverage Type</th><th>Employees Covered</th><th>Sum Insured</th><th>Start Date</th><th>Expiry Date</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>MED-2024-001</td><td>ICICI Lombard</td><td>Employee + Family</td><td>156</td><td>₹5,00,000</td><td>01-Apr-2024</td><td>31-Mar-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewPolicyDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="renewPolicy(this.closest('tr').querySelector('td').textContent)">Renew</a></div></td></tr><tr><td>MED-2024-002</td><td>Star Health</td><td>Top-up Coverage</td><td>42</td><td>₹10,00,000</td><td>01-Apr-2024</td><td>31-Mar-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewPolicyDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="renewPolicy(this.closest('tr').querySelector('td').textContent)">Renew</a></div></td></tr></tbody></table></div><div class="table-container" style="margin-top: 24px;"><div class="table-header"><h3>Vehicle Insurance</h3></div><table><thead><tr><th>Vehicle Number</th><th>Vehicle Type</th><th>Insurance Provider</th><th>Policy Number</th><th>Start Date</th><th>Expiry Date</th><th>Premium</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>GJ-01-AB-1234</td><td>Car (Maruti Ertiga)</td><td>Bajaj Allianz</td><td>VEH-2024-045</td><td>15-Feb-2024</td><td>14-Feb-2025</td><td>₹18,500</td><td><span class="status-badge status-warning">Expiring Soon</span></td><td><div class="action-links"><a class="action-link" onclick="viewPolicyDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="renewPolicy(this.closest('tr').querySelector('td').textContent)">Renew</a></div></td></tr><tr><td>GJ-05-CD-5678</td><td>Bike (Honda Activa)</td><td>HDFC ERGO</td><td>VEH-2024-078</td><td>22-Jul-2024</td><td>21-Jul-2025</td><td>₹2,850</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewPolicyDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr></tbody></table></div></div>`;
         }
 
         function generateTravelScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Travel Booking</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Pending Requests</div><div class="stat-value">8</div><div class="stat-trend">Awaiting approval</div></div><div class="stat-card success"><div class="stat-label">Approved This Month</div><div class="stat-value">32</div><div class="stat-trend">December 2024</div></div><div class="stat-card info"><div class="stat-label">Total Spend</div><div class="stat-value">₹2.8L</div><div class="stat-trend">This month</div></div><div class="stat-card warning"><div class="stat-label">Tickets to Book</div><div class="stat-value">5</div><div class="stat-trend">Action required</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="alert('Request travel booking...')">+ New Travel Request</button><button class="btn btn-info" onclick="alert('View travel calendar...')">Travel Calendar</button><button class="btn btn-secondary" onclick="alert('Export travel report...')">Export Report</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by employee name, request ID, or destination..."><select class="filter-select"><option>All Status</option><option>Pending</option><option>Approved</option><option>Booked</option><option>Completed</option></select><select class="filter-select"><option>All Travel Modes</option><option>Flight</option><option>Train</option><option>Bus</option><option>Car</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>Travel Requests</h3></div><table><thead><tr><th>Request ID</th><th>Employee</th><th>From - To</th><th>Travel Date</th><th>Mode</th><th>Purpose</th><th>Estimated Cost</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>TR-2024-089</td><td>Priya Sharma</td><td>Ahmedabad - Delhi</td><td>05-Jan-2025</td><td>Flight</td><td>Donor Meeting</td><td>₹15,000</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve request...')">Approve</a><a class="action-link danger" onclick="alert('Reject request...')">Reject</a></div></td></tr><tr><td>TR-2024-090</td><td>Rahul Verma</td><td>Kheda - Gandhinagar</td><td>28-Dec-2024</td><td>Train</td><td>Field Visit</td><td>₹850</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Book tickets...')">Book</a><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr><tr><td>TR-2024-091</td><td>Anjali Patel</td><td>Ahmedabad - Mumbai</td><td>10-Jan-2025</td><td>Flight</td><td>Training Program</td><td>₹12,500</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve request...')">Approve</a><a class="action-link danger" onclick="alert('Reject request...')">Reject</a></div></td></tr><tr><td>TR-2024-092</td><td>Neha Desai</td><td>Ahmedabad - Surat</td><td>02-Jan-2025</td><td>Bus</td><td>Project Review</td><td>₹600</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Book tickets...')">Book</a><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr></tbody></table></div></div>`;
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Travel Booking</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Pending Requests</div><div class="stat-value">8</div><div class="stat-trend">Awaiting approval</div></div><div class="stat-card success"><div class="stat-label">Approved This Month</div><div class="stat-value">32</div><div class="stat-trend">December 2024</div></div><div class="stat-card info"><div class="stat-label">Total Spend</div><div class="stat-value">₹2.8L</div><div class="stat-trend">This month</div></div><div class="stat-card warning"><div class="stat-label">Tickets to Book</div><div class="stat-value">5</div><div class="stat-trend">Action required</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showRequestTravelForm()">+ New Travel Request</button><button class="btn btn-info" onclick="showTravelCalendar()">Travel Calendar</button><button class="btn btn-secondary" onclick="exportToExcel('travel')">Export Report</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by employee name, request ID, or destination..."><select class="filter-select"><option>All Status</option><option>Pending</option><option>Approved</option><option>Booked</option><option>Completed</option></select><select class="filter-select"><option>All Travel Modes</option><option>Flight</option><option>Train</option><option>Bus</option><option>Car</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>Travel Requests</h3></div><table><thead><tr><th>Request ID</th><th>Employee</th><th>From - To</th><th>Travel Date</th><th>Mode</th><th>Purpose</th><th>Estimated Cost</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>TR-2024-089</td><td>Priya Sharma</td><td>Ahmedabad - Delhi</td><td>05-Jan-2025</td><td>Flight</td><td>Donor Meeting</td><td>₹15,000</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve request...')">Approve</a><a class="action-link danger" onclick="alert('Reject request...')">Reject</a></div></td></tr><tr><td>TR-2024-090</td><td>Rahul Verma</td><td>Kheda - Gandhinagar</td><td>28-Dec-2024</td><td>Train</td><td>Field Visit</td><td>₹850</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Book tickets...')">Book</a><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr><tr><td>TR-2024-091</td><td>Anjali Patel</td><td>Ahmedabad - Mumbai</td><td>10-Jan-2025</td><td>Flight</td><td>Training Program</td><td>₹12,500</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve request...')">Approve</a><a class="action-link danger" onclick="alert('Reject request...')">Reject</a></div></td></tr><tr><td>TR-2024-092</td><td>Neha Desai</td><td>Ahmedabad - Surat</td><td>02-Jan-2025</td><td>Bus</td><td>Project Review</td><td>₹600</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Book tickets...')">Book</a><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr></tbody></table></div></div>`;
         }
 
         function generateStationeryScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Stationery Request</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Pending Requests</div><div class="stat-value">15</div><div class="stat-trend">Awaiting approval</div></div><div class="stat-card success"><div class="stat-label">Fulfilled This Month</div><div class="stat-value">89</div><div class="stat-trend">December 2024</div></div><div class="stat-card info"><div class="stat-label">Total Value</div><div class="stat-value">₹45,800</div><div class="stat-trend">This month</div></div><div class="stat-card warning"><div class="stat-label">Low Stock Items</div><div class="stat-value">8</div><div class="stat-trend">Need reorder</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="alert('Request stationery...')">+ New Request</button><button class="btn btn-info" onclick="alert('View stock inventory...')">View Inventory</button><button class="btn btn-secondary" onclick="alert('Export usage report...')">Export Report</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by employee, item, or request ID..."><select class="filter-select"><option>All Status</option><option>Pending</option><option>Approved</option><option>Fulfilled</option><option>Rejected</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>Stationery Requests</h3></div><table><thead><tr><th>Request ID</th><th>Requested By</th><th>Department</th><th>Items</th><th>Purpose</th><th>Quantity</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>ST-2024-156</td><td>Priya Sharma</td><td>Programs</td><td>A4 Paper, Pens</td><td>Workshop Material</td><td>5 reams, 50 pens</td><td>22-Dec-2024</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve request...')">Approve</a><a class="action-link danger" onclick="alert('Reject request...')">Reject</a></div></td></tr><tr><td>ST-2024-157</td><td>Admin Team</td><td>Admin</td><td>Printer Toner</td><td>General Use</td><td>2 cartridges</td><td>24-Dec-2024</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Fulfill request...')">Fulfill</a><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr><tr><td>ST-2024-158</td><td>Rahul Verma</td><td>Programs</td><td>Notebooks, Folders</td><td>Field Survey</td><td>20 notebooks, 10 folders</td><td>25-Dec-2024</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve request...')">Approve</a><a class="action-link danger" onclick="alert('Reject request...')">Reject</a></div></td></tr></tbody></table></div><div class="card" style="margin-top: 24px;"><div class="card-title">Current Stock Status</div><div class="table-container" style="box-shadow: none; border: none;"><table><thead><tr><th>Item</th><th>Current Stock</th><th>Minimum Level</th><th>Unit</th><th>Last Reorder</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>A4 Paper</td><td>45</td><td>20</td><td>Reams</td><td>15-Dec-2024</td><td><span class="status-badge status-active">Adequate</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Reorder...')">Reorder</a></div></td></tr><tr><td>Printer Toner (Black)</td><td>3</td><td>5</td><td>Cartridges</td><td>01-Nov-2024</td><td><span class="status-badge status-warning">Low</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Urgent reorder...')">Reorder</a></div></td></tr><tr><td>Pens (Blue)</td><td>250</td><td>100</td><td>Pieces</td><td>10-Dec-2024</td><td><span class="status-badge status-active">Adequate</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Reorder...')">Reorder</a></div></td></tr></tbody></table></div></div></div>`;
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Stationery Request</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Pending Requests</div><div class="stat-value">15</div><div class="stat-trend">Awaiting approval</div></div><div class="stat-card success"><div class="stat-label">Fulfilled This Month</div><div class="stat-value">89</div><div class="stat-trend">December 2024</div></div><div class="stat-card info"><div class="stat-label">Total Value</div><div class="stat-value">₹45,800</div><div class="stat-trend">This month</div></div><div class="stat-card warning"><div class="stat-label">Low Stock Items</div><div class="stat-value">8</div><div class="stat-trend">Need reorder</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showRequestStationeryForm()">+ New Request</button><button class="btn btn-info" onclick="showStockInventory()">View Inventory</button><button class="btn btn-secondary" onclick="exportToExcel('stationery')">Export Report</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by employee, item, or request ID..."><select class="filter-select"><option>All Status</option><option>Pending</option><option>Approved</option><option>Fulfilled</option><option>Rejected</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>Stationery Requests</h3></div><table><thead><tr><th>Request ID</th><th>Requested By</th><th>Department</th><th>Items</th><th>Purpose</th><th>Quantity</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>ST-2024-156</td><td>Priya Sharma</td><td>Programs</td><td>A4 Paper, Pens</td><td>Workshop Material</td><td>5 reams, 50 pens</td><td>22-Dec-2024</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve request...')">Approve</a><a class="action-link danger" onclick="alert('Reject request...')">Reject</a></div></td></tr><tr><td>ST-2024-157</td><td>Admin Team</td><td>Admin</td><td>Printer Toner</td><td>General Use</td><td>2 cartridges</td><td>24-Dec-2024</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Fulfill request...')">Fulfill</a><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr><tr><td>ST-2024-158</td><td>Rahul Verma</td><td>Programs</td><td>Notebooks, Folders</td><td>Field Survey</td><td>20 notebooks, 10 folders</td><td>25-Dec-2024</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve request...')">Approve</a><a class="action-link danger" onclick="alert('Reject request...')">Reject</a></div></td></tr></tbody></table></div><div class="card" style="margin-top: 24px;"><div class="card-title">Current Stock Status</div><div class="table-container" style="box-shadow: none; border: none;"><table><thead><tr><th>Item</th><th>Current Stock</th><th>Minimum Level</th><th>Unit</th><th>Last Reorder</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>A4 Paper</td><td>45</td><td>20</td><td>Reams</td><td>15-Dec-2024</td><td><span class="status-badge status-active">Adequate</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Reorder...')">Reorder</a></div></td></tr><tr><td>Printer Toner (Black)</td><td>3</td><td>5</td><td>Cartridges</td><td>01-Nov-2024</td><td><span class="status-badge status-warning">Low</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Urgent reorder...')">Reorder</a></div></td></tr><tr><td>Pens (Blue)</td><td>250</td><td>100</td><td>Pieces</td><td>10-Dec-2024</td><td><span class="status-badge status-active">Adequate</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Reorder...')">Reorder</a></div></td></tr></tbody></table></div></div></div>`;
         }
 
         function generateAdminExpensesScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Admin Expenses</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Total Expenses (This Month)</div><div class="stat-value">₹3.8L</div><div class="stat-trend">December 2024</div></div><div class="stat-card warning"><div class="stat-label">Pending Approval</div><div class="stat-value">12</div><div class="stat-trend">₹85,000 worth</div></div><div class="stat-card success"><div class="stat-label">Approved</div><div class="stat-value">28</div><div class="stat-trend">₹2.4L settled</div></div><div class="stat-card info"><div class="stat-label">Budget Utilization</div><div class="stat-value">76%</div><div class="stat-trend">On track</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="alert('Submit new expense...')">+ Submit Expense</button><button class="btn btn-info" onclick="alert('View budget vs actual...')">Budget Dashboard</button><button class="btn btn-secondary" onclick="alert('Export expense report...')">Export Report</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by expense category, description, or ID..."><select class="filter-select"><option>All Categories</option><option>Office Rent</option><option>Utilities</option><option>Maintenance</option><option>Office Supplies</option><option>Communication</option></select><select class="filter-select"><option>All Status</option><option>Pending</option><option>Approved</option><option>Rejected</option><option>Settled</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>Admin Expenses</h3></div><table><thead><tr><th>Expense ID</th><th>Date</th><th>Category</th><th>Description</th><th>Amount</th><th>Bills</th><th>Submitted By</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>AEXP-2024-089</td><td>20-Dec-2024</td><td>Office Rent</td><td>December Rent - HO</td><td>₹85,000</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="downloadExpenseBills(this.closest('tr').querySelector('td').textContent)">Download</a></div></td></tr><tr><td>AEXP-2024-090</td><td>22-Dec-2024</td><td>Utilities</td><td>Electricity Bill - December</td><td>₹18,500</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve...')">Approve</a><a class="action-link danger" onclick="alert('Reject...')">Reject</a></div></td></tr><tr><td>AEXP-2024-091</td><td>24-Dec-2024</td><td>Maintenance</td><td>AC Servicing - All Units</td><td>₹12,800</td><td>●2 files</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve...')">Approve</a><a class="action-link danger" onclick="alert('Reject...')">Reject</a></div></td></tr><tr><td>AEXP-2024-092</td><td>25-Dec-2024</td><td>Communication</td><td>Internet & Phone - Dec</td><td>₹8,900</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="downloadExpenseBills(this.closest('tr').querySelector('td').textContent)">Download</a></div></td></tr></tbody></table></div></div>`;
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Admin Expenses</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Total Expenses (This Month)</div><div class="stat-value">₹3.8L</div><div class="stat-trend">December 2024</div></div><div class="stat-card warning"><div class="stat-label">Pending Approval</div><div class="stat-value">12</div><div class="stat-trend">₹85,000 worth</div></div><div class="stat-card success"><div class="stat-label">Approved</div><div class="stat-value">28</div><div class="stat-trend">₹2.4L settled</div></div><div class="stat-card info"><div class="stat-label">Budget Utilization</div><div class="stat-value">76%</div><div class="stat-trend">On track</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showSubmitAdminExpenseForm()">+ Submit Expense</button><button class="btn btn-info" onclick="showBudgetDashboard()">Budget Dashboard</button><button class="btn btn-secondary" onclick="exportToExcel('admin-expenses')">Export Report</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by expense category, description, or ID..."><select class="filter-select"><option>All Categories</option><option>Office Rent</option><option>Utilities</option><option>Maintenance</option><option>Office Supplies</option><option>Communication</option></select><select class="filter-select"><option>All Status</option><option>Pending</option><option>Approved</option><option>Rejected</option><option>Settled</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>Admin Expenses</h3></div><table><thead><tr><th>Expense ID</th><th>Date</th><th>Category</th><th>Description</th><th>Amount</th><th>Bills</th><th>Submitted By</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>AEXP-2024-089</td><td>20-Dec-2024</td><td>Office Rent</td><td>December Rent - HO</td><td>₹85,000</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="downloadExpenseBills(this.closest('tr').querySelector('td').textContent)">Download</a></div></td></tr><tr><td>AEXP-2024-090</td><td>22-Dec-2024</td><td>Utilities</td><td>Electricity Bill - December</td><td>₹18,500</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve...')">Approve</a><a class="action-link danger" onclick="alert('Reject...')">Reject</a></div></td></tr><tr><td>AEXP-2024-091</td><td>24-Dec-2024</td><td>Maintenance</td><td>AC Servicing - All Units</td><td>₹12,800</td><td>●2 files</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve...')">Approve</a><a class="action-link danger" onclick="alert('Reject...')">Reject</a></div></td></tr><tr><td>AEXP-2024-092</td><td>25-Dec-2024</td><td>Communication</td><td>Internet & Phone - Dec</td><td>₹8,900</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="downloadExpenseBills(this.closest('tr').querySelector('td').textContent)">Download</a></div></td></tr></tbody></table></div></div>`;
         }
 
         // Tab switching function
@@ -3011,6 +3046,10 @@
                 return;
             }
 
+            // PRESERVE SIDEBAR SCROLL POSITION
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarScrollPos = sidebar ? sidebar.scrollTop : 0;
+
             // Hide all screens
             document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.remove('active');
@@ -3036,6 +3075,14 @@
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
+
+            // RESTORE SIDEBAR SCROLL POSITION
+            if (sidebar) {
+                // Use setTimeout to ensure DOM has updated
+                setTimeout(() => {
+                    sidebar.scrollTop = sidebarScrollPos;
+                }, 0);
+            }
 
             // Scroll main content area to top (not the whole window)
             const mainContent = targetScreen.querySelector('.main-content');
@@ -6105,6 +6152,84 @@
 
         function generateReport(type) {
             alert('Generating Report\n\nReport type: ' + type + '\n\nProcessing...');
+        }
+
+        // Additional modal stubs
+        function showRenewalDashboard() {
+            const bodyHTML = `
+                <div class="form-info">Track insurance policy renewals and manage expiring policies</div>
+                <div style="padding: 20px; text-align: center; background: #F7FAFC; border-radius: 8px; margin: 20px 0;">
+                    <div style="font-size: 48px; margin-bottom: 16px;">📋</div>
+                    <div style="font-size: 16px; font-weight: 500; margin-bottom: 8px;">Renewal Dashboard</div>
+                    <div style="font-size: 14px; color: #718096;">Policies expiring soon, renewal quotes, comparison analysis</div>
+                </div>
+            `;
+            const footerHTML = `<button class="btn btn-secondary" onclick="closeUniversalModal()">Close</button>`;
+            showUniversalModal('Renewal Dashboard', bodyHTML, footerHTML);
+        }
+
+        function showTravelCalendar() {
+            const bodyHTML = `
+                <div class="form-info">View all travel schedules and bookings</div>
+                <div style="padding: 20px; text-align: center; background: #F7FAFC; border-radius: 8px; margin: 20px 0;">
+                    <div style="font-size: 48px; margin-bottom: 16px;">📅</div>
+                    <div style="font-size: 16px; font-weight: 500; margin-bottom: 8px;">Travel Calendar</div>
+                    <div style="font-size: 14px; color: #718096;">Team travel schedule and upcoming trips</div>
+                </div>
+            `;
+            const footerHTML = `<button class="btn btn-secondary" onclick="closeUniversalModal()">Close</button>`;
+            showUniversalModal('Travel Calendar', bodyHTML, footerHTML);
+        }
+
+        function showStockInventory() {
+            const bodyHTML = `
+                <div class="form-info">View current stationery stock levels</div>
+                <div style="padding: 20px; text-align: center; background: #F7FAFC; border-radius: 8px; margin: 20px 0;">
+                    <div style="font-size: 48px; margin-bottom: 16px;">📦</div>
+                    <div style="font-size: 16px; font-weight: 500; margin-bottom: 8px;">Stock Inventory</div>
+                    <div style="font-size: 14px; color: #718096;">Current stock, minimum levels, reorder alerts</div>
+                </div>
+            `;
+            const footerHTML = `<button class="btn btn-secondary" onclick="closeUniversalModal()">Close</button>`;
+            showUniversalModal('Stock Inventory', bodyHTML, footerHTML);
+        }
+
+        function showBudgetDashboard() {
+            const bodyHTML = `
+                <div class="form-info">Compare budgeted vs actual administrative expenses</div>
+                <div style="padding: 20px; text-align: center; background: #F7FAFC; border-radius: 8px; margin: 20px 0;">
+                    <div style="font-size: 48px; margin-bottom: 16px;">💰</div>
+                    <div style="font-size: 16px; font-weight: 500; margin-bottom: 8px;">Budget Dashboard</div>
+                    <div style="font-size: 14px; color: #718096;">Budget utilization, variance analysis, spending trends</div>
+                </div>
+            `;
+            const footerHTML = `<button class="btn btn-secondary" onclick="closeUniversalModal()">Close</button>`;
+            showUniversalModal('Budget Dashboard', bodyHTML, footerHTML);
+        }
+
+        // Additional stub actions
+        function viewPolicyDetails(policyId) {
+            alert('View Policy Details\n\nPolicy ID: ' + policyId + '\n\nShowing complete policy information...');
+        }
+
+        function renewPolicy(policyId) {
+            showRenewPolicyForm();
+        }
+
+        function viewAssetDetails(assetId) {
+            alert('View Asset Details\n\nAsset ID: ' + assetId + '\n\nShowing complete asset information...');
+        }
+
+        function editAsset(assetId) {
+            showAddAssetForm(); // Reuse Add Asset form for editing
+        }
+
+        function assignAsset(assetId) {
+            showAssignAssetForm();
+        }
+
+        function downloadExpenseBills(expenseId) {
+            alert('Downloading Bills\n\nExpense ID: ' + expenseId + '\n\nFiles will download automatically.');
         }
     </script>
 </body>

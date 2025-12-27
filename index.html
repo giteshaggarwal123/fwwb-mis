@@ -1524,9 +1524,6 @@
                         <div class="nav-item" onclick="goToScreen('ess')">
                             <span class="nav-icon">▪</span> Employee Self Service
                         </div>
-                        <div class="nav-item" onclick="goToScreen('exit')">
-                            <span class="nav-icon">▪</span> Exit Management
-                        </div>
                     </div>
                     <div class="nav-section">
                         <div class="nav-section-title">Administration</div>
@@ -1764,10 +1761,6 @@
             ess: {
                 title: 'Employee Self Service',
                 content: generateESSScreen
-            },
-            exit: {
-                title: 'Exit Management',
-                content: generateExitScreen
             },
             assets: {
                 title: 'Asset Management',
@@ -2770,7 +2763,7 @@
         }
 
         function generatePerformanceScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Performance Management</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Performance Reviews (Due)</div><div class="stat-value">25</div><div class="stat-trend">Q3 FY 2024-25</div></div><div class="stat-card success"><div class="stat-label">Completed Reviews</div><div class="stat-value">131</div><div class="stat-trend">84% completion</div></div><div class="stat-card info"><div class="stat-label">KPIs Set</div><div class="stat-value">156</div><div class="stat-trend">All employees</div></div><div class="stat-card warning"><div class="stat-label">Development Plans</div><div class="stat-value">89</div><div class="stat-trend">57% coverage</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showSetKPIsForm()">Set KPIs</button><button class="btn btn-info" onclick="alert('Initiate 360° Review\\n\\nProcess:\\n● Select employee\\n● Choose reviewers (peers, manager, subordinates)\\n● Set review timeline\\n● Define competencies\\n● Send notifications\\n● Track completion\\n\\n[Opening 360° review...]')">360° Review</button><button class="btn btn-success" onclick="showCreateIDPForm()">Create IDP</button><button class="btn btn-secondary" onclick="showPerformanceDashboard()">View Dashboard</button></div><div class="table-container"><div class="table-header"><h3>Pending Performance Reviews</h3></div><table><thead><tr><th>Emp ID</th><th>Employee Name</th><th>Designation</th><th>Review Period</th><th>Reviewer</th><th>Self Assessment</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>EMP-015</td><td>Kavita Singh</td><td>Program Officer</td><td>Q3 2024</td><td>Priya Sharma</td><td>Completed</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="conductReview(this.closest('tr').querySelector('td').textContent)">Review</a></div></td></tr><tr><td>EMP-067</td><td>Deepak Patel</td><td>Field Officer</td><td>Q3 2024</td><td>Rahul Verma</td><td>Pending</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="sendReminder(this.closest('tr').querySelector('td').textContent, 'self-assessment')">Remind</a></div></td></tr><tr><td>EMP-092</td><td>Asha Reddy</td><td>Finance Executive</td><td>Q3 2024</td><td>Anjali Patel</td><td>Completed</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="conductReview(this.closest('tr').querySelector('td').textContent)">Review</a></div></td></tr></tbody></table></div></div>`;
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Performance Management</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Performance Reviews (Due)</div><div class="stat-value">25</div><div class="stat-trend">Q3 FY 2024-25</div></div><div class="stat-card success"><div class="stat-label">Completed Reviews</div><div class="stat-value">131</div><div class="stat-trend">84% completion</div></div><div class="stat-card info"><div class="stat-label">Performance Goals Set</div><div class="stat-value">156</div><div class="stat-trend">All employees</div></div><div class="stat-card warning"><div class="stat-label">Average Rating</div><div class="stat-value">3.8/5</div><div class="stat-trend">Above expectations</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showSetKPIsForm()">Set Goals</button><button class="btn btn-secondary" onclick="showPerformanceDashboard()">View Dashboard</button></div><div class="table-container"><div class="table-header"><h3>Pending Performance Reviews</h3></div><table><thead><tr><th>Emp ID</th><th>Employee Name</th><th>Designation</th><th>Review Period</th><th>Reviewer</th><th>Self Assessment</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>EMP-015</td><td>Kavita Singh</td><td>Program Officer</td><td>Q3 2024</td><td>Priya Sharma</td><td>Completed</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="conductReview(this.closest('tr').querySelector('td').textContent)">Review</a></div></td></tr><tr><td>EMP-067</td><td>Deepak Patel</td><td>Field Officer</td><td>Q3 2024</td><td>Rahul Verma</td><td>Pending</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="sendReminder(this.closest('tr').querySelector('td').textContent, 'self-assessment')">Remind</a></div></td></tr><tr><td>EMP-092</td><td>Asha Reddy</td><td>Finance Executive</td><td>Q3 2024</td><td>Anjali Patel</td><td>Completed</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="conductReview(this.closest('tr').querySelector('td').textContent)">Review</a></div></td></tr></tbody></table></div></div>`;
         }
 
         function generatePayrollScreen() {
@@ -3020,9 +3013,9 @@
 
         // Role-based access control
         const rolePermissions = {
-            management: ['dashboard', 'activities', 'budget', 'expenses', 'monitoring', 'reports', 'recruitment', 'employees', 'attendance', 'leave', 'performance', 'payroll', 'ess', 'exit', 'assets', 'insurance', 'travel', 'stationery', 'admin-expenses'],
+            management: ['dashboard', 'activities', 'budget', 'expenses', 'monitoring', 'reports', 'recruitment', 'employees', 'attendance', 'leave', 'performance', 'payroll', 'ess', 'assets', 'insurance', 'travel', 'stationery', 'admin-expenses'],
             program: ['dashboard', 'activities', 'budget', 'expenses', 'monitoring', 'reports', 'attendance', 'leave', 'ess'],
-            hr: ['dashboard', 'recruitment', 'employees', 'attendance', 'leave', 'performance', 'payroll', 'ess', 'exit'],
+            hr: ['dashboard', 'recruitment', 'employees', 'attendance', 'leave', 'performance', 'payroll', 'ess'],
             admin: ['dashboard', 'assets', 'insurance', 'travel', 'stationery', 'admin-expenses', 'attendance', 'leave', 'ess']
         };
 

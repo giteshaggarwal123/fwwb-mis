@@ -439,104 +439,88 @@
             font-weight: bold;
         }
 
-        /* Buttons */
+        /* Buttons - Minimal & Professional Design */
         .btn {
-            padding: 12px 28px;
-            border: none;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border: 1px solid transparent;
+            border-radius: 6px;
             font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.3px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            gap: 6px;
+            letter-spacing: 0.01em;
+            background: white;
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .btn:hover::before {
-            opacity: 1;
+        .btn:hover {
+            transform: translateY(-1px);
         }
 
         .btn:active {
-            transform: translateY(1px);
+            transform: translateY(0);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #2E3192 0%, #252b7a 100%);
+            background: #2E3192;
             color: white;
-            box-shadow: 0 2px 8px rgba(46, 49, 146, 0.2), 0 1px 2px rgba(46, 49, 146, 0.1);
+            border-color: #2E3192;
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, #252b7a 0%, #1e2266 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(46, 49, 146, 0.3), 0 2px 4px rgba(46, 49, 146, 0.2);
+            background: #252a7a;
+            border-color: #252a7a;
+            box-shadow: 0 2px 8px rgba(46, 49, 146, 0.15);
         }
 
         .btn-secondary {
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            background: white;
             color: #4a5568;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border-color: #cbd5e0;
         }
 
         .btn-secondary:hover {
-            background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%);
-            border-color: #cbd5e0;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #f7fafc;
+            border-color: #a0aec0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
         }
 
         .btn-success {
-            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            background: #38a169;
             color: white;
-            box-shadow: 0 2px 8px rgba(72, 187, 120, 0.2), 0 1px 2px rgba(72, 187, 120, 0.1);
+            border-color: #38a169;
         }
 
         .btn-success:hover {
-            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(72, 187, 120, 0.3), 0 2px 4px rgba(72, 187, 120, 0.2);
+            background: #2f855a;
+            border-color: #2f855a;
+            box-shadow: 0 2px 8px rgba(56, 161, 105, 0.15);
         }
 
         .btn-danger {
-            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
-            color: white;
-            box-shadow: 0 2px 8px rgba(245, 101, 101, 0.2), 0 1px 2px rgba(245, 101, 101, 0.1);
+            background: white;
+            color: #e53e3e;
+            border-color: #feb2b2;
         }
 
         .btn-danger:hover {
-            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(245, 101, 101, 0.3), 0 2px 4px rgba(245, 101, 101, 0.2);
+            background: #fff5f5;
+            border-color: #fc8181;
+            box-shadow: 0 2px 4px rgba(245, 101, 101, 0.1);
         }
 
         .btn-info {
-            background: linear-gradient(135deg, #1BADE3 0%, #1599c9 100%);
-            color: white;
-            box-shadow: 0 2px 8px rgba(27, 173, 227, 0.2), 0 1px 2px rgba(27, 173, 227, 0.1);
+            background: white;
+            color: #1BADE3;
+            border-color: #1BADE3;
         }
 
         .btn-info:hover {
-            background: linear-gradient(135deg, #1599c9 0%, #0e7ca8 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(27, 173, 227, 0.3), 0 2px 4px rgba(27, 173, 227, 0.2);
+            background: #ebf8ff;
+            border-color: #1599c9;
+            box-shadow: 0 2px 4px rgba(27, 173, 227, 0.1);
         }
 
         .btn-full {
@@ -546,7 +530,7 @@
 
         .btn-group {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
@@ -2781,7 +2765,7 @@
 
         // ADMIN Screen Generation Functions
         function generateAssetsScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Asset Management</span></div><div class="tabs"><div class="tab active" onclick="switchTab(event, 'it-assets')">IT Assets</div><div class="tab" onclick="switchTab(event, 'non-it-assets')">Non-IT Assets</div></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Total Assets</div><div class="stat-value">245</div><div class="stat-trend">IT + Non-IT</div></div><div class="stat-card success"><div class="stat-label">Assigned</div><div class="stat-value">198</div><div class="stat-trend">Currently in use</div></div><div class="stat-card warning"><div class="stat-label">Warranty Expiring</div><div class="stat-value">12</div><div class="stat-trend">Next 30 days</div></div><div class="stat-card info"><div class="stat-label">Available</div><div class="stat-value">47</div><div class="stat-trend">In stock</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showAddAssetForm()\\n\\nAsset details:\\n● Asset category\\n● Name & model\\n● Serial number\\n● Purchase details\\n● Warranty info\\n● Upload invoice\\n● Assign to employee (optional)\\n\\n[Opening asset form...]')">+ Add Asset</button><button class="btn btn-info" onclick="showAssignAssetForm()">Assign Asset</button><button class="btn btn-success" onclick="showBulkUploadAssetsForm()">Bulk Upload</button><button class="btn btn-secondary" onclick="exportToExcel('assets')">Export Register</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by asset name, serial number, or assignee..."><select class="filter-select"><option>All Categories</option><option>Laptops</option><option>Desktops</option><option>Printers</option><option>Furniture</option><option>AC Units</option></select><select class="filter-select"><option>All Status</option><option>Active</option><option>In Repair</option><option>Scrapped</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>IT Assets</h3></div><table><thead><tr><th>Asset ID</th><th>Category</th><th>Asset Name</th><th>Serial Number</th><th>Assigned To</th><th>Purchase Date</th><th>Warranty Expiry</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>IT-2023-045</td><td>Laptop</td><td>Dell Latitude 5420</td><td>DL9X8H3</td><td>Priya Sharma (EMP-001)</td><td>15-Mar-2023</td><td>14-Mar-2026</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewAssetDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="editAsset(this.closest('tr').querySelector('td').textContent)">Edit</a></div></td></tr><tr><td>IT-2024-012</td><td>Laptop</td><td>HP EliteBook 840</td><td>HP5Y2K9</td><td>Rahul Verma (EMP-042)</td><td>10-Jan-2024</td><td>09-Jan-2027</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewAssetDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="editAsset(this.closest('tr').querySelector('td').textContent)">Edit</a></div></td></tr><tr><td>IT-2022-089</td><td>Printer</td><td>Canon ImageRunner 2525</td><td>CN8H4P2</td><td>Admin Department</td><td>22-Aug-2022</td><td>21-Aug-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewAssetDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="editAsset(this.closest('tr').querySelector('td').textContent)">Edit</a></div></td></tr><tr><td>IT-2023-078</td><td>Desktop</td><td>Lenovo ThinkCentre M720</td><td>LN6T3R8</td><td>—</td><td>05-Jun-2023</td><td>04-Jun-2026</td><td><span class="status-badge status-pending">Available</span></td><td><div class="action-links"><a class="action-link" onclick="assignAsset(this.closest('tr').querySelector('td').textContent)">Assign</a><a class="action-link" onclick="editAsset(this.closest('tr').querySelector('td').textContent)">Edit</a></div></td></tr></tbody></table></div></div>`;
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Asset Management</span></div><div class="tabs"><div class="tab active" onclick="switchTab(event, 'it-assets')">IT Assets</div><div class="tab" onclick="switchTab(event, 'non-it-assets')">Non-IT Assets</div></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Total Assets</div><div class="stat-value">245</div><div class="stat-trend">IT + Non-IT</div></div><div class="stat-card success"><div class="stat-label">Assigned</div><div class="stat-value">198</div><div class="stat-trend">Currently in use</div></div><div class="stat-card warning"><div class="stat-label">Warranty Expiring</div><div class="stat-value">12</div><div class="stat-trend">Next 30 days</div></div><div class="stat-card info"><div class="stat-label">Available</div><div class="stat-value">47</div><div class="stat-trend">In stock</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showAddAssetForm()">+ Add Asset</button><button class="btn btn-info" onclick="showAssignAssetForm()">Assign Asset</button><button class="btn btn-success" onclick="showBulkUploadAssetsForm()">Bulk Upload</button><button class="btn btn-secondary" onclick="exportToExcel('assets')">Export Register</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by asset name, serial number, or assignee..."><select class="filter-select"><option>All Categories</option><option>Laptops</option><option>Desktops</option><option>Printers</option><option>Furniture</option><option>AC Units</option></select><select class="filter-select"><option>All Status</option><option>Active</option><option>In Repair</option><option>Scrapped</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>IT Assets</h3></div><table><thead><tr><th>Asset ID</th><th>Category</th><th>Asset Name</th><th>Serial Number</th><th>Assigned To</th><th>Purchase Date</th><th>Warranty Expiry</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>IT-2023-045</td><td>Laptop</td><td>Dell Latitude 5420</td><td>DL9X8H3</td><td>Priya Sharma (EMP-001)</td><td>15-Mar-2023</td><td>14-Mar-2026</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewAssetDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="editAsset(this.closest('tr').querySelector('td').textContent)">Edit</a></div></td></tr><tr><td>IT-2024-012</td><td>Laptop</td><td>HP EliteBook 840</td><td>HP5Y2K9</td><td>Rahul Verma (EMP-042)</td><td>10-Jan-2024</td><td>09-Jan-2027</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewAssetDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="editAsset(this.closest('tr').querySelector('td').textContent)">Edit</a></div></td></tr><tr><td>IT-2022-089</td><td>Printer</td><td>Canon ImageRunner 2525</td><td>CN8H4P2</td><td>Admin Department</td><td>22-Aug-2022</td><td>21-Aug-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewAssetDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="editAsset(this.closest('tr').querySelector('td').textContent)">Edit</a></div></td></tr><tr><td>IT-2023-078</td><td>Desktop</td><td>Lenovo ThinkCentre M720</td><td>LN6T3R8</td><td>—</td><td>05-Jun-2023</td><td>04-Jun-2026</td><td><span class="status-badge status-pending">Available</span></td><td><div class="action-links"><a class="action-link" onclick="assignAsset(this.closest('tr').querySelector('td').textContent)">Assign</a><a class="action-link" onclick="editAsset(this.closest('tr').querySelector('td').textContent)">Edit</a></div></td></tr></tbody></table></div></div>`;
         }
 
         function generateInsuranceScreen() {

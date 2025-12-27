@@ -3053,9 +3053,9 @@
                 return;
             }
 
-            // PRESERVE SIDEBAR SCROLL POSITION
-            const sidebar = document.querySelector('.sidebar');
-            const sidebarScrollPos = sidebar ? sidebar.scrollTop : 0;
+            // PRESERVE SIDEBAR SCROLL POSITION - Capture BEFORE any DOM changes
+            const oldSidebar = document.querySelector('.sidebar');
+            const sidebarScrollPos = oldSidebar ? oldSidebar.scrollTop : 0;
 
             // Hide all screens
             document.querySelectorAll('.screen').forEach(screen => {
@@ -3083,19 +3083,19 @@
                 item.classList.remove('active');
             });
 
-            // RESTORE SIDEBAR SCROLL POSITION
-            if (sidebar) {
-                // Use setTimeout to ensure DOM has updated
-                setTimeout(() => {
-                    sidebar.scrollTop = sidebarScrollPos;
-                }, 0);
-            }
+            // RESTORE SIDEBAR SCROLL POSITION - Query NEW sidebar and restore scroll
+            setTimeout(() => {
+                const newSidebar = document.querySelector('.sidebar');
+                if (newSidebar) {
+                    newSidebar.scrollTop = sidebarScrollPos;
+                }
 
-            // Scroll main content area to top (not the whole window)
-            const mainContent = targetScreen.querySelector('.main-content');
-            if (mainContent) {
-                mainContent.scrollTop = 0;
-            }
+                // Scroll main content area to top (not the whole window)
+                const mainContent = targetScreen.querySelector('.main-content');
+                if (mainContent) {
+                    mainContent.scrollTop = 0;
+                }
+            }, 10);
         }
 
         function createDynamicScreen(screenName) {

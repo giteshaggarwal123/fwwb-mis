@@ -1423,6 +1423,7 @@
 
                 <h2>Welcome Back</h2>
                 <p class="subtitle">Select your role and sign in to continue</p>
+                <p style="font-size: 10px; color: #1BADE3; text-align: center; margin: -8px 0 16px 0;">✓ v2.0 Latest (27-Dec-2024)</p>
 
                 <div class="user-type-selector">
                     <div class="user-type-card" onclick="selectUserType('management', this)">
@@ -2824,6 +2825,7 @@
         };
 
         function selectUserType(type, element) {
+            console.log('selectUserType called with type:', type);
             selectedUserType = type;
 
             // Remove selected class from all cards
@@ -2833,13 +2835,27 @@
 
             // Add selected class to clicked card
             if (element) {
-                element.closest('.user-type-card').classList.add('selected');
+                element.classList.add('selected');
+                console.log('Element selected:', element);
             }
 
             // Auto-populate credentials
             const creds = userCredentials[type];
-            document.getElementById('username').value = creds.username;
-            document.getElementById('password').value = creds.password;
+            console.log('Credentials:', creds);
+
+            const usernameField = document.getElementById('username');
+            const passwordField = document.getElementById('password');
+
+            console.log('Username field:', usernameField);
+            console.log('Password field:', passwordField);
+
+            if (usernameField && passwordField && creds) {
+                usernameField.value = creds.username;
+                passwordField.value = creds.password;
+                console.log('Fields populated successfully');
+            } else {
+                console.error('ERROR: Fields or credentials not found!');
+            }
 
             currentUser = creds;
         }
@@ -3424,16 +3440,6 @@
 
         function raiseITTicket() {
             alert(`Raise IT Support Ticket\n\nTicket categories:\n● Hardware issues\n● Software installation\n● Network problems\n● Email/access issues\n● New requirements\n\n[Opening support form...]`);
-        }
-
-        }
-
-        function scheduleExitInterview(empId) {
-            alert(`Schedule Exit Interview - ${empId}\n\nIn production, this will:\n● Select interview date\n● Assign interviewer (usually HR)\n● Send calendar invite\n● Prepare exit questionnaire\n● Set meeting location/link\n\n[Opening scheduler...]`);
-        }
-
-        function processClearance(empId) {
-            alert(`Process Clearance - ${empId}\n\nClearance checklist:\n● IT assets return\n● Access card surrender\n● Project handover\n● Documents return\n● No dues certificate\n● Final approvals\n\n[Opening clearance form...]`);
         }
 
         // Asset Management Actions

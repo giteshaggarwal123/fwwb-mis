@@ -3889,6 +3889,2050 @@
             `;
             showUniversalModal('Raise IT Support Ticket', bodyHTML);
         }
+
+        // ============================================
+        // EMPLOYEE MANAGEMENT MODALS
+        // ============================================
+
+        function showAddEmployeeForm() {
+            const bodyHTML = `
+                <div class="form-info">Onboard a new employee with complete details</div>
+
+                <div class="form-section-title">Personal Information</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">First Name</label>
+                        <input type="text" class="form-control" placeholder="Enter first name">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Last Name</label>
+                        <input type="text" class="form-control" placeholder="Enter last name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Email</label>
+                        <input type="email" class="form-control" placeholder="employee@fwwbindia.org">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Mobile Number</label>
+                        <input type="tel" class="form-control" placeholder="+91-XXXXXXXXXX">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Date of Birth</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Gender</label>
+                        <select class="form-control">
+                            <option>Select Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section-title">Employment Details</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Employee ID</label>
+                        <input type="text" class="form-control" placeholder="Auto-generated or Enter ID">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Date of Joining</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Department</label>
+                        <select class="form-control">
+                            <option>Select Department</option>
+                            <option>Program Management</option>
+                            <option>Human Resources</option>
+                            <option>Finance & Accounts</option>
+                            <option>Administration</option>
+                            <option>IT & Technology</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Designation</label>
+                        <input type="text" class="form-control" placeholder="Enter designation">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Reporting Manager</label>
+                        <select class="form-control">
+                            <option>Select Manager</option>
+                            <option>Rajesh Kumar - Program Director</option>
+                            <option>Priya Sharma - HR Head</option>
+                            <option>Amit Patel - Finance Manager</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Employment Type</label>
+                        <select class="form-control">
+                            <option>Permanent</option>
+                            <option>Contract</option>
+                            <option>Consultant</option>
+                            <option>Intern</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section-title">Bank Details</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Bank Name</label>
+                        <input type="text" class="form-control" placeholder="Enter bank name">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Account Number</label>
+                        <input type="text" class="form-control" placeholder="Enter account number">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">IFSC Code</label>
+                        <input type="text" class="form-control" placeholder="Enter IFSC code">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">PAN Number</label>
+                        <input type="text" class="form-control" placeholder="Enter PAN">
+                    </div>
+                </div>
+
+                <div class="form-section-title">Documents</div>
+                <div class="form-group">
+                    <label>Upload Documents (Resume, ID Proof, Address Proof, Educational Certificates)</label>
+                    <div class="file-upload-area" onclick="document.getElementById('employeeDocs').click()">
+                        <input type="file" id="employeeDocs" multiple accept=".pdf,.jpg,.png">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload employee documents</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            showUniversalModal('Add New Employee', bodyHTML);
+        }
+
+        function showBulkUploadEmployeesForm() {
+            const bodyHTML = `
+                <div class="form-info">Upload multiple employees at once using Excel template</div>
+
+                <div class="form-group">
+                    <label>Step 1: Download Excel Template</label>
+                    <button class="btn btn-secondary" style="width: 100%; margin-top: 8px;">
+                        ↓ Download Employee Template.xlsx
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Step 2: Upload Filled Template</label>
+                    <div class="file-upload-area" onclick="document.getElementById('employeeExcel').click()">
+                        <input type="file" id="employeeExcel" accept=".xlsx,.xls">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload filled Excel file with employee data</div>
+                            <div style="font-size: 12px; margin-top: 8px;">Accepted formats: .xlsx, .xls</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-info" style="background: #FFF3CD; border-left: 4px solid #FFC107; padding: 12px; margin-top: 16px;">
+                    <strong>Instructions:</strong>
+                    <ul style="margin: 8px 0 0 20px; font-size: 13px;">
+                        <li>Download the template and fill in all required fields</li>
+                        <li>Do not modify column headers</li>
+                        <li>Use DD/MM/YYYY format for dates</li>
+                        <li>Ensure email addresses are unique</li>
+                        <li>Maximum 100 employees per upload</li>
+                    </ul>
+                </div>
+            `;
+            showUniversalModal('Bulk Upload Employees', bodyHTML);
+        }
+
+        // ============================================
+        // RECRUITMENT MODALS
+        // ============================================
+
+        function showCreateJobPostingForm() {
+            const bodyHTML = `
+                <div class="form-info">Create and publish a new job opening</div>
+
+                <div class="form-group">
+                    <label class="required">Job Title</label>
+                    <input type="text" class="form-control" placeholder="e.g., Program Manager - Microfinance">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Department</label>
+                        <select class="form-control">
+                            <option>Select Department</option>
+                            <option>Program Management</option>
+                            <option>Human Resources</option>
+                            <option>Finance & Accounts</option>
+                            <option>Administration</option>
+                            <option>IT & Technology</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Location</label>
+                        <input type="text" class="form-control" placeholder="e.g., Ahmedabad, Gujarat">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Employment Type</label>
+                        <select class="form-control">
+                            <option>Permanent</option>
+                            <option>Contract</option>
+                            <option>Consultant</option>
+                            <option>Intern</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Number of Positions</label>
+                        <input type="number" class="form-control" placeholder="Number of openings" value="1">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Experience Required (Years)</label>
+                        <input type="text" class="form-control" placeholder="e.g., 3-5 years">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Salary Range</label>
+                        <input type="text" class="form-control" placeholder="e.g., ₹5-7 LPA">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Job Description</label>
+                    <textarea class="form-control" rows="4" placeholder="Describe the role, responsibilities, and key objectives..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Required Qualifications</label>
+                    <textarea class="form-control" rows="3" placeholder="List educational qualifications and certifications..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Key Skills Required</label>
+                    <input type="text" class="form-control" placeholder="e.g., Project Management, Financial Analysis, Microfinance">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Application Deadline</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Publish Status</label>
+                        <select class="form-control">
+                            <option>Draft</option>
+                            <option>Published</option>
+                        </select>
+                    </div>
+                </div>
+            `;
+            showUniversalModal('Create Job Posting', bodyHTML);
+        }
+
+        function showViewApplicationsForm() {
+            const bodyHTML = `
+                <div class="form-info">Filter and view job applications</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Job Posting</label>
+                        <select class="form-control">
+                            <option>All Job Postings</option>
+                            <option>Program Manager - Microfinance</option>
+                            <option>HR Executive</option>
+                            <option>Finance Officer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Application Status</label>
+                        <select class="form-control">
+                            <option>All Statuses</option>
+                            <option>New</option>
+                            <option>Shortlisted</option>
+                            <option>Interview Scheduled</option>
+                            <option>Selected</option>
+                            <option>Rejected</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>From Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>To Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px; padding: 16px; background: #F7FAFC; border-radius: 8px;">
+                    <div style="font-weight: 500; margin-bottom: 12px;">Quick Stats:</div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                        <div style="background: white; padding: 12px; border-radius: 6px; text-align: center;">
+                            <div style="font-size: 24px; font-weight: bold; color: #2E3192;">45</div>
+                            <div style="font-size: 12px; color: #718096;">Total Applications</div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 6px; text-align: center;">
+                            <div style="font-size: 24px; font-weight: bold; color: #1BADE3;">12</div>
+                            <div style="font-size: 12px; color: #718096;">Shortlisted</div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 6px; text-align: center;">
+                            <div style="font-size: 24px; font-weight: bold; color: #48BB78;">3</div>
+                            <div style="font-size: 12px; color: #718096;">Selected</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            const footerHTML = `
+                <button class="btn btn-secondary" onclick="closeUniversalModal()">Close</button>
+                <button class="btn btn-primary" onclick="alert('Applying filters...'); closeUniversalModal();">Apply Filters</button>
+            `;
+            showUniversalModal('View Applications', bodyHTML, footerHTML);
+        }
+
+        // ============================================
+        // ATTENDANCE MODALS
+        // ============================================
+
+        function showManualAttendanceForm() {
+            const bodyHTML = `
+                <div class="form-info">Mark attendance manually for employees</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Date</label>
+                        <input type="date" class="form-control" value="${new Date().toISOString().split('T')[0]}">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Department</label>
+                        <select class="form-control">
+                            <option>All Departments</option>
+                            <option>Program Management</option>
+                            <option>Human Resources</option>
+                            <option>Finance & Accounts</option>
+                            <option>Administration</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Select Employees</label>
+                    <div style="max-height: 200px; overflow-y: auto; border: 1px solid #cbd5e0; border-radius: 6px; padding: 8px;">
+                        <label style="display: block; padding: 8px; cursor: pointer; border-bottom: 1px solid #f7fafc;">
+                            <input type="checkbox"> <strong>Select All</strong>
+                        </label>
+                        <label style="display: block; padding: 8px; cursor: pointer;">
+                            <input type="checkbox"> Rajesh Kumar (EMP001) - Program Manager
+                        </label>
+                        <label style="display: block; padding: 8px; cursor: pointer;">
+                            <input type="checkbox"> Priya Sharma (EMP002) - HR Executive
+                        </label>
+                        <label style="display: block; padding: 8px; cursor: pointer;">
+                            <input type="checkbox"> Amit Patel (EMP003) - Finance Officer
+                        </label>
+                        <label style="display: block; padding: 8px; cursor: pointer;">
+                            <input type="checkbox"> Sneha Desai (EMP004) - Program Coordinator
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Check-In Time</label>
+                        <input type="time" class="form-control" value="09:30">
+                    </div>
+                    <div class="form-group">
+                        <label>Check-Out Time</label>
+                        <input type="time" class="form-control" value="18:00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Notes/Remarks</label>
+                    <textarea class="form-control" rows="2" placeholder="Any special notes about this attendance entry..."></textarea>
+                </div>
+            `;
+            showUniversalModal('Manual Attendance Entry', bodyHTML);
+        }
+
+        function showMarkAttendanceForm() {
+            const bodyHTML = `
+                <div class="form-info">Mark your attendance with GPS location</div>
+
+                <div class="form-group">
+                    <label>Current Date & Time</label>
+                    <input type="text" class="form-control" value="${new Date().toLocaleString()}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <button class="btn btn-secondary" style="width: 100%;" onclick="captureGPSLocation()">
+                        ● Capture GPS Location
+                    </button>
+                    <div id="gpsLocation" style="margin-top: 8px; font-size: 13px; color: #718096;"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>Attendance Type</label>
+                    <select class="form-control">
+                        <option>Office</option>
+                        <option>Work From Home</option>
+                        <option>Field Visit</option>
+                        <option>Client Meeting</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Remarks (Optional)</label>
+                    <textarea class="form-control" rows="2" placeholder="Any additional notes..."></textarea>
+                </div>
+
+                <div style="margin-top: 16px; padding: 12px; background: #EDF2F7; border-radius: 6px; font-size: 13px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span>Today's Status:</span>
+                        <strong style="color: #48BB78;">Not Marked</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Last Check-In:</span>
+                        <strong>--:--</strong>
+                    </div>
+                </div>
+            `;
+            const footerHTML = `
+                <button class="btn btn-secondary" onclick="closeUniversalModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="alert('Attendance marked successfully!'); closeUniversalModal();">
+                    ● Mark Check-In
+                </button>
+            `;
+            showUniversalModal('Mark Attendance', bodyHTML, footerHTML);
+        }
+
+        // ============================================
+        // PERFORMANCE MODALS
+        // ============================================
+
+        function showSetKPIsForm() {
+            const bodyHTML = `
+                <div class="form-info">Define Key Performance Indicators for employees</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Employee</label>
+                        <select class="form-control">
+                            <option>Select Employee</option>
+                            <option>Rajesh Kumar - Program Manager</option>
+                            <option>Priya Sharma - HR Executive</option>
+                            <option>Amit Patel - Finance Officer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Review Period</label>
+                        <select class="form-control">
+                            <option>Q1 2024 (Jan-Mar)</option>
+                            <option>Q2 2024 (Apr-Jun)</option>
+                            <option>Q3 2024 (Jul-Sep)</option>
+                            <option>Q4 2024 (Oct-Dec)</option>
+                            <option>Annual 2024</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section-title">KPIs (Add Multiple)</div>
+
+                <div class="form-group">
+                    <label class="required">KPI Name</label>
+                    <input type="text" class="form-control" placeholder="e.g., Project Delivery Rate">
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Description</label>
+                    <textarea class="form-control" rows="2" placeholder="Describe what this KPI measures..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Target Value</label>
+                        <input type="text" class="form-control" placeholder="e.g., 95% or 10 projects">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Weight (%)</label>
+                        <input type="number" class="form-control" placeholder="20" max="100">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Measurement Criteria</label>
+                    <textarea class="form-control" rows="2" placeholder="How will this KPI be measured and evaluated?"></textarea>
+                </div>
+
+                <button class="btn btn-secondary" style="width: 100%; margin-top: 12px;">
+                    + Add Another KPI
+                </button>
+
+                <div style="margin-top: 16px; padding: 12px; background: #FFF3CD; border-left: 4px solid #FFC107; font-size: 13px;">
+                    <strong>Note:</strong> Total weight of all KPIs should equal 100%
+                </div>
+            `;
+            showUniversalModal('Set KPIs', bodyHTML);
+        }
+
+        function show360ReviewForm() {
+            const bodyHTML = `
+                <div class="form-info">Initiate comprehensive 360-degree performance review</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Employee Being Reviewed</label>
+                        <select class="form-control">
+                            <option>Select Employee</option>
+                            <option>Rajesh Kumar - Program Manager</option>
+                            <option>Priya Sharma - HR Executive</option>
+                            <option>Amit Patel - Finance Officer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Review Period</label>
+                        <select class="form-control">
+                            <option>Q4 2024 (Oct-Dec)</option>
+                            <option>Annual 2024</option>
+                            <option>H2 2024 (Jul-Dec)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section-title">Select Reviewers</div>
+
+                <div class="form-group">
+                    <label class="required">Manager Review</label>
+                    <select class="form-control">
+                        <option>Select Manager</option>
+                        <option>Deepak Mehta - Director</option>
+                        <option>Sanjay Patel - Senior Manager</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Peer Review (Select 2-3 peers)</label>
+                    <div style="max-height: 120px; overflow-y: auto; border: 1px solid #cbd5e0; border-radius: 6px; padding: 8px;">
+                        <label style="display: block; padding: 6px; cursor: pointer;">
+                            <input type="checkbox"> Priya Sharma - HR Executive
+                        </label>
+                        <label style="display: block; padding: 6px; cursor: pointer;">
+                            <input type="checkbox"> Amit Patel - Finance Officer
+                        </label>
+                        <label style="display: block; padding: 6px; cursor: pointer;">
+                            <input type="checkbox"> Sneha Desai - Program Coordinator
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Subordinate Review (if applicable)</label>
+                    <div style="max-height: 100px; overflow-y: auto; border: 1px solid #cbd5e0; border-radius: 6px; padding: 8px;">
+                        <label style="display: block; padding: 6px; cursor: pointer;">
+                            <input type="checkbox"> Kavita Singh - Assistant
+                        </label>
+                        <label style="display: block; padding: 6px; cursor: pointer;">
+                            <input type="checkbox"> Rahul Verma - Junior Executive
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Review Deadline</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Self-Assessment</label>
+                        <select class="form-control">
+                            <option>Required</option>
+                            <option>Optional</option>
+                            <option>Not Required</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Special Instructions for Reviewers</label>
+                    <textarea class="form-control" rows="2" placeholder="Any specific areas to focus on or guidelines..."></textarea>
+                </div>
+            `;
+            showUniversalModal('Initiate 360° Review', bodyHTML);
+        }
+
+        function showCreateIDPForm() {
+            const bodyHTML = `
+                <div class="form-info">Create Individual Development Plan for employee growth</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Employee</label>
+                        <select class="form-control">
+                            <option>Select Employee</option>
+                            <option>Rajesh Kumar - Program Manager</option>
+                            <option>Priya Sharma - HR Executive</option>
+                            <option>Amit Patel - Finance Officer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Development Period</label>
+                        <input type="text" class="form-control" placeholder="e.g., 6 months, 1 year">
+                    </div>
+                </div>
+
+                <div class="form-section-title">Career Goals</div>
+
+                <div class="form-group">
+                    <label class="required">Short-Term Goal (6-12 months)</label>
+                    <textarea class="form-control" rows="2" placeholder="Define short-term career objectives..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Long-Term Goal (2-3 years)</label>
+                    <textarea class="form-control" rows="2" placeholder="Define long-term career aspirations..."></textarea>
+                </div>
+
+                <div class="form-section-title">Development Areas</div>
+
+                <div class="form-group">
+                    <label class="required">Skill/Competency to Develop</label>
+                    <input type="text" class="form-control" placeholder="e.g., Project Management, Leadership">
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Development Action</label>
+                    <textarea class="form-control" rows="2" placeholder="What activities/training will be undertaken?"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Timeline</label>
+                        <input type="text" class="form-control" placeholder="e.g., 3 months">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Support Required</label>
+                        <input type="text" class="form-control" placeholder="e.g., Training budget, Mentoring">
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary" style="width: 100%; margin-top: 12px;">
+                    + Add Another Development Area
+                </button>
+
+                <div class="form-section-title" style="margin-top: 20px;">Review & Monitoring</div>
+
+                <div class="form-group">
+                    <label class="required">Review Frequency</label>
+                    <select class="form-control">
+                        <option>Monthly</option>
+                        <option>Quarterly</option>
+                        <option>Half-Yearly</option>
+                    </select>
+                </div>
+            `;
+            showUniversalModal('Create Individual Development Plan', bodyHTML);
+        }
+
+        // ============================================
+        // PAYROLL MODALS
+        // ============================================
+
+        function showProcessPayrollForm() {
+            const bodyHTML = `
+                <div class="form-info">Process monthly payroll for employees</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Payroll Month</label>
+                        <select class="form-control">
+                            <option>December 2024</option>
+                            <option>November 2024</option>
+                            <option>October 2024</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Payment Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Department</label>
+                    <select class="form-control">
+                        <option>All Departments</option>
+                        <option>Program Management</option>
+                        <option>Human Resources</option>
+                        <option>Finance & Accounts</option>
+                        <option>Administration</option>
+                    </select>
+                </div>
+
+                <div style="margin: 20px 0; padding: 16px; background: #F7FAFC; border-radius: 8px;">
+                    <div style="font-weight: 500; margin-bottom: 12px;">Payroll Summary:</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div>
+                            <div style="font-size: 12px; color: #718096;">Total Employees</div>
+                            <div style="font-size: 20px; font-weight: bold; color: #2E3192;">45</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 12px; color: #718096;">Gross Salary</div>
+                            <div style="font-size: 20px; font-weight: bold; color: #2E3192;">₹28,50,000</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 12px; color: #718096;">Total Deductions</div>
+                            <div style="font-size: 20px; font-weight: bold; color: #E53E3E;">₹4,25,000</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 12px; color: #718096;">Net Payable</div>
+                            <div style="font-size: 20px; font-weight: bold; color: #48BB78;">₹24,25,000</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Include Components:</label>
+                    <div style="padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px;">
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox" checked> Basic Salary
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox" checked> HRA
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox" checked> Allowances
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox" checked> Overtime
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox" checked> Deductions (PF, ESI, TDS, PT)
+                        </label>
+                    </div>
+                </div>
+
+                <div style="margin-top: 16px; padding: 12px; background: #FFF3CD; border-left: 4px solid #FFC107; font-size: 13px;">
+                    <strong>Note:</strong> Please verify attendance and leave data before processing payroll
+                </div>
+            `;
+            const footerHTML = `
+                <button class="btn btn-secondary" onclick="closeUniversalModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="alert('Processing payroll...'); closeUniversalModal();">
+                    Process Payroll
+                </button>
+            `;
+            showUniversalModal('Process Monthly Payroll', bodyHTML, footerHTML);
+        }
+
+        function showGeneratePayslipsForm() {
+            const bodyHTML = `
+                <div class="form-info">Generate and distribute salary slips</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Salary Month</label>
+                        <select class="form-control">
+                            <option>December 2024</option>
+                            <option>November 2024</option>
+                            <option>October 2024</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Department</label>
+                        <select class="form-control">
+                            <option>All Departments</option>
+                            <option>Program Management</option>
+                            <option>Human Resources</option>
+                            <option>Finance & Accounts</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Employees (Leave blank for all)</label>
+                    <div style="max-height: 150px; overflow-y: auto; border: 1px solid #cbd5e0; border-radius: 6px; padding: 8px;">
+                        <label style="display: block; padding: 6px; cursor: pointer; border-bottom: 1px solid #f7fafc;">
+                            <input type="checkbox"> <strong>Select All (45 employees)</strong>
+                        </label>
+                        <label style="display: block; padding: 6px; cursor: pointer;">
+                            <input type="checkbox" checked> Rajesh Kumar (EMP001)
+                        </label>
+                        <label style="display: block; padding: 6px; cursor: pointer;">
+                            <input type="checkbox" checked> Priya Sharma (EMP002)
+                        </label>
+                        <label style="display: block; padding: 6px; cursor: pointer;">
+                            <input type="checkbox" checked> Amit Patel (EMP003)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Distribution Method</label>
+                    <div style="padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px;">
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="radio" name="distribution" checked> Email to employees
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="radio" name="distribution"> Download ZIP file
+                        </label>
+                        <label style="display: block; cursor: pointer;">
+                            <input type="radio" name="distribution"> Both
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Subject</label>
+                    <input type="text" class="form-control" value="Salary Slip - December 2024" placeholder="Customize email subject">
+                </div>
+
+                <div class="form-group">
+                    <label>Email Message</label>
+                    <textarea class="form-control" rows="3" placeholder="Dear Employee, Please find attached your salary slip for December 2024..."></textarea>
+                </div>
+            `;
+            const footerHTML = `
+                <button class="btn btn-secondary" onclick="closeUniversalModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="alert('Generating payslips...'); closeUniversalModal();">
+                    Generate & Send
+                </button>
+            `;
+            showUniversalModal('Generate Salary Slips', bodyHTML, footerHTML);
+        }
+
+        function showStatutoryReportsForm() {
+            const bodyHTML = `
+                <div class="form-info">Generate statutory compliance reports (PF, ESI, TDS, PT)</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Report Type</label>
+                        <select class="form-control">
+                            <option>PF (Provident Fund) Report</option>
+                            <option>ESI (Employee State Insurance) Report</option>
+                            <option>TDS (Tax Deducted at Source) Report</option>
+                            <option>PT (Professional Tax) Report</option>
+                            <option>Form 16 (Annual TDS Certificate)</option>
+                            <option>Bonus Statement</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Period</label>
+                        <select class="form-control">
+                            <option>December 2024</option>
+                            <option>Q3 2024 (Oct-Dec)</option>
+                            <option>FY 2024-25</option>
+                            <option>Custom Date Range</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Report Format</label>
+                    <div style="padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px;">
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="radio" name="format" checked> Excel (.xlsx)
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="radio" name="format"> PDF
+                        </label>
+                        <label style="display: block; cursor: pointer;">
+                            <input type="radio" name="format"> CSV
+                        </label>
+                    </div>
+                </div>
+
+                <div style="margin: 20px 0; padding: 16px; background: #EDF2F7; border-radius: 8px; font-size: 13px;">
+                    <div style="font-weight: 500; margin-bottom: 12px;">Report will include:</div>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li>Employee-wise contribution details</li>
+                        <li>Employer contribution breakdown</li>
+                        <li>Total payable amount</li>
+                        <li>Challan generation details</li>
+                        <li>Monthly summary</li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Options</label>
+                    <div style="padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px;">
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox"> Include resigned employees
+                        </label>
+                        <label style="display: block; cursor: pointer;">
+                            <input type="checkbox"> Group by department
+                        </label>
+                    </div>
+                </div>
+            `;
+            const footerHTML = `
+                <button class="btn btn-secondary" onclick="closeUniversalModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="alert('Generating statutory report...'); closeUniversalModal();">
+                    ↓ Generate Report
+                </button>
+            `;
+            showUniversalModal('Generate Statutory Report', bodyHTML, footerHTML);
+        }
+
+        // ============================================
+        // EXIT MANAGEMENT MODALS
+        // ============================================
+
+        function showProcessResignationForm() {
+            const bodyHTML = `
+                <div class="form-info">Process employee resignation and initiate exit formalities</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Employee</label>
+                        <select class="form-control">
+                            <option>Select Employee</option>
+                            <option>Rajesh Kumar (EMP001) - Program Manager</option>
+                            <option>Priya Sharma (EMP002) - HR Executive</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Resignation Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Notice Period (Days)</label>
+                        <input type="number" class="form-control" value="30">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Last Working Day</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Reason for Resignation</label>
+                    <select class="form-control">
+                        <option>Better Opportunity</option>
+                        <option>Higher Studies</option>
+                        <option>Personal Reasons</option>
+                        <option>Health Issues</option>
+                        <option>Relocation</option>
+                        <option>Career Change</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Detailed Reason</label>
+                    <textarea class="form-control" rows="3" placeholder="Additional details about resignation..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Resignation Letter</label>
+                    <div class="file-upload-area" onclick="document.getElementById('resignationLetter').click()">
+                        <input type="file" id="resignationLetter" accept=".pdf,.jpg,.png">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload resignation letter</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Notice Period Buyout</label>
+                    <div style="padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px;">
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="radio" name="buyout" checked> Full notice period to be served
+                        </label>
+                        <label style="display: block; cursor: pointer;">
+                            <input type="radio" name="buyout"> Notice period buyout requested
+                        </label>
+                    </div>
+                </div>
+            `;
+            showUniversalModal('Process Resignation', bodyHTML);
+        }
+
+        function showExitInterviewForm() {
+            const bodyHTML = `
+                <div class="form-info">Schedule exit interview with departing employee</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Employee</label>
+                        <select class="form-control">
+                            <option>Select Employee</option>
+                            <option>Rajesh Kumar (EMP001)</option>
+                            <option>Priya Sharma (EMP002)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Interview Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Interview Time</label>
+                        <input type="time" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Duration (minutes)</label>
+                        <input type="number" class="form-control" value="45">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Interviewer</label>
+                    <select class="form-control">
+                        <option>Select Interviewer</option>
+                        <option>Deepak Mehta - HR Director</option>
+                        <option>Priya Sharma - HR Head</option>
+                        <option>Reporting Manager</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Interview Mode</label>
+                    <div style="padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px;">
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="radio" name="mode" checked> In-Person
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="radio" name="mode"> Video Call
+                        </label>
+                        <label style="display: block; cursor: pointer;">
+                            <input type="radio" name="mode"> Phone Call
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Topics to Cover</label>
+                    <div style="padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px;">
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox" checked> Reason for leaving
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox" checked> Job satisfaction
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox" checked> Work environment
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox" checked> Manager relationship
+                        </label>
+                        <label style="display: block; cursor: pointer;">
+                            <input type="checkbox" checked> Suggestions for improvement
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Notes</label>
+                    <textarea class="form-control" rows="2" placeholder="Any specific areas to discuss..."></textarea>
+                </div>
+            `;
+            showUniversalModal('Schedule Exit Interview', bodyHTML);
+        }
+
+        function showClearanceForm() {
+            const bodyHTML = `
+                <div class="form-info">Track exit clearance from all departments</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Employee</label>
+                        <select class="form-control">
+                            <option>Select Employee</option>
+                            <option>Rajesh Kumar (EMP001)</option>
+                            <option>Priya Sharma (EMP002)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Working Day</label>
+                        <input type="date" class="form-control" readonly value="2024-12-31">
+                    </div>
+                </div>
+
+                <div class="form-section-title">Clearance Checklist</div>
+
+                <div style="padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px;">
+                    <div style="padding: 12px; border-bottom: 1px solid #f7fafc; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 500;">IT Department</div>
+                            <div style="font-size: 12px; color: #718096;">Laptop, ID card, access cards returned</div>
+                        </div>
+                        <label style="cursor: pointer;">
+                            <input type="checkbox"> Cleared
+                        </label>
+                    </div>
+
+                    <div style="padding: 12px; border-bottom: 1px solid #f7fafc; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 500;">Finance Department</div>
+                            <div style="font-size: 12px; color: #718096;">Final settlement, advances cleared</div>
+                        </div>
+                        <label style="cursor: pointer;">
+                            <input type="checkbox"> Cleared
+                        </label>
+                    </div>
+
+                    <div style="padding: 12px; border-bottom: 1px solid #f7fafc; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 500;">HR Department</div>
+                            <div style="font-size: 12px; color: #718096;">Documents submitted, exit interview completed</div>
+                        </div>
+                        <label style="cursor: pointer;">
+                            <input type="checkbox"> Cleared
+                        </label>
+                    </div>
+
+                    <div style="padding: 12px; border-bottom: 1px solid #f7fafc; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 500;">Administration</div>
+                            <div style="font-size: 12px; color: #718096;">Keys, stationery, furniture returned</div>
+                        </div>
+                        <label style="cursor: pointer;">
+                            <input type="checkbox"> Cleared
+                        </label>
+                    </div>
+
+                    <div style="padding: 12px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 500;">Reporting Manager</div>
+                            <div style="font-size: 12px; color: #718096;">Knowledge transfer completed, handover done</div>
+                        </div>
+                        <label style="cursor: pointer;">
+                            <input type="checkbox"> Cleared
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 16px;">
+                    <label>Final Remarks</label>
+                    <textarea class="form-control" rows="2" placeholder="Any pending items or special notes..."></textarea>
+                </div>
+
+                <div style="margin-top: 16px; padding: 12px; background: #D1FAE5; border-left: 4px solid #10B981; font-size: 13px;">
+                    <strong>Note:</strong> Clearance certificate will be generated once all departments approve
+                </div>
+            `;
+            const footerHTML = `
+                <button class="btn btn-secondary" onclick="closeUniversalModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="alert('Clearance status updated!'); closeUniversalModal();">
+                    Update Clearance
+                </button>
+            `;
+            showUniversalModal('Exit Clearance', bodyHTML, footerHTML);
+        }
+
+        // ============================================
+        // ASSET MANAGEMENT MODALS
+        // ============================================
+
+        function showAddAssetForm() {
+            const bodyHTML = `
+                <div class="form-info">Add new asset to inventory</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Asset Type</label>
+                        <select class="form-control">
+                            <option>Select Type</option>
+                            <option>IT Asset</option>
+                            <option>Non-IT Asset</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Asset Category</label>
+                        <select class="form-control">
+                            <option>Select Category</option>
+                            <option>Laptop</option>
+                            <option>Desktop</option>
+                            <option>Mobile/Tablet</option>
+                            <option>Printer/Scanner</option>
+                            <option>Furniture</option>
+                            <option>Vehicle</option>
+                            <option>Other Equipment</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Asset ID</label>
+                        <input type="text" class="form-control" placeholder="Auto-generated or Enter ID">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Asset Name</label>
+                        <input type="text" class="form-control" placeholder="e.g., Dell Latitude 5420">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Brand/Make</label>
+                        <input type="text" class="form-control" placeholder="e.g., Dell">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Model Number</label>
+                        <input type="text" class="form-control" placeholder="Enter model number">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Serial Number</label>
+                        <input type="text" class="form-control" placeholder="Enter serial number">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Purchase Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Purchase Cost</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Vendor/Supplier</label>
+                        <input type="text" class="form-control" placeholder="Enter vendor name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Warranty Expiry Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Location</label>
+                        <select class="form-control">
+                            <option>Ahmedabad Office</option>
+                            <option>Delhi Office</option>
+                            <option>Mumbai Office</option>
+                            <option>Field Office</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Specifications</label>
+                    <textarea class="form-control" rows="2" placeholder="e.g., RAM: 16GB, Storage: 512GB SSD, etc."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Documents (Invoice, Warranty Card)</label>
+                    <div class="file-upload-area" onclick="document.getElementById('assetDocs').click()">
+                        <input type="file" id="assetDocs" multiple accept=".pdf,.jpg,.png">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload asset documents</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            showUniversalModal('Add New Asset', bodyHTML);
+        }
+
+        function showAssignAssetForm() {
+            const bodyHTML = `
+                <div class="form-info">Assign asset to employee</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Asset ID</label>
+                        <select class="form-control">
+                            <option>Select Asset</option>
+                            <option>FWWB-LAP-001 - Dell Latitude 5420</option>
+                            <option>FWWB-LAP-002 - HP EliteBook 840</option>
+                            <option>FWWB-MOB-001 - iPhone 13</option>
+                            <option>FWWB-DES-001 - Dell OptiPlex 7090</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Assign To Employee</label>
+                        <select class="form-control">
+                            <option>Select Employee</option>
+                            <option>Rajesh Kumar (EMP001)</option>
+                            <option>Priya Sharma (EMP002)</option>
+                            <option>Amit Patel (EMP003)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Assignment Date</label>
+                        <input type="date" class="form-control" value="${new Date().toISOString().split('T')[0]}">
+                    </div>
+                    <div class="form-group">
+                        <label>Expected Return Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Asset Condition</label>
+                    <select class="form-control">
+                        <option>Excellent</option>
+                        <option>Good</option>
+                        <option>Fair</option>
+                        <option>Needs Repair</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Assignment Purpose</label>
+                    <textarea class="form-control" rows="2" placeholder="Reason for asset assignment..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Terms & Conditions</label>
+                    <div style="padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px; max-height: 120px; overflow-y: auto; font-size: 13px; background: #F7FAFC;">
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox"> Employee is responsible for asset safekeeping
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox"> Asset must be returned upon resignation/termination
+                        </label>
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox"> Damage/loss will be recovered from employee
+                        </label>
+                        <label style="display: block; cursor: pointer;">
+                            <input type="checkbox"> Asset is for official use only
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Handover Form (if applicable)</label>
+                    <div class="file-upload-area" onclick="document.getElementById('handoverForm').click()">
+                        <input type="file" id="handoverForm" accept=".pdf,.jpg,.png">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload signed handover document</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            showUniversalModal('Assign Asset to Employee', bodyHTML);
+        }
+
+        function showBulkUploadAssetsForm() {
+            const bodyHTML = `
+                <div class="form-info">Upload multiple assets at once using Excel template</div>
+
+                <div class="form-group">
+                    <label>Step 1: Download Excel Template</label>
+                    <button class="btn btn-secondary" style="width: 100%; margin-top: 8px;">
+                        ↓ Download Asset Template.xlsx
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Step 2: Upload Filled Template</label>
+                    <div class="file-upload-area" onclick="document.getElementById('assetExcel').click()">
+                        <input type="file" id="assetExcel" accept=".xlsx,.xls">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload filled Excel file with asset data</div>
+                            <div style="font-size: 12px; margin-top: 8px;">Accepted formats: .xlsx, .xls</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-info" style="background: #FFF3CD; border-left: 4px solid #FFC107; padding: 12px; margin-top: 16px;">
+                    <strong>Template Columns:</strong>
+                    <ul style="margin: 8px 0 0 20px; font-size: 13px;">
+                        <li>Asset ID, Asset Type, Category, Brand, Model</li>
+                        <li>Serial Number, Purchase Date, Purchase Cost</li>
+                        <li>Vendor, Warranty Expiry, Location</li>
+                        <li>Specifications (optional)</li>
+                    </ul>
+                </div>
+            `;
+            showUniversalModal('Bulk Upload Assets', bodyHTML);
+        }
+
+        // ============================================
+        // INSURANCE MANAGEMENT MODALS
+        // ============================================
+
+        function showAddPolicyForm() {
+            const bodyHTML = `
+                <div class="form-info">Add new insurance policy</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Policy Type</label>
+                        <select class="form-control">
+                            <option>Select Type</option>
+                            <option>Group Medical Insurance</option>
+                            <option>Group Accident Insurance</option>
+                            <option>Vehicle Insurance</option>
+                            <option>Fire & Safety Insurance</option>
+                            <option>D&O Insurance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Policy Number</label>
+                        <input type="text" class="form-control" placeholder="Enter policy number">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Insurance Company</label>
+                        <input type="text" class="form-control" placeholder="e.g., HDFC ERGO, ICICI Lombard">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Policy Name</label>
+                        <input type="text" class="form-control" placeholder="Enter policy name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Start Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Expiry Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Sum Insured</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Premium Amount</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Payment Frequency</label>
+                        <select class="form-control">
+                            <option>Annual</option>
+                            <option>Semi-Annual</option>
+                            <option>Quarterly</option>
+                            <option>Monthly</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Coverage</label>
+                        <input type="text" class="form-control" placeholder="e.g., Self + Family, All Employees">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Policy Features/Coverage Details</label>
+                    <textarea class="form-control" rows="3" placeholder="List key features, inclusions, exclusions..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Policy Document</label>
+                    <div class="file-upload-area" onclick="document.getElementById('policyDoc').click()">
+                        <input type="file" id="policyDoc" accept=".pdf">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload insurance policy PDF</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Renewal Alert (days before expiry)</label>
+                    <input type="number" class="form-control" value="30" placeholder="Number of days">
+                </div>
+            `;
+            showUniversalModal('Add Insurance Policy', bodyHTML);
+        }
+
+        function showRenewPolicyForm() {
+            const bodyHTML = `
+                <div class="form-info">Renew existing insurance policy</div>
+
+                <div class="form-group">
+                    <label class="required">Select Policy to Renew</label>
+                    <select class="form-control">
+                        <option>Select Policy</option>
+                        <option>Group Medical - HDFC ERGO (Expiring: 31-Jan-2025)</option>
+                        <option>Vehicle Insurance - ICICI Lombard (Expiring: 15-Feb-2025)</option>
+                        <option>Fire & Safety - New India Assurance (Expiring: 28-Feb-2025)</option>
+                    </select>
+                </div>
+
+                <div style="margin: 16px 0; padding: 16px; background: #EDF2F7; border-radius: 8px; font-size: 13px;">
+                    <div style="font-weight: 500; margin-bottom: 12px;">Current Policy Details:</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <div><strong>Policy Number:</strong> HDFC-GRP-2024-001</div>
+                        <div><strong>Expiry Date:</strong> 31-Jan-2025</div>
+                        <div><strong>Sum Insured:</strong> ₹10,00,000</div>
+                        <div><strong>Premium:</strong> ₹2,50,000</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">New Start Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">New Expiry Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">New Sum Insured</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">New Premium Amount</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Changes in Coverage (if any)</label>
+                    <textarea class="form-control" rows="2" placeholder="Describe any changes in coverage, features, or terms..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Renewed Policy Document</label>
+                    <div class="file-upload-area" onclick="document.getElementById('renewedPolicy').click()">
+                        <input type="file" id="renewedPolicy" accept=".pdf">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload renewed policy PDF</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Payment Receipt</label>
+                    <div class="file-upload-area" onclick="document.getElementById('paymentReceipt').click()">
+                        <input type="file" id="paymentReceipt" accept=".pdf,.jpg,.png">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload premium payment receipt</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            showUniversalModal('Renew Insurance Policy', bodyHTML);
+        }
+
+        // ============================================
+        // TRAVEL MANAGEMENT MODALS
+        // ============================================
+
+        function showRequestTravelForm() {
+            const bodyHTML = `
+                <div class="form-info">Submit travel request for official trip</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Travel Type</label>
+                        <select class="form-control">
+                            <option>Select Type</option>
+                            <option>Domestic - Flight</option>
+                            <option>Domestic - Train</option>
+                            <option>Domestic - Bus</option>
+                            <option>International</option>
+                            <option>Local Travel</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Purpose</label>
+                        <input type="text" class="form-control" placeholder="e.g., Project Review Meeting">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">From Location</label>
+                        <input type="text" class="form-control" placeholder="e.g., Ahmedabad">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">To Location</label>
+                        <input type="text" class="form-control" placeholder="e.g., Delhi">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Departure Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Return Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Travel Class</label>
+                        <select class="form-control">
+                            <option>Economy</option>
+                            <option>Business</option>
+                            <option>AC 2-Tier</option>
+                            <option>AC 3-Tier</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Estimated Cost</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Accommodation Required?</label>
+                    <div style="padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px;">
+                        <label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                            <input type="radio" name="accommodation" checked> Yes
+                        </label>
+                        <label style="display: block; cursor: pointer;">
+                            <input type="radio" name="accommodation"> No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Number of Nights</label>
+                        <input type="number" class="form-control" placeholder="Number of nights">
+                    </div>
+                    <div class="form-group">
+                        <label>Hotel Budget/Night</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Project/Activity</label>
+                    <select class="form-control">
+                        <option>Select Project</option>
+                        <option>Women Entrepreneurship - Delhi</option>
+                        <option>Financial Literacy - Mumbai</option>
+                        <option>Microfinance Support - Bangalore</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Advance Required?</label>
+                    <input type="number" class="form-control" placeholder="₹ Advance amount (if needed)">
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Details</label>
+                    <textarea class="form-control" rows="2" placeholder="Any special requirements or additional information..."></textarea>
+                </div>
+            `;
+            showUniversalModal('Submit Travel Request', bodyHTML);
+        }
+
+        function showBookTicketsForm() {
+            const bodyHTML = `
+                <div class="form-info">Book tickets for approved travel request</div>
+
+                <div class="form-group">
+                    <label class="required">Select Travel Request</label>
+                    <select class="form-control">
+                        <option>Select Request</option>
+                        <option>TR-001 - Rajesh Kumar - Ahmedabad to Delhi (15-Jan to 18-Jan)</option>
+                        <option>TR-002 - Priya Sharma - Mumbai Project Visit (20-Jan to 22-Jan)</option>
+                        <option>TR-003 - Amit Patel - Bangalore Meeting (25-Jan to 26-Jan)</option>
+                    </select>
+                </div>
+
+                <div style="margin: 16px 0; padding: 16px; background: #EDF2F7; border-radius: 8px; font-size: 13px;">
+                    <div style="font-weight: 500; margin-bottom: 12px;">Travel Request Details:</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <div><strong>Employee:</strong> Rajesh Kumar</div>
+                        <div><strong>Mode:</strong> Flight</div>
+                        <div><strong>From:</strong> Ahmedabad</div>
+                        <div><strong>To:</strong> Delhi</div>
+                        <div><strong>Departure:</strong> 15-Jan-2025</div>
+                        <div><strong>Return:</strong> 18-Jan-2025</div>
+                        <div><strong>Budget:</strong> ₹12,000</div>
+                        <div><strong>Status:</strong> Approved</div>
+                    </div>
+                </div>
+
+                <div class="form-section-title">Flight/Train Details</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Flight/Train Number</label>
+                        <input type="text" class="form-control" placeholder="e.g., 6E-453 or 12927">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Booking Reference/PNR</label>
+                        <input type="text" class="form-control" placeholder="Enter PNR/Booking Ref">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Departure Time</label>
+                        <input type="time" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Arrival Time</label>
+                        <input type="time" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Ticket Cost</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Booking Platform</label>
+                        <select class="form-control">
+                            <option>Travel Agent</option>
+                            <option>MakeMyTrip</option>
+                            <option>Cleartrip</option>
+                            <option>IRCTC</option>
+                            <option>Direct Airline</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section-title">Hotel Booking (if applicable)</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Hotel Name</label>
+                        <input type="text" class="form-control" placeholder="Enter hotel name">
+                    </div>
+                    <div class="form-group">
+                        <label>Booking Reference</label>
+                        <input type="text" class="form-control" placeholder="Enter booking reference">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Hotel Cost</label>
+                        <input type="number" class="form-control" placeholder="₹ Total amount">
+                    </div>
+                    <div class="form-group">
+                        <label>Check-in / Check-out</label>
+                        <input type="text" class="form-control" placeholder="e.g., 15-Jan to 18-Jan">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Ticket/Booking Confirmation</label>
+                    <div class="file-upload-area" onclick="document.getElementById('ticketDoc').click()">
+                        <input type="file" id="ticketDoc" multiple accept=".pdf,.jpg,.png">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload tickets and hotel booking confirmation</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            showUniversalModal('Book Travel Tickets', bodyHTML);
+        }
+
+        // ============================================
+        // STATIONERY MANAGEMENT MODALS
+        // ============================================
+
+        function showRequestStationeryForm() {
+            const bodyHTML = `
+                <div class="form-info">Request stationery items for your department</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Department</label>
+                        <select class="form-control">
+                            <option>Select Department</option>
+                            <option>Program Management</option>
+                            <option>Human Resources</option>
+                            <option>Finance & Accounts</option>
+                            <option>Administration</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Required By Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-section-title">Items Requested (Add Multiple)</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Item Name</label>
+                        <select class="form-control">
+                            <option>Select Item</option>
+                            <option>A4 Paper (Ream)</option>
+                            <option>Pens (Box of 50)</option>
+                            <option>Pencils (Box of 50)</option>
+                            <option>Markers</option>
+                            <option>Staplers</option>
+                            <option>Stapler Pins</option>
+                            <option>File Folders</option>
+                            <option>Notepads</option>
+                            <option>Sticky Notes</option>
+                            <option>Envelopes</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Quantity</label>
+                        <input type="number" class="form-control" placeholder="Quantity needed">
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary" style="width: 100%; margin-top: 12px;">
+                    + Add Another Item
+                </button>
+
+                <div style="margin-top: 20px; padding: 16px; background: #F7FAFC; border-radius: 8px;">
+                    <div style="font-weight: 500; margin-bottom: 12px;">Items Added:</div>
+                    <div style="font-size: 13px; color: #718096;">
+                        <div style="padding: 8px; background: white; border-radius: 4px; margin-bottom: 8px; display: flex; justify-content: space-between;">
+                            <span>A4 Paper (Ream) × 5</span>
+                            <span style="cursor: pointer; color: #E53E3E;">✕</span>
+                        </div>
+                        <div style="padding: 8px; background: white; border-radius: 4px; margin-bottom: 8px; display: flex; justify-content: space-between;">
+                            <span>Pens (Box of 50) × 2</span>
+                            <span style="cursor: pointer; color: #E53E3E;">✕</span>
+                        </div>
+                        <div style="padding: 8px; background: white; border-radius: 4px; display: flex; justify-content: space-between;">
+                            <span>File Folders × 20</span>
+                            <span style="cursor: pointer; color: #E53E3E;">✕</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 16px;">
+                    <label>Purpose/Justification</label>
+                    <textarea class="form-control" rows="2" placeholder="Explain why these items are needed..."></textarea>
+                </div>
+            `;
+            showUniversalModal('Request Stationery', bodyHTML);
+        }
+
+        function showFulfillRequestForm() {
+            const bodyHTML = `
+                <div class="form-info">Fulfill stationery request and update stock</div>
+
+                <div class="form-group">
+                    <label class="required">Select Request</label>
+                    <select class="form-control">
+                        <option>Select Request</option>
+                        <option>REQ-001 - Program Dept - Submitted on 10-Dec (Pending)</option>
+                        <option>REQ-002 - HR Dept - Submitted on 12-Dec (Pending)</option>
+                        <option>REQ-003 - Finance Dept - Submitted on 15-Dec (Pending)</option>
+                    </select>
+                </div>
+
+                <div style="margin: 16px 0; padding: 16px; background: #EDF2F7; border-radius: 8px; font-size: 13px;">
+                    <div style="font-weight: 500; margin-bottom: 12px;">Request Details:</div>
+                    <div style="margin-bottom: 8px;"><strong>Requested By:</strong> Rajesh Kumar (Program Management)</div>
+                    <div style="margin-bottom: 8px;"><strong>Date:</strong> 10-Dec-2024</div>
+                    <div style="margin-bottom: 12px;"><strong>Required By:</strong> 20-Dec-2024</div>
+                    <div style="font-weight: 500; margin-bottom: 8px;">Items:</div>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li>A4 Paper (Ream) × 5</li>
+                        <li>Pens (Box of 50) × 2</li>
+                        <li>File Folders × 20</li>
+                    </ul>
+                </div>
+
+                <div class="form-section-title">Fulfillment Details</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Fulfillment Status</label>
+                        <select class="form-control">
+                            <option>Fully Fulfilled</option>
+                            <option>Partially Fulfilled</option>
+                            <option>Out of Stock</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Fulfillment Date</label>
+                        <input type="date" class="form-control" value="${new Date().toISOString().split('T')[0]}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Items Issued:</label>
+                    <div style="padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #f7fafc;">
+                            <span style="flex: 1;">Item</span>
+                            <span style="width: 100px; text-align: center;">Requested</span>
+                            <span style="width: 100px; text-align: center;">Issued</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="flex: 1;">A4 Paper (Ream)</span>
+                            <span style="width: 100px; text-align: center;">5</span>
+                            <input type="number" value="5" style="width: 80px; text-align: center; padding: 4px; border: 1px solid #cbd5e0; border-radius: 4px; margin: 0 auto;">
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="flex: 1;">Pens (Box of 50)</span>
+                            <span style="width: 100px; text-align: center;">2</span>
+                            <input type="number" value="2" style="width: 80px; text-align: center; padding: 4px; border: 1px solid #cbd5e0; border-radius: 4px; margin: 0 auto;">
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="flex: 1;">File Folders</span>
+                            <span style="width: 100px; text-align: center;">20</span>
+                            <input type="number" value="20" style="width: 80px; text-align: center; padding: 4px; border: 1px solid #cbd5e0; border-radius: 4px; margin: 0 auto;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Remarks</label>
+                    <textarea class="form-control" rows="2" placeholder="Any notes about the fulfillment..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Handover Signature/Acknowledgment</label>
+                    <div class="file-upload-area" onclick="document.getElementById('handoverSign').click()">
+                        <input type="file" id="handoverSign" accept=".pdf,.jpg,.png">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload signed handover document (optional)</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            showUniversalModal('Fulfill Stationery Request', bodyHTML);
+        }
+
+        // ============================================
+        // ADMIN EXPENSES MODAL
+        // ============================================
+
+        function showSubmitAdminExpenseForm() {
+            const bodyHTML = `
+                <div class="form-info">Submit administrative expense for reimbursement</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Expense Category</label>
+                        <select class="form-control">
+                            <option>Select Category</option>
+                            <option>Office Supplies</option>
+                            <option>Utilities (Electricity, Water)</option>
+                            <option>Maintenance & Repairs</option>
+                            <option>Rent</option>
+                            <option>Internet & Phone</option>
+                            <option>Courier & Postage</option>
+                            <option>Printing & Photocopying</option>
+                            <option>Pantry Expenses</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Expense Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Amount</label>
+                        <input type="number" class="form-control" placeholder="₹ Expense amount">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Vendor/Supplier</label>
+                        <input type="text" class="form-control" placeholder="Enter vendor name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Invoice/Bill Number</label>
+                        <input type="text" class="form-control" placeholder="Enter invoice number">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Payment Mode</label>
+                        <select class="form-control">
+                            <option>Cash</option>
+                            <option>UPI</option>
+                            <option>Credit Card</option>
+                            <option>Debit Card</option>
+                            <option>Cheque</option>
+                            <option>Bank Transfer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Description</label>
+                    <textarea class="form-control" rows="3" placeholder="Describe the expense and purpose..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Upload Bills/Receipts</label>
+                    <div class="file-upload-area" onclick="document.getElementById('adminExpenseBills').click()">
+                        <input type="file" id="adminExpenseBills" multiple accept=".pdf,.jpg,.png">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload invoice, bill, or receipt</div>
+                            <div style="font-size: 12px; margin-top: 8px;">Accepted formats: PDF, JPG, PNG</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Notes</label>
+                    <textarea class="form-control" rows="2" placeholder="Any additional information..."></textarea>
+                </div>
+
+                <div style="margin-top: 16px; padding: 12px; background: #FFF3CD; border-left: 4px solid #FFC107; font-size: 13px;">
+                    <strong>Note:</strong> All expense submissions require supporting documents (bills/receipts) for approval
+                </div>
+            `;
+            showUniversalModal('Submit Admin Expense', bodyHTML);
+        }
     </script>
 </body>
 </html>

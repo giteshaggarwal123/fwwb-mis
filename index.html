@@ -2084,8 +2084,8 @@
                                     <td><span class="status-badge status-approved">Approved</span></td>
                                     <td>
                                         <div class="action-links">
-                                            <a class="action-link" onclick="alert('View expense details...')">View</a>
-                                            <a class="action-link" onclick="alert('Download bills...')">Download</a>
+                                            <a class="action-link" onclick="viewExpenseDetails(this.closest('tr').querySelector('td').textContent)">View</a>
+                                            <a class="action-link" onclick="downloadExpenseBills(this.closest('tr').querySelector('td').textContent)">Download</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -2100,8 +2100,8 @@
                                     <td><span class="status-badge status-pending">Pending</span></td>
                                     <td>
                                         <div class="action-links">
-                                            <a class="action-link" onclick="alert('Approve expense...')">Approve</a>
-                                            <a class="action-link danger" onclick="alert('Reject expense...')">Reject</a>
+                                            <a class="action-link" onclick="approveExpense(this.closest('tr').querySelector('td').textContent)">Approve</a>
+                                            <a class="action-link danger" onclick="rejectExpense(this.closest('tr').querySelector('td').textContent)">Reject</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -2116,8 +2116,8 @@
                                     <td><span class="status-badge status-pending">Pending</span></td>
                                     <td>
                                         <div class="action-links">
-                                            <a class="action-link" onclick="alert('Approve expense...')">Approve</a>
-                                            <a class="action-link danger" onclick="alert('Reject expense...')">Reject</a>
+                                            <a class="action-link" onclick="approveExpense(this.closest('tr').querySelector('td').textContent)">Approve</a>
+                                            <a class="action-link danger" onclick="rejectExpense(this.closest('tr').querySelector('td').textContent)">Reject</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -2132,8 +2132,8 @@
                                     <td><span class="status-badge status-approved">Approved</span></td>
                                     <td>
                                         <div class="action-links">
-                                            <a class="action-link" onclick="alert('View expense details...')">View</a>
-                                            <a class="action-link" onclick="alert('Download bills...')">Download</a>
+                                            <a class="action-link" onclick="viewExpenseDetails(this.closest('tr').querySelector('td').textContent)">View</a>
+                                            <a class="action-link" onclick="downloadExpenseBills(this.closest('tr').querySelector('td').textContent)">Download</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -2148,8 +2148,8 @@
                                     <td><span class="status-badge status-rejected">Rejected</span></td>
                                     <td>
                                         <div class="action-links">
-                                            <a class="action-link" onclick="alert('View rejection reason...')">View</a>
-                                            <a class="action-link" onclick="alert('Resubmit expense...')">Resubmit</a>
+                                            <a class="action-link" onclick="viewRejectionReason(this.closest('tr').querySelector('td').textContent)">View</a>
+                                            <a class="action-link" onclick="resubmitExpense(this.closest('tr').querySelector('td').textContent)">Resubmit</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -2295,7 +2295,7 @@
                                         <td><span class="status-badge status-approved">Verified</span></td>
                                         <td>
                                             <div class="action-links">
-                                                <a class="action-link" onclick="alert('View full details...')">View</a>
+                                                <a class="action-link" onclick="viewMonitoringData(this.closest('tr').querySelector('td').textContent)">View</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -2310,7 +2310,7 @@
                                         <td><span class="status-badge status-pending">Pending</span></td>
                                         <td>
                                             <div class="action-links">
-                                                <a class="action-link" onclick="alert('Verify data...')">Verify</a>
+                                                <a class="action-link" onclick="verifyMonitoringData(this.closest('tr').querySelector('td').textContent)">Verify</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -2325,7 +2325,7 @@
                                         <td><span class="status-badge status-pending">Pending</span></td>
                                         <td>
                                             <div class="action-links">
-                                                <a class="action-link" onclick="alert('Verify data...')">Verify</a>
+                                                <a class="action-link" onclick="verifyMonitoringData(this.closest('tr').querySelector('td').textContent)">Verify</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -2489,7 +2489,7 @@
                                         <td>PDF</td>
                                         <td>
                                             <div class="action-links">
-                                                <a class="action-link" onclick="alert('Downloading report...')">Download</a>
+                                                <a class="action-link" onclick="downloadReport(this.closest('tr').querySelector('td').textContent || 'report')">Download</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -2501,7 +2501,7 @@
                                         <td>Excel</td>
                                         <td>
                                             <div class="action-links">
-                                                <a class="action-link" onclick="alert('Downloading report...')">Download</a>
+                                                <a class="action-link" onclick="downloadReport(this.closest('tr').querySelector('td').textContent || 'report')">Download</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -2513,7 +2513,7 @@
                                         <td>Word</td>
                                         <td>
                                             <div class="action-links">
-                                                <a class="action-link" onclick="alert('Downloading report...')">Download</a>
+                                                <a class="action-link" onclick="downloadReport(this.closest('tr').querySelector('td').textContent || 'report')">Download</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -2576,7 +2576,7 @@
         }
 
         function generateAdminExpensesScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Admin Expenses</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Total Expenses (This Month)</div><div class="stat-value">₹3.8L</div><div class="stat-trend">December 2024</div></div><div class="stat-card warning"><div class="stat-label">Pending Approval</div><div class="stat-value">12</div><div class="stat-trend">₹85,000 worth</div></div><div class="stat-card success"><div class="stat-label">Approved</div><div class="stat-value">28</div><div class="stat-trend">₹2.4L settled</div></div><div class="stat-card info"><div class="stat-label">Budget Utilization</div><div class="stat-value">76%</div><div class="stat-trend">On track</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="alert('Submit new expense...')">+ Submit Expense</button><button class="btn btn-info" onclick="alert('View budget vs actual...')">Budget Dashboard</button><button class="btn btn-secondary" onclick="alert('Export expense report...')">Export Report</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by expense category, description, or ID..."><select class="filter-select"><option>All Categories</option><option>Office Rent</option><option>Utilities</option><option>Maintenance</option><option>Office Supplies</option><option>Communication</option></select><select class="filter-select"><option>All Status</option><option>Pending</option><option>Approved</option><option>Rejected</option><option>Settled</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>Admin Expenses</h3></div><table><thead><tr><th>Expense ID</th><th>Date</th><th>Category</th><th>Description</th><th>Amount</th><th>Bills</th><th>Submitted By</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>AEXP-2024-089</td><td>20-Dec-2024</td><td>Office Rent</td><td>December Rent - HO</td><td>₹85,000</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View details...')">View</a><a class="action-link" onclick="alert('Download bills...')">Download</a></div></td></tr><tr><td>AEXP-2024-090</td><td>22-Dec-2024</td><td>Utilities</td><td>Electricity Bill - December</td><td>₹18,500</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve...')">Approve</a><a class="action-link danger" onclick="alert('Reject...')">Reject</a></div></td></tr><tr><td>AEXP-2024-091</td><td>24-Dec-2024</td><td>Maintenance</td><td>AC Servicing - All Units</td><td>₹12,800</td><td>●2 files</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve...')">Approve</a><a class="action-link danger" onclick="alert('Reject...')">Reject</a></div></td></tr><tr><td>AEXP-2024-092</td><td>25-Dec-2024</td><td>Communication</td><td>Internet & Phone - Dec</td><td>₹8,900</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View details...')">View</a><a class="action-link" onclick="alert('Download bills...')">Download</a></div></td></tr></tbody></table></div></div>`;
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Admin Expenses</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Total Expenses (This Month)</div><div class="stat-value">₹3.8L</div><div class="stat-trend">December 2024</div></div><div class="stat-card warning"><div class="stat-label">Pending Approval</div><div class="stat-value">12</div><div class="stat-trend">₹85,000 worth</div></div><div class="stat-card success"><div class="stat-label">Approved</div><div class="stat-value">28</div><div class="stat-trend">₹2.4L settled</div></div><div class="stat-card info"><div class="stat-label">Budget Utilization</div><div class="stat-value">76%</div><div class="stat-trend">On track</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="alert('Submit new expense...')">+ Submit Expense</button><button class="btn btn-info" onclick="alert('View budget vs actual...')">Budget Dashboard</button><button class="btn btn-secondary" onclick="alert('Export expense report...')">Export Report</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by expense category, description, or ID..."><select class="filter-select"><option>All Categories</option><option>Office Rent</option><option>Utilities</option><option>Maintenance</option><option>Office Supplies</option><option>Communication</option></select><select class="filter-select"><option>All Status</option><option>Pending</option><option>Approved</option><option>Rejected</option><option>Settled</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>Admin Expenses</h3></div><table><thead><tr><th>Expense ID</th><th>Date</th><th>Category</th><th>Description</th><th>Amount</th><th>Bills</th><th>Submitted By</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>AEXP-2024-089</td><td>20-Dec-2024</td><td>Office Rent</td><td>December Rent - HO</td><td>₹85,000</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View details...')">View</a><a class="action-link" onclick="downloadExpenseBills(this.closest('tr').querySelector('td').textContent)">Download</a></div></td></tr><tr><td>AEXP-2024-090</td><td>22-Dec-2024</td><td>Utilities</td><td>Electricity Bill - December</td><td>₹18,500</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve...')">Approve</a><a class="action-link danger" onclick="alert('Reject...')">Reject</a></div></td></tr><tr><td>AEXP-2024-091</td><td>24-Dec-2024</td><td>Maintenance</td><td>AC Servicing - All Units</td><td>₹12,800</td><td>●2 files</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending</span></td><td><div class="action-links"><a class="action-link" onclick="alert('Approve...')">Approve</a><a class="action-link danger" onclick="alert('Reject...')">Reject</a></div></td></tr><tr><td>AEXP-2024-092</td><td>25-Dec-2024</td><td>Communication</td><td>Internet & Phone - Dec</td><td>₹8,900</td><td>●1 file</td><td>Admin Team</td><td><span class="status-badge status-approved">Approved</span></td><td><div class="action-links"><a class="action-link" onclick="alert('View details...')">View</a><a class="action-link" onclick="downloadExpenseBills(this.closest('tr').querySelector('td').textContent)">Download</a></div></td></tr></tbody></table></div></div>`;
         }
 
         // Tab switching function
@@ -2640,7 +2640,142 @@
                 return;
             }
 
-            goToScreen('dashboard');
+            // Set current user based on selected type
+            const userRoles = {
+                'management': 'Management',
+                'program': 'Program Team',
+                'hr': 'HR Team',
+                'admin': 'Admin Team'
+            };
+
+            currentUser = {
+                username: username,
+                name: username.split('.').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+                role: userRoles[selectedUserType],
+                type: selectedUserType
+            };
+
+            // Create dashboard screen dynamically with role-based sidebar
+            createDashboardWithRole();
+        }
+
+        function createDashboardWithRole() {
+            // Remove any existing dashboard screen
+            const existingDashboard = document.getElementById('screen-dashboard');
+            if (existingDashboard) {
+                existingDashboard.remove();
+            }
+
+            // Create new dashboard screen with role-based sidebar
+            const dashboardScreen = document.createElement('div');
+            dashboardScreen.className = 'screen';
+            dashboardScreen.id = 'screen-dashboard';
+
+            dashboardScreen.innerHTML = `
+                <div class="app-container">
+                    ${generateSidebar('dashboard')}
+                    <main class="main-content">
+                        ${generateTopbar('Dashboard Overview')}
+                        ${generateDashboardContent()}
+                    </main>
+                </div>
+            `;
+
+            // Add to document
+            document.body.insertBefore(dashboardScreen, document.querySelector('script'));
+
+            // Hide all screens and show dashboard
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            dashboardScreen.classList.add('active');
+            currentScreen = 'dashboard';
+        }
+
+        function generateDashboardContent() {
+            return `
+                <div class="content">
+                    <div class="breadcrumb">
+                        <a href="#" onclick="goToScreen('dashboard')">Home</a>
+                        <span>/</span>
+                        <span>Dashboard</span>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <span class="alert-icon">●</span>
+                        <div>
+                            <strong>Welcome to FWWB Integrated Management System</strong><br>
+                            Empowering Millions of Indian Women through efficient program, HR, and administrative management.
+                        </div>
+                    </div>
+
+                    <!-- Stats Overview -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">Active Projects</div>
+                            <div class="stat-value">24</div>
+                            <div class="stat-trend">↑ 12% from last quarter</div>
+                        </div>
+                        <div class="stat-card info">
+                            <div class="stat-label">Total Employees</div>
+                            <div class="stat-value">156</div>
+                            <div class="stat-trend">↑ 8 new hires this month</div>
+                        </div>
+                        <div class="stat-card success">
+                            <div class="stat-label">Budget Utilization</div>
+                            <div class="stat-value">67%</div>
+                            <div class="stat-trend">On track for FY 2024-25</div>
+                        </div>
+                        <div class="stat-card warning">
+                            <div class="stat-label">Pending Approvals</div>
+                            <div class="stat-value">15</div>
+                            <div class="stat-trend">5 overdue items</div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card">
+                        <div class="card-title">Quick Actions</div>
+                        <div class="btn-group">
+                            ${hasAccess('activities') ? '<button class="btn btn-primary" onclick="goToScreen(\'activities\')">+ New Activity</button>' : ''}
+                            ${hasAccess('expenses') ? '<button class="btn btn-info" onclick="goToScreen(\'expenses\')">↑ Submit Expense</button>' : ''}
+                            ${hasAccess('employees') ? '<button class="btn btn-success" onclick="goToScreen(\'employees\')">+ Add Employee</button>' : ''}
+                            ${hasAccess('reports') ? '<button class="btn btn-secondary" onclick="goToScreen(\'reports\')">■ Generate Report</button>' : ''}
+                        </div>
+                    </div>
+
+                    <!-- Program Impact Overview -->
+                    <div class="card">
+                        <div class="card-title">Program Impact (FY 2024-25)</div>
+                        <div class="stats-grid">
+                            <div class="widget">
+                                <div class="widget-header">
+                                    <span class="widget-title">Women Reached</span>
+                                    <span class="widget-icon">●</span>
+                                </div>
+                                <div class="widget-value">2.5M+</div>
+                                <div class="widget-subtitle">Across all programs</div>
+                            </div>
+                            <div class="widget">
+                                <div class="widget-header">
+                                    <span class="widget-title">Micro-Credit Disbursed</span>
+                                    <span class="widget-icon">●</span>
+                                </div>
+                                <div class="widget-value">₹125Cr</div>
+                                <div class="widget-subtitle">Through partner MFIs</div>
+                            </div>
+                            <div class="widget">
+                                <div class="widget-header">
+                                    <span class="widget-title">Training Sessions</span>
+                                    <span class="widget-icon">●</span>
+                                </div>
+                                <div class="widget-value">450+</div>
+                                <div class="widget-subtitle">Capacity building initiatives</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
 
         function logout() {
@@ -2665,8 +2800,14 @@
         };
 
         function hasAccess(screenName) {
-            if (!currentUser) return screenName === 'login' || screenName === 'dashboard';
-            const userType = selectedUserType;
+            // Login and dashboard are always accessible
+            if (screenName === 'login') return true;
+
+            // If not logged in, only allow login
+            if (!currentUser) return false;
+
+            // Get user's role-based permissions
+            const userType = currentUser.type || selectedUserType;
             const permissions = rolePermissions[userType] || [];
             return permissions.includes(screenName);
         }

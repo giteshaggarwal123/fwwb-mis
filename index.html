@@ -1425,14 +1425,14 @@
                 <p class="subtitle">Select your role and sign in to continue</p>
                 <p style="font-size: 10px; color: #1BADE3; text-align: center; margin: -8px 0 16px 0;">✓ v2.0 Latest (27-Dec-2024)</p>
 
-                <div class="user-type-selector">
+                <div class="user-type-selector" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="user-type-card" onclick="selectUserType('management', this)">
                         <h3>Management</h3>
-                        <p>Leadership & Admin</p>
+                        <p>Full Access</p>
                     </div>
                     <div class="user-type-card" onclick="selectUserType('program', this)">
                         <h3>Program Team</h3>
-                        <p>Field & HO Staff</p>
+                        <p>Field & Programs</p>
                     </div>
                     <div class="user-type-card" onclick="selectUserType('hr', this)">
                         <h3>HR Team</h3>
@@ -1440,7 +1440,11 @@
                     </div>
                     <div class="user-type-card" onclick="selectUserType('admin', this)">
                         <h3>Admin Team</h3>
-                        <p>Operations & Support</p>
+                        <p>Operations</p>
+                    </div>
+                    <div class="user-type-card" onclick="selectUserType('employee', this)">
+                        <h3>Employee</h3>
+                        <p>Self Service</p>
                     </div>
                 </div>
 
@@ -2821,7 +2825,8 @@
             management: { username: 'admin', password: 'demo123', name: 'Admin User', role: 'Management' },
             program: { username: 'program.user', password: 'demo123', name: 'Program User', role: 'Program Team' },
             hr: { username: 'hr.user', password: 'demo123', name: 'HR User', role: 'HR Team' },
-            admin: { username: 'admin.user', password: 'demo123', name: 'Admin User', role: 'Admin Team' }
+            admin: { username: 'admin.user', password: 'demo123', name: 'Admin User', role: 'Admin Team' },
+            employee: { username: 'employee', password: 'demo123', name: 'Employee User', role: 'Employee' }
         };
 
         function selectUserType(type, element) {
@@ -2879,7 +2884,8 @@
                 'management': 'Management',
                 'program': 'Program Team',
                 'hr': 'HR Team',
-                'admin': 'Admin Team'
+                'admin': 'Admin Team',
+                'employee': 'Employee'
             };
 
             currentUser = {
@@ -3030,7 +3036,8 @@
             management: ['dashboard', 'activities', 'budget', 'expenses', 'monitoring', 'reports', 'recruitment', 'employees', 'attendance', 'leave', 'performance', 'payroll', 'ess', 'assets', 'insurance', 'travel', 'stationery', 'admin-expenses'],
             program: ['dashboard', 'activities', 'budget', 'expenses', 'monitoring', 'reports', 'attendance', 'leave', 'ess'],
             hr: ['dashboard', 'recruitment', 'employees', 'attendance', 'leave', 'performance', 'payroll', 'ess'],
-            admin: ['dashboard', 'assets', 'insurance', 'travel', 'stationery', 'admin-expenses', 'attendance', 'leave', 'ess']
+            admin: ['dashboard', 'assets', 'insurance', 'travel', 'stationery', 'admin-expenses', 'attendance', 'leave', 'ess'],
+            employee: ['dashboard', 'attendance', 'leave', 'ess']  // General employees: Self-service only
         };
 
         function hasAccess(screenName) {

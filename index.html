@@ -1178,6 +1178,198 @@
         .calendar-day.leave {
             background: #feebc8;
         }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-container {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #2E3192 0%, #1BADE3 100%);
+            color: white;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-body {
+            padding: 24px;
+            max-height: calc(90vh - 140px);
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2d3748;
+            font-size: 14px;
+        }
+
+        .form-group label.required::after {
+            content: ' *';
+            color: #e53e3e;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #2E3192;
+            box-shadow: 0 0 0 3px rgba(46, 49, 146, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .form-info {
+            background: #f7fafc;
+            border-left: 4px solid #1BADE3;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #2d3748;
+        }
+
+        .form-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin: 24px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .form-section-title:first-child {
+            margin-top: 0;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .file-upload-area:hover {
+            border-color: #2E3192;
+            background: #f7fafc;
+        }
+
+        .file-upload-area input[type="file"] {
+            display: none;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+        }
     </style>
 </head>
 <body>
@@ -3288,6 +3480,414 @@
         // Initialize on page load
         window.onload = function() {
             goToScreen('login');
+        }
+    </script>
+
+    <!-- Universal Modal Container -->
+    <div id="universalModal" class="modal-overlay" onclick="if(event.target === this) closeUniversalModal()">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modalTitle">Modal Title</h3>
+                <button class="modal-close" onclick="closeUniversalModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+            <div class="modal-footer" id="modalFooter">
+                <!-- Dynamic buttons will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Universal Modal Functions
+        function showUniversalModal(title, bodyHTML, footerHTML) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalBody').innerHTML = bodyHTML;
+            document.getElementById('modalFooter').innerHTML = footerHTML || `
+                <button class="btn btn-secondary" onclick="closeUniversalModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitModalForm()">Submit</button>
+            `;
+            document.getElementById('universalModal').classList.add('active');
+        }
+
+        function closeUniversalModal() {
+            document.getElementById('universalModal').classList.remove('active');
+        }
+
+        function submitModalForm() {
+            alert('Form submitted successfully!\\n\\nIn production, this will:\\n● Validate form data\\n● Send to backend API\\n● Show success message\\n● Refresh data\\n● Close modal');
+            closeUniversalModal();
+        }
+
+        // Activity Management Modals
+        function showAddActivityForm() {
+            const bodyHTML = `
+                <div class="form-info">Create a new activity and assign it to a project with budget allocation</div>
+
+                <div class="form-group">
+                    <label class="required">Activity Name</label>
+                    <input type="text" class="form-control" placeholder="Enter activity name">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Project</label>
+                        <select class="form-control">
+                            <option>Select Project</option>
+                            <option>Women Entrepreneurship</option>
+                            <option>Financial Literacy</option>
+                            <option>Microfinance Support</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Budget Allocated</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Start Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">End Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Team Members</label>
+                    <select class="form-control" multiple style="height: 100px;">
+                        <option>Priya Sharma (EMP-001)</option>
+                        <option>Rahul Verma (EMP-042)</option>
+                        <option>Anjali Patel (EMP-089)</option>
+                        <option>Neha Desai (EMP-145)</option>
+                    </select>
+                    <small style="color: #718096;">Hold Ctrl/Cmd to select multiple</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Activity Description</label>
+                    <textarea class="form-control" placeholder="Enter activity details..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>LFA Indicators</label>
+                    <input type="text" class="form-control" placeholder="Define measurable indicators">
+                </div>
+            `;
+            showUniversalModal('Add New Activity', bodyHTML);
+        }
+
+        // Expense Management Modals
+        function showExpenseSubmissionForm() {
+            const bodyHTML = `
+                <div class="form-info">Submit an expense claim with bills for reimbursement</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Activity</label>
+                        <select class="form-control">
+                            <option>Select Activity</option>
+                            <option>ACT-2024-001 - Community Training</option>
+                            <option>ACT-2024-002 - Financial Literacy</option>
+                            <option>ACT-2024-003 - Microfinance Camp</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Expense Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Expense Description</label>
+                    <input type="text" class="form-control" placeholder="What was the expense for?">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Amount</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Category</label>
+                        <select class="form-control">
+                            <option>Travel</option>
+                            <option>Food & Accommodation</option>
+                            <option>Materials</option>
+                            <option>Venue</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Upload Bills/Receipts</label>
+                    <div class="file-upload-area" onclick="document.getElementById('expenseBills').click()">
+                        <input type="file" id="expenseBills" multiple accept="image/*,application/pdf">
+                        <div style="color: #718096;">
+                            <div style="font-size: 32px; margin-bottom: 8px;">↑</div>
+                            <div>Click to upload bills or drag and drop</div>
+                            <div style="font-size: 12px; margin-top: 4px;">PDF, JPG, PNG (Max 5MB each)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Notes</label>
+                    <textarea class="form-control" placeholder="Any additional information..."></textarea>
+                </div>
+            `;
+            showUniversalModal('Submit Expense Claim', bodyHTML);
+        }
+
+        // Budget Management Modals
+        function showBudgetAllocationForm() {
+            const bodyHTML = `
+                <div class="form-info">Allocate budget to activities within a project</div>
+
+                <div class="form-group">
+                    <label class="required">Project</label>
+                    <select class="form-control">
+                        <option>Select Project</option>
+                        <option>Women Entrepreneurship</option>
+                        <option>Financial Literacy</option>
+                        <option>Microfinance Support</option>
+                    </select>
+                </div>
+
+                <div class="form-section-title">Budget Breakdown</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Personnel Costs</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Travel & Transport</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Materials & Supplies</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Venue & Equipment</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Miscellaneous</label>
+                        <input type="number" class="form-control" placeholder="₹ Amount">
+                    </div>
+                    <div class="form-group">
+                        <label>Contingency (10%)</label>
+                        <input type="number" class="form-control" placeholder="₹ Auto-calculated" disabled>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <div style="display: flex; justify-content: space-between; padding: 16px; background: #f7fafc; border-radius: 8px; font-weight: 600;">
+                        <span>Total Budget:</span>
+                        <span style="color: #2E3192; font-size: 18px;">₹ 0</span>
+                    </div>
+                </div>
+            `;
+            showUniversalModal('Allocate Budget', bodyHTML);
+        }
+
+        // Field Data Entry Modal
+        function showFieldDataEntryForm() {
+            const bodyHTML = `
+                <div class="form-info">Record field visit data and beneficiary information</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Activity</label>
+                        <select class="form-control">
+                            <option>Select Activity</option>
+                            <option>ACT-2024-001 - Community Training</option>
+                            <option>ACT-2024-002 - Financial Literacy</option>
+                            <option>ACT-2024-003 - Microfinance Camp</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Visit Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Location</label>
+                    <input type="text" class="form-control" placeholder="Village/Town name">
+                </div>
+
+                <div class="form-group">
+                    <label>GPS Location</label>
+                    <div style="display: flex; gap: 12px;">
+                        <input type="text" id="fieldGPS" class="form-control" placeholder="Will be captured" readonly>
+                        <button class="btn btn-success" onclick="captureGPSLocation('fieldGPS')" style="white-space: nowrap;">● Capture GPS</button>
+                    </div>
+                </div>
+
+                <div class="form-section-title">Beneficiary Details</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Beneficiaries Reached</label>
+                        <input type="number" class="form-control" placeholder="Number of people">
+                    </div>
+                    <div class="form-group">
+                        <label>Women Participants</label>
+                        <input type="number" class="form-control" placeholder="Number of women">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Upload Photos</label>
+                    <div class="file-upload-area" onclick="document.getElementById('fieldPhotos').click()">
+                        <input type="file" id="fieldPhotos" multiple accept="image/*">
+                        <div style="color: #718096;">
+                            <div style="font-size: 32px; margin-bottom: 8px;">📸</div>
+                            <div>Click to upload field photos</div>
+                            <div style="font-size: 12px; margin-top: 4px;">JPG, PNG (Max 5MB each)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Observations & Notes</label>
+                    <textarea class="form-control" placeholder="Record your observations from the field visit..."></textarea>
+                </div>
+            `;
+            showUniversalModal('Field Data Entry', bodyHTML);
+        }
+
+        // Leave Application Modal
+        function applyLeave() {
+            const bodyHTML = `
+                <div class="form-info">Apply for leave - subject to manager approval</div>
+
+                <div class="form-group">
+                    <label class="required">Leave Type</label>
+                    <select class="form-control">
+                        <option>Select Leave Type</option>
+                        <option>Casual Leave</option>
+                        <option>Sick Leave</option>
+                        <option>Privilege Leave</option>
+                        <option>Maternity Leave</option>
+                        <option>Compensatory Off</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">From Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">To Date</label>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div style="padding: 12px; background: #f7fafc; border-radius: 6px; margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 14px;">
+                            <span>Total Days:</span>
+                            <span style="font-weight: 600;">0 days</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 14px; margin-top: 4px;">
+                            <span>Available Balance:</span>
+                            <span style="font-weight: 600; color: #48bb78;">15.5 days</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Reason for Leave</label>
+                    <textarea class="form-control" placeholder="Enter reason for leave application..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Contact During Leave</label>
+                    <input type="text" class="form-control" placeholder="Phone number or email">
+                </div>
+
+                <div class="form-group">
+                    <label>Attach Document (if medical leave)</label>
+                    <div class="file-upload-area" onclick="document.getElementById('leaveDoc').click()">
+                        <input type="file" id="leaveDoc" accept="image/*,application/pdf">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload medical certificate (optional)</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            showUniversalModal('Apply for Leave', bodyHTML);
+        }
+
+        // IT Support Ticket Modal
+        function raiseITTicket() {
+            const bodyHTML = `
+                <div class="form-info">Raise an IT support request for technical assistance</div>
+
+                <div class="form-group">
+                    <label class="required">Issue Category</label>
+                    <select class="form-control">
+                        <option>Select Category</option>
+                        <option>Hardware Issue - Laptop/Desktop</option>
+                        <option>Hardware Issue - Printer/Scanner</option>
+                        <option>Software Installation</option>
+                        <option>Network/Internet Problem</option>
+                        <option>Email/Access Issues</option>
+                        <option>Password Reset</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">Priority</label>
+                        <select class="form-control">
+                            <option>Low</option>
+                            <option>Medium</option>
+                            <option selected>High</option>
+                            <option>Critical</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Asset ID (if applicable)</label>
+                        <input type="text" class="form-control" placeholder="e.g., IT-2024-045">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Issue Description</label>
+                    <textarea class="form-control" placeholder="Describe the issue in detail..." style="min-height: 100px;"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Attach Screenshots (if any)</label>
+                    <div class="file-upload-area" onclick="document.getElementById('itScreenshots').click()">
+                        <input type="file" id="itScreenshots" multiple accept="image/*">
+                        <div style="color: #718096;">
+                            <div style="font-size: 24px; margin-bottom: 8px;">↑</div>
+                            <div>Upload screenshots of the issue</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            showUniversalModal('Raise IT Support Ticket', bodyHTML);
         }
     </script>
 </body>

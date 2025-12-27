@@ -1756,8 +1756,8 @@
                                     <td>100%</td>
                                     <td>
                                         <div class="action-links">
-                                            <a class="action-link" onclick="alert('Viewing activity details...')">View</a>
-                                            <a class="action-link" onclick="alert('Edit activity...')">Edit</a>
+                                            <a class="action-link" onclick="viewActivityDetails('ACT-2024-001')">View</a>
+                                            <a class="action-link" onclick="editActivity('ACT-2024-001')">Edit</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -1772,8 +1772,8 @@
                                     <td>65%</td>
                                     <td>
                                         <div class="action-links">
-                                            <a class="action-link" onclick="alert('Viewing activity details...')">View</a>
-                                            <a class="action-link" onclick="alert('Edit activity...')">Edit</a>
+                                            <a class="action-link" onclick="viewActivityDetails('ACT-2024-002')">View</a>
+                                            <a class="action-link" onclick="editActivity('ACT-2024-002')">Edit</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -1788,8 +1788,8 @@
                                     <td>45%</td>
                                     <td>
                                         <div class="action-links">
-                                            <a class="action-link" onclick="alert('Viewing activity details...')">View</a>
-                                            <a class="action-link" onclick="alert('Edit activity...')">Edit</a>
+                                            <a class="action-link" onclick="viewActivityDetails('ACT-2024-003')">View</a>
+                                            <a class="action-link" onclick="editActivity('ACT-2024-003')">Edit</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -1804,8 +1804,8 @@
                                     <td>30%</td>
                                     <td>
                                         <div class="action-links">
-                                            <a class="action-link" onclick="alert('Viewing activity details...')">View</a>
-                                            <a class="action-link" onclick="alert('Edit activity...')">Edit</a>
+                                            <a class="action-link" onclick="viewActivityDetails('ACT-2024-004')">View</a>
+                                            <a class="action-link" onclick="editActivity('ACT-2024-004')">Edit</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -1820,8 +1820,8 @@
                                     <td>0%</td>
                                     <td>
                                         <div class="action-links">
-                                            <a class="action-link" onclick="alert('Viewing activity details...')">View</a>
-                                            <a class="action-link" onclick="alert('Edit activity...')">Edit</a>
+                                            <a class="action-link" onclick="viewActivityDetails('ACT-2024-005')">View</a>
+                                            <a class="action-link" onclick="editActivity('ACT-2024-005')">Edit</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -2704,8 +2704,11 @@
                 item.classList.remove('active');
             });
 
-            // Scroll to top
-            window.scrollTo(0, 0);
+            // Scroll main content area to top (not the whole window)
+            const mainContent = targetScreen.querySelector('.main-content');
+            if (mainContent) {
+                mainContent.scrollTop = 0;
+            }
         }
 
         function createDynamicScreen(screenName) {
@@ -2899,6 +2902,246 @@
             };
             alert(`Opening ${projectNames[project]} Dashboard\n\nDashboard will show:\n- Activities timeline\n- Budget vs actual\n- Beneficiaries reached\n- LFA indicators\n- Photos and reports`);
             // In production, this would navigate to a dedicated project dashboard screen
+        }
+
+        // ==============================================
+        // TABLE ACTION FUNCTIONS - FULLY FUNCTIONAL
+        // ==============================================
+
+        // Activity Management Actions
+        function viewActivityDetails(activityId) {
+            alert(`Activity Details - ${activityId}\n\n● Activity Name\n● Project Assignment\n● Budget Allocation\n● Timeline & Milestones\n● Team Members\n● Progress Status\n● Documents & Reports\n● LFA Indicators\n\n[In production: Modal with full details]`);
+        }
+
+        function editActivity(activityId) {
+            alert(`Edit Activity - ${activityId}\n\nEditable Fields:\n● Activity name\n● Project assignment\n● Budget amount\n● Start/End dates\n● Team members\n● LFA indicators\n● Status updates\n\n[In production: Modal form with save/cancel]`);
+        }
+
+        // Expense Management Actions
+        function viewExpenseDetails(expenseId) {
+            alert(`Expense Details - ${expenseId}\n\n● Expense description\n● Amount & breakdown\n● Activity linkage\n● Bills/receipts (attached)\n● Approval workflow\n● Settlement status\n● Payment details\n\n[In production: Modal with document viewer]`);
+        }
+
+        function downloadExpenseBills(expenseId) {
+            alert(`Downloading Bills - ${expenseId}\n\n● Downloading all attached bills\n● Format: PDF/Images in ZIP\n● File: bills_${expenseId}_${new Date().toISOString().split('T')[0]}.zip\n\n[Download started]`);
+        }
+
+        function approveExpense(expenseId) {
+            if (confirm(`Approve Expense ${expenseId}?\n\nThis will:\n● Move expense to approved status\n● Trigger payment processing\n● Send notification to finance team\n\nConfirm approval?`)) {
+                alert(`✓ Expense ${expenseId} approved successfully!\n\nNext steps:\n● Finance team notified\n● Payment processing initiated\n● Submitter notified via email`);
+            }
+        }
+
+        function rejectExpense(expenseId) {
+            const reason = prompt('Reject Expense ' + expenseId + '\n\nPlease enter rejection reason:', '');
+            if (reason && reason.trim()) {
+                alert(`✗ Expense ${expenseId} rejected\n\nReason: ${reason}\n\n● Submitter will be notified\n● Expense marked as rejected\n● Can be resubmitted after corrections`);
+            }
+        }
+
+        function resubmitExpense(expenseId) {
+            alert(`Resubmit Expense - ${expenseId}\n\nIn production, this will:\n● Load previous expense data\n● Allow corrections based on rejection reason\n● Upload new/corrected bills\n● Resubmit for approval\n\n[Opening resubmission form...]`);
+        }
+
+        function viewRejectionReason(expenseId) {
+            alert(`Rejection Reason - ${expenseId}\n\n"Bill amount exceeds activity budget allocation. Please provide breakdown and justification."\n\n— Rejected by: Anjali Patel (Finance Manager)\n— Date: 20-Dec-2024\n— Action: Resubmit with corrections`);
+        }
+
+        // Monitoring & Data Actions
+        function viewMonitoringData(entryId) {
+            alert(`Monitoring Data - ${entryId}\n\n● Field location & GPS\n● Beneficiary details\n● Survey responses\n● Photos captured\n● LFA indicators updated\n● Data collector info\n● Timestamp\n\n[In production: Detailed view with photos]`);
+        }
+
+        function verifyMonitoringData(entryId) {
+            if (confirm(`Verify Monitoring Data ${entryId}?\n\nThis will:\n● Mark data as verified\n● Include in reports\n● Lock for editing\n\nConfirm verification?`)) {
+                alert(`✓ Data ${entryId} verified successfully!\n\n● Data locked\n● Included in dashboards\n● Collector notified`);
+            }
+        }
+
+        // Report Actions
+        function downloadReport(reportId) {
+            const formats = ['Excel (.xlsx)', 'PDF (.pdf)', 'Word (.docx)'];
+            const format = prompt(`Download Report ${reportId}\n\nSelect format:\n1 - Excel (.xlsx)\n2 - PDF (.pdf)\n3 - Word (.docx)\n\nEnter number (1-3):`, '1');
+            if (format >= 1 && format <= 3) {
+                alert(`Downloading ${reportId}\n\nFormat: ${formats[format-1]}\n● Processing report\n● Generating file\n● Download will start automatically\n\n[Downloading...]`);
+            }
+        }
+
+        // Recruitment Actions
+        function viewCandidateDetails(candidateId) {
+            alert(`Candidate Details - ${candidateId}\n\n● Personal information\n● Resume/CV\n● Application form\n● Interview notes\n● Assessment scores\n● Reference checks\n● Interview schedule\n\n[In production: Full candidate profile]`);
+        }
+
+        function scheduleInterview(candidateId) {
+            alert(`Schedule Interview - ${candidateId}\n\nIn production, this will open form to:\n● Select interview date/time\n● Choose interview panel\n● Set interview type (Phone/Video/In-person)\n● Send calendar invite\n● Notify candidate\n\n[Opening scheduler...]`);
+        }
+
+        function shortlistCandidate(candidateId) {
+            if (confirm(`Shortlist Candidate ${candidateId}?\n\nThis will:\n● Move to shortlisted status\n● Enable interview scheduling\n● Send notification\n\nConfirm?`)) {
+                alert(`✓ Candidate ${candidateId} shortlisted!\n\n● Status updated\n● HR team notified\n● Ready for interview scheduling`);
+            }
+        }
+
+        function rejectCandidate(candidateId) {
+            const reason = prompt('Reject Candidate ' + candidateId + '\n\nReason (optional):', '');
+            if (confirm('Confirm rejection?')) {
+                alert(`✗ Candidate ${candidateId} rejected\n\n${reason ? 'Reason: ' + reason : ''}\n● Status updated to rejected\n● Rejection email will be sent\n● Application closed`);
+            }
+        }
+
+        // Employee Actions
+        function viewEmployeeDetails(empId) {
+            alert(`Employee Profile - ${empId}\n\n● Personal details\n● Employment history\n● Current assignment\n● Salary details\n● Leave balance\n● Performance records\n● Documents\n● Attendance summary\n\n[In production: Complete employee profile]`);
+        }
+
+        function editEmployee(empId) {
+            alert(`Edit Employee - ${empId}\n\nEditable sections:\n● Contact information\n● Emergency contacts\n● Bank details\n● Department/designation\n● Reporting manager\n● Salary components\n\n[Opening edit form...]`);
+        }
+
+        function viewAttendanceDetails(empId, date) {
+            alert(`Attendance Details\n\n● Employee: ${empId}\n● Date: ${date || 'Today'}\n● Check-in time & location\n● Check-out time\n● Working hours\n● GPS location (if field)\n● Regularization requests\n\n[In production: Detailed attendance view]`);
+        }
+
+        function markAttendance(empId) {
+            alert(`Mark Attendance - ${empId}\n\nIn production, this will:\n● Capture current GPS location\n● Record timestamp\n● Mark as present\n● Calculate working hours\n\n[Processing...]`);
+        }
+
+        // Leave Actions
+        function approveLeave(empId, leaveId) {
+            if (confirm(`Approve Leave Request?\n\nEmployee: ${empId}\n\nThis will:\n● Update leave balance\n● Send approval notification\n● Update team calendar\n\nConfirm?`)) {
+                alert(`✓ Leave approved!\n\n● Employee notified\n● Calendar updated\n● Leave balance deducted`);
+            }
+        }
+
+        function rejectLeave(empId, leaveId) {
+            const reason = prompt('Reject Leave Request\n\nReason:', '');
+            if (reason && reason.trim()) {
+                alert(`✗ Leave rejected\n\nReason: ${reason}\n\n● Employee will be notified\n● No balance deduction\n● Can apply again`);
+            }
+        }
+
+        // Performance Actions
+        function conductReview(empId) {
+            alert(`Conduct Performance Review - ${empId}\n\nReview includes:\n● KPI achievement assessment\n● Behavioral competencies\n● Goal achievement\n● Development areas\n● Rating & recommendations\n● Promotion/increment suggestions\n\n[Opening review form...]`);
+        }
+
+        function sendReminder(empId, type) {
+            alert(`Sending Reminder - ${empId}\n\nReminder type: ${type || 'Pending action'}\n\n● Email notification sent\n● In-app notification created\n● Escalation scheduled if no response\n\n✓ Reminder sent successfully!`);
+        }
+
+        // Payroll Actions
+        function generatePayrollChallan(type) {
+            alert(`Generate ${type} Challan\n\nIn production, this will:\n● Calculate total amount\n● Generate ECR/challan file\n● Create payment form\n● Provide bank details\n● Set due date reminder\n\n[Generating challan...]`);
+        }
+
+        function viewPayrollReceipt(type) {
+            alert(`View Payment Receipt - ${type}\n\n● Payment confirmation\n● Transaction ID\n● Date & amount\n● Bank reference\n● Download receipt\n\n[Opening receipt...]`);
+        }
+
+        // ESS Actions
+        function downloadPayslip(month) {
+            alert(`Downloading Payslip - ${month}\n\nPayslip includes:\n● Gross salary breakdown\n● Deductions (PF, TDS, etc)\n● Net salary\n● YTD summary\n● Payment details\n\nFormat: PDF\n\n[Download started]`);
+        }
+
+        function viewForm16() {
+            alert(`View Form 16 - FY 2024-25\n\n● TDS certificate\n● Salary breakup\n● Deductions claimed\n● Tax computation\n● Employer details\n\nFormat: PDF (digitally signed)\n\n[Opening Form 16...]`);
+        }
+
+        function applyLeave() {
+            alert(`Apply for Leave\n\nIn production, this will open form to:\n● Select leave type\n● Choose dates\n● Enter reason\n● Attach documents (if medical)\n● Submit for approval\n\n[Opening leave application form...]`);
+        }
+
+        function raiseITTicket() {
+            alert(`Raise IT Support Ticket\n\nTicket categories:\n● Hardware issues\n● Software installation\n● Network problems\n● Email/access issues\n● New requirements\n\n[Opening support form...]`);
+        }
+
+        // Exit Management Actions
+        function processResignation(empId) {
+            alert(`Process Resignation - ${empId}\n\nProcessing steps:\n● Accept resignation\n● Calculate notice period\n● Initiate clearance\n● Schedule exit interview\n● Plan full & final settlement\n\n[Opening resignation processing...]`);
+        }
+
+        function scheduleExitInterview(empId) {
+            alert(`Schedule Exit Interview - ${empId}\n\nIn production, this will:\n● Select interview date\n● Assign interviewer (usually HR)\n● Send calendar invite\n● Prepare exit questionnaire\n● Set meeting location/link\n\n[Opening scheduler...]`);
+        }
+
+        function processClearance(empId) {
+            alert(`Process Clearance - ${empId}\n\nClearance checklist:\n● IT assets return\n● Access card surrender\n● Project handover\n● Documents return\n● No dues certificate\n● Final approvals\n\n[Opening clearance form...]`);
+        }
+
+        // Asset Management Actions
+        function viewAssetDetails(assetId) {
+            alert(`Asset Details - ${assetId}\n\n● Asset category & name\n● Serial number\n● Purchase details\n● Current assignee\n● Warranty information\n● Service history\n● Condition status\n● QR code\n\n[In production: Full asset details]`);
+        }
+
+        function editAsset(assetId) {
+            alert(`Edit Asset - ${assetId}\n\nEditable fields:\n● Asset name\n● Category\n● Assignee\n● Location\n● Status\n● Maintenance notes\n● Warranty dates\n\n[Opening edit form...]`);
+        }
+
+        function assignAsset(assetId) {
+            alert(`Assign Asset - ${assetId}\n\nIn production, this will:\n● Select employee\n● Set assignment date\n● Generate assignment letter\n● Send notification\n● Update asset register\n\n[Opening assignment form...]`);
+        }
+
+        // Insurance Actions
+        function viewPolicyDetails(policyId) {
+            alert(`Policy Details - ${policyId}\n\n● Policy number & provider\n● Coverage details\n● Sum insured\n● Premium amount\n● Covered members\n● Claim history\n● Renewal date\n● Documents\n\n[In production: Full policy view]`);
+        }
+
+        function renewPolicy(policyId) {
+            alert(`Renew Policy - ${policyId}\n\nRenewal process:\n● Get renewal quote\n● Compare with other insurers\n● Review coverage\n● Process payment\n● Update policy dates\n● Archive old policy\n\n[Opening renewal workflow...]`);
+        }
+
+        // Travel Actions
+        function approveTravelRequest(requestId) {
+            if (confirm(`Approve Travel Request ${requestId}?\n\nThis will:\n● Approve travel\n● Enable ticket booking\n● Send approval notification\n\nConfirm?`)) {
+                alert(`✓ Travel approved - ${requestId}\n\n● Employee notified\n● Ready for booking\n● Advance payment can be processed`);
+            }
+        }
+
+        function rejectTravelRequest(requestId) {
+            const reason = prompt('Reject Travel Request\n\nReason:', '');
+            if (reason && reason.trim()) {
+                alert(`✗ Travel rejected - ${requestId}\n\nReason: ${reason}\n\n● Employee notified\n● Request closed`);
+            }
+        }
+
+        function bookTickets(requestId) {
+            alert(`Book Tickets - ${requestId}\n\nIn production, this will:\n● Integrate with travel portal\n● Search flights/trains\n● Select best options\n● Process booking\n● Send tickets to employee\n● Update expense records\n\n[Opening booking interface...]`);
+        }
+
+        // Stationery Actions
+        function approveStationeryRequest(requestId) {
+            if (confirm(`Approve Stationery Request ${requestId}?\n\nThis will enable fulfillment.\n\nConfirm?`)) {
+                alert(`✓ Request approved - ${requestId}\n\n● Admin team notified\n● Ready for fulfillment\n● Stock will be issued`);
+            }
+        }
+
+        function rejectStationeryRequest(requestId) {
+            const reason = prompt('Reject Stationery Request\n\nReason:', '');
+            if (reason && reason.trim()) {
+                alert(`✗ Request rejected - ${requestId}\n\nReason: ${reason}\n\n● Employee notified`);
+            }
+        }
+
+        function fulfillStationeryRequest(requestId) {
+            alert(`Fulfill Request - ${requestId}\n\nIn production, this will:\n● Mark items as issued\n● Update stock levels\n● Record issue date\n● Get employee signature\n● Close request\n\n[Processing fulfillment...]`);
+        }
+
+        function reorderStationery(item) {
+            alert(`Reorder ${item}\n\nIn production, this will:\n● Create purchase requisition\n● Get vendor quotes\n● Generate PO\n● Track delivery\n● Update stock on receipt\n\n[Creating reorder request...]`);
+        }
+
+        // Admin Expense Actions
+        function approveAdminExpense(expenseId) {
+            if (confirm(`Approve Admin Expense ${expenseId}?\n\nThis will process payment.\n\nConfirm?`)) {
+                alert(`✓ Admin expense approved - ${expenseId}\n\n● Finance team notified\n● Payment processing initiated`);
+            }
+        }
+
+        function rejectAdminExpense(expenseId) {
+            const reason = prompt('Reject Admin Expense\n\nReason:', '');
+            if (reason && reason.trim()) {
+                alert(`✗ Admin expense rejected - ${expenseId}\n\nReason: ${reason}`);
+            }
         }
 
         // Initialize on page load

@@ -1425,19 +1425,19 @@
                 <p class="subtitle">Select your role and sign in to continue</p>
 
                 <div class="user-type-selector">
-                    <div class="user-type-card" onclick="selectUserType('management')">
+                    <div class="user-type-card" onclick="selectUserType('management', this)">
                         <h3>Management</h3>
                         <p>Leadership & Admin</p>
                     </div>
-                    <div class="user-type-card" onclick="selectUserType('program')">
+                    <div class="user-type-card" onclick="selectUserType('program', this)">
                         <h3>Program Team</h3>
                         <p>Field & HO Staff</p>
                     </div>
-                    <div class="user-type-card" onclick="selectUserType('hr')">
+                    <div class="user-type-card" onclick="selectUserType('hr', this)">
                         <h3>HR Team</h3>
                         <p>People & Culture</p>
                     </div>
-                    <div class="user-type-card" onclick="selectUserType('admin')">
+                    <div class="user-type-card" onclick="selectUserType('admin', this)">
                         <h3>Admin Team</h3>
                         <p>Operations & Support</p>
                     </div>
@@ -2823,7 +2823,7 @@
             admin: { username: 'admin.user', password: 'demo123', name: 'Admin User', role: 'Admin Team' }
         };
 
-        function selectUserType(type) {
+        function selectUserType(type, element) {
             selectedUserType = type;
 
             // Remove selected class from all cards
@@ -2832,7 +2832,9 @@
             });
 
             // Add selected class to clicked card
-            event.target.closest('.user-type-card').classList.add('selected');
+            if (element) {
+                element.closest('.user-type-card').classList.add('selected');
+            }
 
             // Auto-populate credentials
             const creds = userCredentials[type];

@@ -13,19 +13,18 @@ Complete, fully functional wireframes for FWWB (Friends of Women's World Banking
 - **Reports & Dashboards**: Project-wise and donor-wise reporting with Excel/Word export
 
 ### HRMS (Human Resource Management System)
-- **Recruitment**: Job posting, application tracking, shortlisting, and candidate management
-- **Employee Management**: Complete employee lifecycle from onboarding to exit
-- **Attendance Management**: GPS-based mobile attendance and biometric integration
+- **Recruitment**: Job posting and candidate viewing
+- **Employee Management**: Complete employee lifecycle management
+- **Attendance Management**: GPS-based mobile attendance for field staff
 - **Leave Management**: Leave application, approval workflow, and balance tracking
-- **Performance Management**: KPI setting, goal tracking, 360-degree reviews, IDP creation
+- **Performance Management**: Goal setting, performance reviews, and ratings
 - **Payroll**: Salary processing with statutory compliance (PF, ESIC, TDS, PT)
 - **Employee Self Service (ESS)**: Payslip download, leave application, profile updates
-- **Exit Management**: Resignation processing, exit interviews, clearance certificates
 
 ### Administration
-- **Asset Management**: IT and Non-IT asset tracking with warranty monitoring
-- **Insurance Management**: Medical, Group Accident, Vehicle, Fire & Safety, D&O policies with renewal alerts
-- **Travel Booking**: Multi-mode travel request and approval system
+- **Asset Management**: IT and Non-IT asset tracking and assignment
+- **Insurance Management**: Medical, Group Accident, Vehicle, and Fire & Safety policies with renewal alerts
+- **Travel Management**: Travel request and approval workflow
 - **Stationery Management**: Request, approval, and stock management
 - **Admin Expenses**: Expense submission and tracking
 

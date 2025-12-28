@@ -307,29 +307,53 @@
         .notification-bell {
             position: relative;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 22px;
             color: #718096;
-            transition: color 0.2s;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .notification-bell:hover {
             color: #2E3192;
+            background: #F7FAFC;
+            transform: scale(1.05);
+        }
+
+        .notification-bell:active {
+            transform: scale(0.95);
         }
 
         .notification-badge {
             position: absolute;
-            top: -4px;
-            right: -4px;
-            background: #e53e3e;
+            top: 4px;
+            right: 4px;
+            background: linear-gradient(135deg, #e53e3e 0%, #f56565 100%);
             color: white;
             border-radius: 50%;
-            width: 16px;
-            height: 16px;
+            min-width: 18px;
+            height: 18px;
+            padding: 0 4px;
             font-size: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
+            box-shadow: 0 2px 4px rgba(229, 62, 62, 0.3);
+            border: 2px solid white;
+            animation: pulse-badge 2s infinite;
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
         }
 
         .user-info {
@@ -3874,13 +3898,77 @@
         }
 
         function showNotifications() {
-            const notifications = [
-                '● 3 insurance policies expiring soon',
-                '● 5 leave requests pending approval',
-                '● 2 recruitment positions open',
-                '● Budget review scheduled for next week'
-            ];
-            showInfoModal('Notifications', notifications.join('\n'));
+            showUniversalModal(`
+                <h2 style="margin-bottom: 20px;">
+                    <span style="font-size: 24px; margin-right: 8px;">🔔</span>
+                    Notifications
+                </h2>
+
+                <div style="max-height: 400px; overflow-y: auto;">
+                    <!-- Notification 1 -->
+                    <div style="padding: 16px; background: #FFF5F5; border-left: 4px solid #e53e3e; border-radius: 4px; margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                            <div style="font-weight: 600; color: #2d3748;">⚠️ Insurance Policies Expiring Soon</div>
+                            <div style="font-size: 11px; color: #718096;">2 hours ago</div>
+                        </div>
+                        <div style="font-size: 14px; color: #4a5568; margin-bottom: 8px;">
+                            3 insurance policies are set to expire within the next 30 days. Please review and renew.
+                        </div>
+                        <button class="btn btn-sm btn-secondary" onclick="closeUniversalModal(); switchScreen('screen-insurance');" style="font-size: 12px; padding: 4px 12px;">
+                            View Details →
+                        </button>
+                    </div>
+
+                    <!-- Notification 2 -->
+                    <div style="padding: 16px; background: #FFFAF0; border-left: 4px solid #f59e0b; border-radius: 4px; margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                            <div style="font-weight: 600; color: #2d3748;">📋 Pending Leave Approvals</div>
+                            <div style="font-size: 11px; color: #718096;">5 hours ago</div>
+                        </div>
+                        <div style="font-size: 14px; color: #4a5568; margin-bottom: 8px;">
+                            You have 5 leave requests waiting for your approval.
+                        </div>
+                        <button class="btn btn-sm btn-secondary" onclick="closeUniversalModal(); switchScreen('screen-leave');" style="font-size: 12px; padding: 4px 12px;">
+                            Review Requests →
+                        </button>
+                    </div>
+
+                    <!-- Notification 3 -->
+                    <div style="padding: 16px; background: #F0F9FF; border-left: 4px solid #3b82f6; border-radius: 4px; margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                            <div style="font-weight: 600; color: #2d3748;">👥 Open Recruitment Positions</div>
+                            <div style="font-size: 11px; color: #718096;">1 day ago</div>
+                        </div>
+                        <div style="font-size: 14px; color: #4a5568; margin-bottom: 8px;">
+                            2 positions are currently open for recruitment. 12 new applications received.
+                        </div>
+                        <button class="btn btn-sm btn-secondary" onclick="closeUniversalModal(); switchScreen('screen-recruitment');" style="font-size: 12px; padding: 4px 12px;">
+                            View Applications →
+                        </button>
+                    </div>
+
+                    <!-- Notification 4 -->
+                    <div style="padding: 16px; background: #F0FDF4; border-left: 4px solid #10b981; border-radius: 4px; margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                            <div style="font-weight: 600; color: #2d3748;">📊 Budget Review Scheduled</div>
+                            <div style="font-size: 11px; color: #718096;">2 days ago</div>
+                        </div>
+                        <div style="font-size: 14px; color: #4a5568; margin-bottom: 8px;">
+                            Quarterly budget review meeting is scheduled for next week. Please prepare reports.
+                        </div>
+                        <button class="btn btn-sm btn-secondary" onclick="closeUniversalModal(); switchScreen('screen-budget');" style="font-size: 12px; padding: 4px 12px;">
+                            View Budget →
+                        </button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #e2e8f0; text-align: center;">
+                    <button class="btn btn-secondary" onclick="closeUniversalModal()">Close</button>
+                    <button class="btn btn-primary" onclick="showInfoModal('Mark All Read', 'All notifications marked as read!');" style="margin-left: 8px;">
+                        Mark All as Read
+                    </button>
+                </div>
+            `);
         }
 
         // Ask AI - Proper query interface

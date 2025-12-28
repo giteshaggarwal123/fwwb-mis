@@ -2590,6 +2590,7 @@
         let currentScreen = 'login';
         let selectedUserType = '';
         let currentUser = null;
+        let savedSidebarScrollPosition = 0; // Global variable to preserve sidebar scroll
 
         // User credentials for demo
         const userCredentials = {
@@ -2827,9 +2828,12 @@
                 return;
             }
 
-            // PRESERVE SIDEBAR SCROLL POSITION - Capture BEFORE any DOM changes
+            // SAVE SIDEBAR SCROLL POSITION to global variable BEFORE any DOM changes
             const oldSidebar = document.querySelector('.sidebar');
-            const sidebarScrollPos = oldSidebar ? oldSidebar.scrollTop : 0;
+            if (oldSidebar) {
+                savedSidebarScrollPosition = oldSidebar.scrollTop;
+                console.log('Saved sidebar scroll position:', savedSidebarScrollPosition);
+            }
 
             // Hide all screens
             document.querySelectorAll('.screen').forEach(screen => {
@@ -2857,12 +2861,12 @@
                 item.classList.remove('active');
             });
 
-            // RESTORE SIDEBAR SCROLL POSITION - Keep trying until it sticks
+            // RESTORE SIDEBAR SCROLL POSITION from global variable
             const restoreScroll = () => {
                 const newSidebar = document.querySelector('.screen.active .sidebar');
-                if (newSidebar && newSidebar.scrollTop !== sidebarScrollPos) {
-                    newSidebar.scrollTop = sidebarScrollPos;
-                    console.log('Restored sidebar scroll to:', sidebarScrollPos);
+                if (newSidebar) {
+                    newSidebar.scrollTop = savedSidebarScrollPosition;
+                    console.log('Restored sidebar scroll to:', savedSidebarScrollPosition);
                 }
 
                 // Scroll main content area to top (not the whole window)
@@ -2872,74 +2876,33 @@
                 }
             };
 
-            // Multiple restoration attempts
-            restoreScroll(); // Immediate
-            requestAnimationFrame(restoreScroll); // Next frame
-            requestAnimationFrame(() => requestAnimationFrame(restoreScroll)); // 2 frames later
-            setTimeout(restoreScroll, 50); // Safety after 50ms
-            setTimeout(restoreScroll, 100); // Safety after 100ms
+            // Multiple restoration attempts with increasing delays to ensure DOM is fully rendered
+            setTimeout(restoreScroll, 0); // Immediate (next tick)
+            setTimeout(restoreScroll, 10); // 10ms
+            setTimeout(restoreScroll, 50); // 50ms
+            setTimeout(restoreScroll, 100); // 100ms
+            setTimeout(restoreScroll, 200); // 200ms (safety for slow renders)
         }
 
         function createDynamicScreen(screenName) {
             const template = screenTemplates[screenName];
             if (!template) return null;
 
-            // Check if we already have a shared sidebar (reuse it!)
-            let existingSidebar = document.querySelector('.sidebar');
-
             // Create screen element
             const screen = document.createElement('div');
             screen.className = 'screen';
             screen.id = 'screen-' + screenName;
 
-            if (existingSidebar) {
-                // CAPTURE scroll position BEFORE cloning
-                const savedScrollPosition = existingSidebar.scrollTop;
-
-                // Clone the existing sidebar to reuse (faster + preserves scroll)
-                const sidebarClone = existingSidebar.cloneNode(true);
-
-                // Update active state in cloned sidebar
-                sidebarClone.querySelectorAll('.nav-item').forEach(item => {
-                    item.classList.remove('active');
-                    if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(screenName)) {
-                        item.classList.add('active');
-                    }
-                });
-
-                // Create app-container
-                const appContainer = document.createElement('div');
-                appContainer.className = 'app-container';
-
-                // Create main content
-                const mainContent = document.createElement('main');
-                mainContent.className = 'main-content';
-                mainContent.innerHTML = generateTopbar(template.title) + template.content();
-
-                // Append sidebar and main content (DOM append, NOT innerHTML)
-                appContainer.appendChild(sidebarClone);
-                appContainer.appendChild(mainContent);
-                screen.appendChild(appContainer);
-
-                // RESTORE scroll position immediately (on the actual cloned element)
-                sidebarClone.scrollTop = savedScrollPosition;
-
-                // Also force it after a frame (safety)
-                requestAnimationFrame(() => {
-                    sidebarClone.scrollTop = savedScrollPosition;
-                });
-            } else {
-                // First time - generate new sidebar
-                screen.innerHTML = `
-                    <div class="app-container">
-                        ${generateSidebar(screenName)}
-                        <main class="main-content">
-                            ${generateTopbar(template.title)}
-                            ${template.content()}
-                        </main>
-                    </div>
-                `;
-            }
+            // NEW APPROACH: Generate fresh HTML with working onclick handlers
+            screen.innerHTML = `
+                <div class="app-container">
+                    ${generateSidebar(screenName)}
+                    <main class="main-content">
+                        ${generateTopbar(template.title)}
+                        ${template.content()}
+                    </main>
+                </div>
+            `;
 
             // Add to document
             document.body.insertBefore(screen, document.querySelector('script'));

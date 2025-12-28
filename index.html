@@ -54,8 +54,8 @@
         }
 
         .login-left .logo-images img {
-            max-width: 500px;
-            max-height: 220px;
+            max-width: 600px;
+            max-height: 280px;
             width: auto;
             height: auto;
             object-fit: contain;
@@ -63,6 +63,10 @@
             padding: 8px;
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 8px;
+        }
+
+        .login-left .logo-images img:first-child {
+            display: none; /* Will be moved to right side */
         }
 
         .login-left h1 {
@@ -99,6 +103,19 @@
             padding: 40px;
             max-width: 550px;
             overflow-y: auto;
+        }
+
+        .login-box-logo {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .login-box-logo img {
+            max-width: 200px;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
         }
 
         .logo-container {
@@ -1455,6 +1472,9 @@
 
             <!-- Right side with login form -->
             <div class="login-box">
+                <div class="login-box-logo">
+                    <img src="fwwb-logo.png" alt="FWWB Logo">
+                </div>
                 <h2>Welcome Back</h2>
                 <p class="subtitle">Select your role and sign in to continue</p>
 

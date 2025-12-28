@@ -2864,15 +2864,16 @@
 
             // RESTORE SIDEBAR SCROLL POSITION from global variable
             const restoreScroll = () => {
-                const newSidebar = document.querySelector('.screen.active .sidebar');
-                if (newSidebar) {
-                    console.log('Before restore - current scrollTop:', newSidebar.scrollTop, 'target:', savedSidebarScrollPosition);
-                    newSidebar.scrollTop = savedSidebarScrollPosition;
-                    console.log('After restore - actual scrollTop:', newSidebar.scrollTop);
+                // The ACTUAL scrolling element is .nav-menu inside .sidebar!
+                const navMenu = document.querySelector('.screen.active .nav-menu');
+                if (navMenu) {
+                    console.log('Before restore - current nav-menu scrollTop:', navMenu.scrollTop, 'target:', savedSidebarScrollPosition);
+                    navMenu.scrollTop = savedSidebarScrollPosition;
+                    console.log('After restore - actual nav-menu scrollTop:', navMenu.scrollTop);
 
                     // Force reflow to ensure scroll is applied
-                    newSidebar.offsetHeight;
-                    newSidebar.scrollTop = savedSidebarScrollPosition;
+                    navMenu.offsetHeight;
+                    navMenu.scrollTop = savedSidebarScrollPosition;
                 }
 
                 // Scroll main content area to top (not the whole window)
@@ -3319,10 +3320,11 @@
             const navItem = e.target.closest('.nav-item');
             if (navItem) {
                 // Capture scroll position BEFORE the browser auto-scrolls the element into view
-                const sidebar = navItem.closest('.sidebar');
-                if (sidebar) {
-                    savedSidebarScrollPosition = sidebar.scrollTop;
-                    console.log('Pre-click captured sidebar scroll:', savedSidebarScrollPosition);
+                // The ACTUAL scrolling element is .nav-menu, not .sidebar!
+                const navMenu = navItem.closest('.nav-menu');
+                if (navMenu) {
+                    savedSidebarScrollPosition = navMenu.scrollTop;
+                    console.log('Pre-click captured nav-menu scroll:', savedSidebarScrollPosition);
                 }
             }
         }, true); // Use capture phase to run before onclick

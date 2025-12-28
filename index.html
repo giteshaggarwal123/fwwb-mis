@@ -2885,21 +2885,66 @@
             const template = screenTemplates[screenName];
             if (!template) return null;
 
+            // Check if we already have a shared sidebar (reuse it!)
+            let existingSidebar = document.querySelector('.sidebar');
+
             // Create screen element
             const screen = document.createElement('div');
             screen.className = 'screen';
             screen.id = 'screen-' + screenName;
 
-            // Build screen HTML
-            screen.innerHTML = `
-                <div class="app-container">
-                    ${generateSidebar(screenName)}
-                    <main class="main-content">
-                        ${generateTopbar(template.title)}
-                        ${template.content()}
-                    </main>
-                </div>
-            `;
+            if (existingSidebar) {
+                // CAPTURE scroll position BEFORE cloning
+                const savedScrollPosition = existingSidebar.scrollTop;
+
+                // Clone the existing sidebar to reuse (faster + preserves scroll)
+                const sidebarClone = existingSidebar.cloneNode(true);
+
+                // RESTORE scroll position to clone immediately
+                sidebarClone.scrollTop = savedScrollPosition;
+
+                // Update active state in cloned sidebar
+                sidebarClone.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(screenName)) {
+                        item.classList.add('active');
+                    }
+                });
+
+                // Build screen HTML with cloned sidebar
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = `
+                    <div class="app-container">
+                        <main class="main-content">
+                            ${generateTopbar(template.title)}
+                            ${template.content()}
+                        </main>
+                    </div>
+                `;
+
+                // Insert sidebar before main content
+                tempDiv.querySelector('.app-container').insertBefore(sidebarClone, tempDiv.querySelector('.main-content'));
+                screen.innerHTML = tempDiv.innerHTML;
+
+                // FORCE scroll position again after DOM insertion
+                setTimeout(() => {
+                    const finalSidebar = screen.querySelector('.sidebar');
+                    if (finalSidebar) {
+                        finalSidebar.scrollTop = savedScrollPosition;
+                    }
+                }, 0);
+            } else {
+                // First time - generate new sidebar
+                screen.innerHTML = `
+                    <div class="app-container">
+                        ${generateSidebar(screenName)}
+                        <main class="main-content">
+                            ${generateTopbar(template.title)}
+                            ${template.content()}
+                        </main>
+                    </div>
+                `;
+            }
 
             // Add to document
             document.body.insertBefore(screen, document.querySelector('script'));

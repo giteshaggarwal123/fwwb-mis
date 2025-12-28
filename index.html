@@ -30,36 +30,59 @@
         .login-wrapper {
             min-height: 100vh;
             display: flex;
+            background: white;
+        }
+
+        .login-left {
+            flex: 1;
+            background: linear-gradient(135deg, #2E3192 0%, #1BADE3 100%);
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #2E3192 0%, #1BADE3 100%);
+            padding: 60px;
+            color: white;
+        }
+
+        .login-left .logo-images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .login-left .logo-images img {
+            max-width: 300px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .login-left h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .login-left p {
+            font-size: 18px;
+            text-align: center;
+            opacity: 0.9;
+            max-width: 400px;
         }
 
         .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 480px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            max-width: 600px;
         }
 
         .logo-container {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .logo-container h1 {
-            color: #2E3192;
-            font-size: 32px;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .logo-container p {
-            color: #1BADE3;
-            font-size: 14px;
-            font-weight: 500;
+            display: none;
         }
 
         .login-box h2 {
@@ -1398,17 +1421,19 @@
     <!-- ============================================ -->
     <div class="screen active" id="screen-login">
         <div class="login-wrapper">
-            <div class="login-box">
-                <div class="logo-container">
-                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 20px;">
-                        <img src="fwwb-logo.png" alt="FWWB Logo" style="height: 80px; object-fit: contain;">
-                        <img src="fwwb-logo2.webp" alt="FWWB Logo 2" style="height: 80px; object-fit: contain;">
-                    </div>
-                    <h1>FWWB India</h1>
-                    <p>Friends of Women's World Banking</p>
-                    <p style="font-size: 12px; color: #718096; margin-top: 8px;">Empowering Millions of Indian Women</p>
+            <!-- Left side with logos and branding -->
+            <div class="login-left">
+                <div class="logo-images">
+                    <img src="fwwb-logo.png" alt="FWWB Logo">
+                    <img src="fwwb-logo2.webp" alt="FWWB Logo 2">
                 </div>
+                <h1>FWWB India</h1>
+                <p>Friends of Women's World Banking</p>
+                <p style="font-size: 16px; margin-top: 8px;">Empowering Millions of Indian Women</p>
+            </div>
 
+            <!-- Right side with login form -->
+            <div class="login-box">
                 <h2>Welcome Back</h2>
                 <p class="subtitle">Select your role and sign in to continue</p>
 
@@ -1449,7 +1474,7 @@
                     Sign In
                 </button>
 
-                <p style="margin-top: 20px; text-align: center; font-size: 12px; color: #718096;">
+                <p style="margin-top: 24px; text-align: center; font-size: 12px; color: #718096;">
                     101, Sakar-I, Opp. Gandhigram Railway Station<br>
                     Ashram Road, Ahmedabad 380 009, Gujarat, India
                 </p>

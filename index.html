@@ -1523,6 +1523,10 @@
                         <h3>Employee</h3>
                         <p>Self Service</p>
                     </div>
+                    <div class="user-type-card" onclick="selectUserType('donor', this)">
+                        <h3>Donor Portal</h3>
+                        <p>View-Only Access</p>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -1778,6 +1782,14 @@
                 title: 'Admin Expenses',
                 content: generateAdminExpensesScreen
             },
+            'donor-portal': {
+                title: 'Donor Portal',
+                content: generateDonorPortalScreen
+            },
+            settings: {
+                title: 'Settings',
+                content: generateSettingsScreen
+            },
             engagement: {
                 title: 'Employee Engagement',
                 content: generateEngagementScreen
@@ -1805,6 +1817,8 @@
             const modules = {
                 dashboard: { section: 'main', label: 'Dashboard', icon: '■' },
                 analytics: { section: 'main', label: 'AI Insights', icon: '■' },
+                'donor-portal': { section: 'main', label: 'Donor Portal', icon: '■' },
+                settings: { section: 'main', label: 'Settings', icon: '■' },
                 activities: { section: 'program', label: 'Activities', icon: '▪' },
                 budget: { section: 'program', label: 'Budget', icon: '▪' },
                 expenses: { section: 'program', label: 'Expenses & Bills', icon: '▪' },
@@ -3132,6 +3146,139 @@
             return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>AI Insights</span></div><div class="stats-grid"><div class="stat-card"><div class="stat-label">Queries This Month</div><div class="stat-value">142</div><div class="stat-trend">December 2024</div></div><div class="stat-card success"><div class="stat-label">Insights Generated</div><div class="stat-value">89</div><div class="stat-trend">GPT-powered</div></div><div class="stat-card info"><div class="stat-label">Reports Created</div><div class="stat-value">23</div><div class="stat-trend">Auto-generated</div></div><div class="stat-card warning"><div class="stat-label">Data Sources</div><div class="stat-value">All Modules</div><div class="stat-trend">Connected</div></div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showAskAIModal()">+ Ask AI</button><button class="btn btn-info" onclick="showInfoModal('Generate Report', 'AI report generation will start')">Generate Report</button><button class="btn btn-secondary" onclick="exportToExcel('ai-insights')">Export History</button></div><div class="table-container"><div class="table-header"><h3>Recent AI Insights</h3></div><table><thead><tr><th>Date</th><th>Query</th><th>Category</th><th>AI Response Summary</th><th>Actions</th></tr></thead><tbody><tr><td>26-Dec-2024</td><td>Which projects are at risk of budget overrun?</td><td>Program</td><td>SHG-2024-03 showing 15% over budget. Recommend review and reallocation.</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Full Response', 'Complete AI response with detailed analysis')">View Full</a><a class="action-link" onclick="showInfoModal('Export', 'Export as PDF/Word')">Export</a></div></td></tr><tr><td>24-Dec-2024</td><td>Summarize employee attendance trends for December</td><td>HR</td><td>Overall attendance: 94.2%. Slight dip on 22-Dec (8 late arrivals, possible transport issue).</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Full Response', 'Complete AI response with detailed analysis')">View Full</a><a class="action-link" onclick="showInfoModal('Export', 'Export as PDF/Word')">Export</a></div></td></tr><tr><td>20-Dec-2024</td><td>Generate expense analysis report for Q4</td><td>Admin</td><td>Q4 expenses: ₹1.2Cr. Travel costs up 12%. Utilities stable. Stationery down 5%.</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Full Response', 'Complete AI response with detailed analysis')">View Full</a><a class="action-link" onclick="showInfoModal('Export', 'Export as PDF/Word')">Export</a></div></td></tr></tbody></table></div><div style="margin-top: 24px; padding: 20px; background: #F7FAFC; border-radius: 8px;"><h4 style="margin: 0 0 12px 0;">💡 Sample Questions You Can Ask</h4><ul style="margin: 0; padding-left: 20px; line-height: 2;"><li>Which projects are behind schedule?</li><li>Show me expense trends for the last 6 months</li><li>Generate a summary of all pending approvals</li></ul></div></div>`;
         }
 
+        function generateDonorPortalScreen() {
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Donor Portal</span></div><div class="alert alert-info" style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-left: 4px solid #10b981;"><span class="alert-icon" style="color: #047857;">●</span><div><strong style="color: #047857;">Welcome to FWWB Donor Portal</strong><br><span style="color: #065f46;">View-only access to your funded programs. You can see program performance, financial utilization, and impact metrics without access to internal operations.</span></div></div><div class="stats-grid"><div class="stat-card success"><div class="stat-label">Your Funded Programs</div><div class="stat-value">3</div><div class="stat-trend">Active in 2024-25</div></div><div class="stat-card info"><div class="stat-label">Total Grant Amount</div><div class="stat-value">₹45L</div><div class="stat-trend">FY 2024-25</div></div><div class="stat-card"><div class="stat-label">Fund Utilization</div><div class="stat-value">68%</div><div class="stat-trend">₹30.6L utilized</div></div><div class="stat-card warning"><div class="stat-label">Women Beneficiaries</div><div class="stat-value">2,840</div><div class="stat-trend">Across all programs</div></div></div><div class="tabs-container"><div class="tabs"><div class="tab active" onclick="switchTab(event, 'programs-tab')">My Programs</div><div class="tab" onclick="switchTab(event, 'financial-tab')">Financial Reports</div><div class="tab" onclick="switchTab(event, 'impact-tab')">Impact Metrics</div><div class="tab" onclick="switchTab(event, 'documents-tab')">Documents</div></div><div id="programs-tab" class="tab-content active"><div style="margin-bottom: 24px;"><button class="btn btn-info" onclick="exportToExcel('donor-programs')">Download Report</button></div><div class="table-container"><div class="table-header"><h3>Your Funded Programs</h3></div><table><thead><tr><th>Program Name</th><th>Location</th><th>Grant Amount</th><th>Utilized</th><th>Beneficiaries</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>Women SHG Formation - Gujarat</td><td>Ahmedabad, Gujarat</td><td>₹20,00,000</td><td>₹14,50,000 (72.5%)</td><td>1,250 women</td><td><span class="status-badge status-active">On Track</span></td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Program Details', 'Detailed program information with milestones and progress')">View Details</a></div></td></tr><tr><td>Microfinance Literacy Program</td><td>Rajasthan</td><td>₹15,00,000</td><td>₹10,20,000 (68%)</td><td>980 women</td><td><span class="status-badge status-active">On Track</span></td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Program Details', 'Detailed program information with milestones and progress')">View Details</a></div></td></tr><tr><td>Digital Financial Literacy</td><td>Maharashtra</td><td>₹10,00,000</td><td>₹5,90,000 (59%)</td><td>610 women</td><td><span class="status-badge status-warning">Needs Attention</span></td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Program Details', 'Detailed program information with milestones and progress')">View Details</a></div></td></tr></tbody></table></div></div><div id="financial-tab" class="tab-content"><div style="margin-bottom: 24px;"><select class="filter-select"><option>All Programs</option><option>Women SHG Formation - Gujarat</option><option>Microfinance Literacy Program</option><option>Digital Financial Literacy</option></select><select class="filter-select"><option>FY 2024-25</option><option>FY 2023-24</option><option>FY 2022-23</option></select><button class="btn btn-info" onclick="exportToExcel('donor-financial')">Download Financial Report</button></div><div class="table-container"><div class="table-header"><h3>Financial Utilization Summary</h3></div><table><thead><tr><th>Category</th><th>Budget Allocated</th><th>Amount Spent</th><th>% Utilized</th><th>Remaining</th></tr></thead><tbody><tr><td>Direct Program Costs</td><td>₹32,00,000</td><td>₹22,40,000</td><td>70%</td><td>₹9,60,000</td></tr><tr><td>Personnel Costs</td><td>₹8,00,000</td><td>₹5,60,000</td><td>70%</td><td>₹2,40,000</td></tr><tr><td>Training & Capacity Building</td><td>₹3,50,000</td><td>₹2,10,000</td><td>60%</td><td>₹1,40,000</td></tr><tr><td>Monitoring & Evaluation</td><td>₹1,50,000</td><td>₹50,000</td><td>33%</td><td>₹1,00,000</td></tr><tr style="font-weight: 600; background: #f7fafc;"><td>TOTAL</td><td>₹45,00,000</td><td>₹30,60,000</td><td>68%</td><td>₹14,40,000</td></tr></tbody></table></div><div style="margin-top: 24px; padding: 16px; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 4px;"><strong style="color: #92400e;">Note:</strong> <span style="color: #78350f;">All expenses are audited and verified by FWWB finance team. Detailed expense breakdowns available on request.</span></div></div><div id="impact-tab" class="tab-content"><div style="margin-bottom: 24px;"><button class="btn btn-info" onclick="exportToExcel('donor-impact')">Download Impact Report</button></div><div class="stats-grid" style="margin-bottom: 24px;"><div class="stat-card success"><div class="stat-label">Women Reached</div><div class="stat-value">2,840</div><div class="stat-trend">Direct beneficiaries</div></div><div class="stat-card info"><div class="stat-label">SHGs Formed</div><div class="stat-value">142</div><div class="stat-trend">Across 3 programs</div></div><div class="stat-card"><div class="stat-label">Training Sessions</div><div class="stat-value">89</div><div class="stat-trend">Conducted this year</div></div><div class="stat-card warning"><div class="stat-label">Loan Linkages</div><div class="stat-value">₹2.8Cr</div><div class="stat-trend">Facilitated</div></div></div><div class="table-container"><div class="table-header"><h3>Impact Metrics by Program</h3></div><table><thead><tr><th>Program</th><th>Beneficiaries</th><th>SHGs Formed</th><th>Savings Mobilized</th><th>Loan Linkages</th><th>Impact Score</th></tr></thead><tbody><tr><td>Women SHG Formation - Gujarat</td><td>1,250</td><td>68</td><td>₹18.5L</td><td>₹1.4Cr</td><td><span class="status-badge status-success">Excellent</span></td></tr><tr><td>Microfinance Literacy Program</td><td>980</td><td>52</td><td>₹12.8L</td><td>₹95L</td><td><span class="status-badge status-success">Good</span></td></tr><tr><td>Digital Financial Literacy</td><td>610</td><td>22</td><td>₹7.2L</td><td>₹45L</td><td><span class="status-badge status-warning">Moderate</span></td></tr></tbody></table></div><div style="margin-top: 24px; padding: 20px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px;"><h4 style="margin: 0 0 12px 0; color: #047857;">🎯 Key Outcomes</h4><ul style="margin: 0; padding-left: 20px; line-height: 2; color: #065f46;"><li>2,840 women received financial literacy training</li><li>142 Self-Help Groups successfully formed and operational</li><li>₹38.5L in savings mobilized by beneficiaries</li><li>₹2.8Cr in bank loans facilitated for income generation</li><li>85% of SHGs are self-sustaining after 12 months</li></ul></div></div><div id="documents-tab" class="tab-content"><div style="margin-bottom: 24px;"><button class="btn btn-info" onclick="showInfoModal('Request Document', 'Document request form will open')">Request Document</button></div><div class="table-container"><div class="table-header"><h3>Available Documents</h3></div><table><thead><tr><th>Document Name</th><th>Type</th><th>Date</th><th>Program</th><th>Actions</th></tr></thead><tbody><tr><td>Q3 Progress Report - Dec 2024</td><td>Progress Report</td><td>20-Dec-2024</td><td>All Programs</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Download', 'Document will be downloaded')">Download PDF</a></div></td></tr><tr><td>Financial Utilization Report - Q3</td><td>Financial Report</td><td>18-Dec-2024</td><td>All Programs</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Download', 'Document will be downloaded')">Download PDF</a></div></td></tr><tr><td>Impact Assessment - Gujarat SHG</td><td>Impact Report</td><td>10-Dec-2024</td><td>Women SHG Formation</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Download', 'Document will be downloaded')">Download PDF</a></div></td></tr><tr><td>Photos & Success Stories - Q3</td><td>Media Pack</td><td>05-Dec-2024</td><td>All Programs</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Download', 'Document will be downloaded')">Download ZIP</a></div></td></tr><tr><td>Audited Financial Statement FY 23-24</td><td>Audit Report</td><td>30-Sep-2024</td><td>Organization-wide</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Download', 'Document will be downloaded')">Download PDF</a></div></td></tr></tbody></table></div><div style="margin-top: 24px; padding: 16px; background: #eff6ff; border-left: 4px solid #3b82f6; border-radius: 4px;"><strong style="color: #1e40af;">Need More Information?</strong> <span style="color: #1e3a8a;">Contact your FWWB program manager at <a href="mailto:programs@fwwbindia.org" style="color: #2563eb;">programs@fwwbindia.org</a> for additional reports or clarifications.</span></div></div></div></div>`;
+        }
+
+        function generateSettingsScreen() {
+            const userType = selectedUserType || currentUser?.type || 'employee';
+
+            // Role-based settings tabs
+            let tabsHTML = '';
+            let tabContentsHTML = '';
+
+            // Profile tab - Available to ALL users
+            tabsHTML += `<div class="tab active" onclick="switchTab(event, 'profile-tab')">Profile</div>`;
+            tabContentsHTML += `<div id="profile-tab" class="tab-content active">
+                <div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showInfoModal('Update Profile', 'Profile update form will open')">Update Profile</button><button class="btn btn-secondary" onclick="showInfoModal('Change Password', 'Password change form will open')">Change Password</button></div>
+                <div class="card" style="max-width: 800px;">
+                    <div class="card-title">Personal Information</div>
+                    <table style="width: 100%;">
+                        <tr><td style="width: 200px; font-weight: 600; border: none;">Full Name</td><td style="border: none;">${currentUser?.name || 'User Name'}</td></tr>
+                        <tr><td style="font-weight: 600; border: none;">Email</td><td style="border: none;">${currentUser?.username || 'user'}@fwwbindia.org</td></tr>
+                        <tr><td style="font-weight: 600; border: none;">Role</td><td style="border: none;">${currentUser?.role || 'User'}</td></tr>
+                        <tr><td style="font-weight: 600; border: none;">Employee ID</td><td style="border: none;">EMP-${Math.floor(Math.random() * 9000) + 1000}</td></tr>
+                        <tr><td style="font-weight: 600; border: none;">Department</td><td style="border: none;">${userType === 'hr' ? 'Human Resources' : userType === 'admin' ? 'Administration' : userType === 'program' ? 'Program Management' : userType === 'donor' ? 'External Partner' : 'General'}</td></tr>
+                        <tr><td style="font-weight: 600; border: none;">Phone</td><td style="border: none;">+91 98765 43210</td></tr>
+                        <tr><td style="font-weight: 600; border: none;">Joined Date</td><td style="border: none;">01-Jan-2022</td></tr>
+                    </table>
+                </div>
+            </div>`;
+
+            // Notifications tab - Available to ALL users
+            tabsHTML += `<div class="tab" onclick="switchTab(event, 'notifications-tab')">Notifications</div>`;
+            tabContentsHTML += `<div id="notifications-tab" class="tab-content">
+                <div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showInfoModal('Save Settings', 'Notification preferences will be saved')">Save Preferences</button></div>
+                <div class="card" style="max-width: 800px;">
+                    <div class="card-title">Email Notifications</div>
+                    <div style="padding: 12px 0; border-bottom: 1px solid #e2e8f0;"><label style="display: flex; align-items: center; cursor: pointer;"><input type="checkbox" checked style="margin-right: 12px;"><div><strong>Leave Requests</strong><br><span style="font-size: 11px; color: #718096;">Receive emails when leave requests need approval</span></div></label></div>
+                    <div style="padding: 12px 0; border-bottom: 1px solid #e2e8f0;"><label style="display: flex; align-items: center; cursor: pointer;"><input type="checkbox" checked style="margin-right: 12px;"><div><strong>Expense Approvals</strong><br><span style="font-size: 11px; color: #718096;">Get notified about pending expense approvals</span></div></label></div>
+                    <div style="padding: 12px 0; border-bottom: 1px solid #e2e8f0;"><label style="display: flex; align-items: center; cursor: pointer;"><input type="checkbox" style="margin-right: 12px;"><div><strong>System Updates</strong><br><span style="font-size: 11px; color: #718096;">Receive notifications about platform updates</span></div></label></div>
+                    <div style="padding: 12px 0;"><label style="display: flex; align-items: center; cursor: pointer;"><input type="checkbox" checked style="margin-right: 12px;"><div><strong>Weekly Summary</strong><br><span style="font-size: 11px; color: #718096;">Get weekly summary of activities and metrics</span></div></label></div>
+                </div>
+            </div>`;
+
+            // System Settings - Only for Management and Admin
+            if (userType === 'management' || userType === 'admin') {
+                tabsHTML += `<div class="tab" onclick="switchTab(event, 'system-tab')">System</div>`;
+                tabContentsHTML += `<div id="system-tab" class="tab-content">
+                    <div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showInfoModal('Save Settings', 'System settings will be saved')">Save Settings</button><button class="btn btn-danger" onclick="showInfoModal('Clear Cache', 'System cache will be cleared')">Clear Cache</button></div>
+                    <div class="card" style="max-width: 800px;">
+                        <div class="card-title">General Settings</div>
+                        <table style="width: 100%;">
+                            <tr><td style="width: 250px; font-weight: 600; border: none;">Organization Name</td><td style="border: none;"><input type="text" value="FWWB India" style="width: 100%; padding: 8px; border: 1px solid #d8e2ec; border-radius: 4px;"></td></tr>
+                            <tr><td style="font-weight: 600; border: none;">Financial Year</td><td style="border: none;"><select style="width: 100%; padding: 8px; border: 1px solid #d8e2ec; border-radius: 4px;"><option>FY 2024-25</option><option>FY 2025-26</option></select></td></tr>
+                            <tr><td style="font-weight: 600; border: none;">Currency</td><td style="border: none;"><select style="width: 100%; padding: 8px; border: 1px solid #d8e2ec; border-radius: 4px;"><option>INR (₹)</option><option>USD ($)</option></select></td></tr>
+                            <tr><td style="font-weight: 600; border: none;">Date Format</td><td style="border: none;"><select style="width: 100%; padding: 8px; border: 1px solid #d8e2ec; border-radius: 4px;"><option>DD-MMM-YYYY</option><option>MM/DD/YYYY</option><option>YYYY-MM-DD</option></select></td></tr>
+                            <tr><td style="font-weight: 600; border: none;">Time Zone</td><td style="border: none;"><select style="width: 100%; padding: 8px; border: 1px solid #d8e2ec; border-radius: 4px;"><option>Asia/Kolkata (IST)</option><option>UTC</option></select></td></tr>
+                        </table>
+                    </div>
+                </div>`;
+            }
+
+            // User Management - Only for Management and HR
+            if (userType === 'management' || userType === 'hr') {
+                tabsHTML += `<div class="tab" onclick="switchTab(event, 'users-tab')">User Management</div>`;
+                tabContentsHTML += `<div id="users-tab" class="tab-content">
+                    <div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showInfoModal('Add User', 'New user creation form will open')">+ Add User</button><button class="btn btn-info" onclick="showInfoModal('Bulk Import', 'Bulk user import tool will open')">Bulk Import</button><button class="btn btn-secondary" onclick="exportToExcel('users')">Export Users</button></div>
+                    <div class="table-container"><div class="table-header"><h3>Active Users</h3></div>
+                        <table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Last Login</th><th>Actions</th></tr></thead>
+                        <tbody>
+                            <tr><td>Rajesh Kumar</td><td>rajesh.k@fwwbindia.org</td><td>Management</td><td><span class="status-badge status-active">Active</span></td><td>27-Dec-2024 09:15 AM</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Edit User', 'User edit form will open')">Edit</a><a class="action-link" onclick="showInfoModal('Reset Password', 'Password reset email will be sent')">Reset Password</a></div></td></tr>
+                            <tr><td>Priya Sharma</td><td>priya.s@fwwbindia.org</td><td>HR Team</td><td><span class="status-badge status-active">Active</span></td><td>27-Dec-2024 08:45 AM</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Edit User', 'User edit form will open')">Edit</a><a class="action-link" onclick="showInfoModal('Reset Password', 'Password reset email will be sent')">Reset Password</a></div></td></tr>
+                            <tr><td>Amit Patel</td><td>amit.p@fwwbindia.org</td><td>Program Team</td><td><span class="status-badge status-active">Active</span></td><td>26-Dec-2024 05:30 PM</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Edit User', 'User edit form will open')">Edit</a><a class="action-link" onclick="showInfoModal('Reset Password', 'Password reset email will be sent')">Reset Password</a></div></td></tr>
+                            <tr><td>Kavita Singh</td><td>kavita.s@fwwbindia.org</td><td>Admin Team</td><td><span class="status-badge status-pending">Pending Activation</span></td><td>Never</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Activate User', 'User will be activated')">Activate</a><a class="action-link danger" onclick="showInfoModal('Delete User', 'User will be deleted')">Delete</a></div></td></tr>
+                        </tbody></table>
+                    </div>
+                </div>`;
+            }
+
+            // Role & Permissions - Only for Management
+            if (userType === 'management') {
+                tabsHTML += `<div class="tab" onclick="switchTab(event, 'permissions-tab')">Permissions</div>`;
+                tabContentsHTML += `<div id="permissions-tab" class="tab-content">
+                    <div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showInfoModal('Create Role', 'New role creation form will open')">+ Create Role</button></div>
+                    <div class="table-container"><div class="table-header"><h3>Role Permissions Matrix</h3></div>
+                        <table><thead><tr><th>Module</th><th>Management</th><th>Program</th><th>HR</th><th>Admin</th><th>Employee</th><th>Donor</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Dashboard</strong></td><td>✓ Full</td><td>✓ Full</td><td>✓ Full</td><td>✓ Full</td><td>✓ Full</td><td>✗ No Access</td></tr>
+                            <tr><td><strong>AI Insights</strong></td><td>✓ Full</td><td>✗ No Access</td><td>✗ No Access</td><td>✗ No Access</td><td>✗ No Access</td><td>✗ No Access</td></tr>
+                            <tr><td><strong>Program Management</strong></td><td>✓ Full</td><td>✓ Full</td><td>✗ No Access</td><td>✗ No Access</td><td>✗ No Access</td><td>✗ No Access</td></tr>
+                            <tr><td><strong>HRMS</strong></td><td>✓ Full</td><td>✗ View Only</td><td>✓ Full</td><td>✗ Limited</td><td>✗ Self Only</td><td>✗ No Access</td></tr>
+                            <tr><td><strong>Administration</strong></td><td>✓ Full</td><td>✗ No Access</td><td>✗ No Access</td><td>✓ Full</td><td>✗ No Access</td><td>✗ No Access</td></tr>
+                            <tr><td><strong>Donor Portal</strong></td><td>✗ No Access</td><td>✗ No Access</td><td>✗ No Access</td><td>✗ No Access</td><td>✗ No Access</td><td>✓ Full</td></tr>
+                            <tr><td><strong>Settings</strong></td><td>✓ Full</td><td>✓ Limited</td><td>✓ Limited</td><td>✓ Limited</td><td>✓ Profile Only</td><td>✓ Profile Only</td></tr>
+                        </tbody></table>
+                    </div>
+                </div>`;
+            }
+
+            // Security tab - Only for Management and Admin
+            if (userType === 'management' || userType === 'admin') {
+                tabsHTML += `<div class="tab" onclick="switchTab(event, 'security-tab')">Security</div>`;
+                tabContentsHTML += `<div id="security-tab" class="tab-content">
+                    <div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showInfoModal('Save Security Settings', 'Security settings will be updated')">Save Settings</button><button class="btn btn-info" onclick="showInfoModal('View Audit Log', 'System audit log will be displayed')">View Audit Log</button></div>
+                    <div class="card" style="max-width: 800px;">
+                        <div class="card-title">Security Policies</div>
+                        <div style="padding: 12px 0; border-bottom: 1px solid #e2e8f0;"><label style="display: flex; align-items: center; cursor: pointer;"><input type="checkbox" checked style="margin-right: 12px;"><div><strong>Enforce Strong Passwords</strong><br><span style="font-size: 11px; color: #718096;">Require minimum 8 characters, uppercase, lowercase, numbers and special characters</span></div></label></div>
+                        <div style="padding: 12px 0; border-bottom: 1px solid #e2e8f0;"><label style="display: flex; align-items: center; cursor: pointer;"><input type="checkbox" checked style="margin-right: 12px;"><div><strong>Two-Factor Authentication</strong><br><span style="font-size: 11px; color: #718096;">Require 2FA for all admin and management users</span></div></label></div>
+                        <div style="padding: 12px 0; border-bottom: 1px solid #e2e8f0;"><label style="display: flex; align-items: center; cursor: pointer;"><input type="checkbox" style="margin-right: 12px;"><div><strong>Session Timeout</strong><br><span style="font-size: 11px; color: #718096;">Auto-logout after 30 minutes of inactivity</span></div></label></div>
+                        <div style="padding: 12px 0; border-bottom: 1px solid #e2e8f0;"><label style="display: flex; align-items: center; cursor: pointer;"><input type="checkbox" checked style="margin-right: 12px;"><div><strong>Login Activity Monitoring</strong><br><span style="font-size: 11px; color: #718096;">Track and log all login attempts and activities</span></div></label></div>
+                        <div style="padding: 12px 0;"><label style="display: flex; align-items: center; cursor: pointer;"><input type="checkbox" checked style="margin-right: 12px;"><div><strong>IP Whitelisting</strong><br><span style="font-size: 11px; color: #718096;">Restrict access to approved IP addresses only</span></div></label></div>
+                    </div>
+                </div>`;
+            }
+
+            // Integrations - Only for Management
+            if (userType === 'management') {
+                tabsHTML += `<div class="tab" onclick="switchTab(event, 'integrations-tab')">Integrations</div>`;
+                tabContentsHTML += `<div id="integrations-tab" class="tab-content">
+                    <div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showInfoModal('Add Integration', 'Integration setup form will open')">+ Add Integration</button></div>
+                    <div class="table-container"><div class="table-header"><h3>Connected Services</h3></div>
+                        <table><thead><tr><th>Service</th><th>Type</th><th>Status</th><th>Last Sync</th><th>Actions</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>mWater</strong></td><td>Field Data Collection</td><td><span class="status-badge status-active">Connected</span></td><td>27-Dec-2024 10:30 AM</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Configure', 'Integration settings will open')">Configure</a><a class="action-link" onclick="showInfoModal('Sync Now', 'Manual sync will start')">Sync Now</a></div></td></tr>
+                            <tr><td><strong>Google Workspace</strong></td><td>Email & Calendar</td><td><span class="status-badge status-active">Connected</span></td><td>27-Dec-2024 09:00 AM</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Configure', 'Integration settings will open')">Configure</a><a class="action-link danger" onclick="showInfoModal('Disconnect', 'Integration will be disconnected')">Disconnect</a></div></td></tr>
+                            <tr><td><strong>Tally ERP</strong></td><td>Accounting</td><td><span class="status-badge status-pending">Not Connected</span></td><td>Never</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Connect', 'Integration setup will start')">Connect</a></div></td></tr>
+                            <tr><td><strong>WhatsApp Business API</strong></td><td>Notifications</td><td><span class="status-badge status-pending">Not Connected</span></td><td>Never</td><td><div class="action-links"><a class="action-link" onclick="showInfoModal('Connect', 'Integration setup will start')">Connect</a></div></td></tr>
+                        </tbody></table>
+                    </div>
+                </div>`;
+            }
+
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="${userType === 'donor' ? "goToScreen('donor-portal')" : "goToScreen('dashboard')"}">Home</a><span>/</span><span>Settings</span></div><div class="tabs-container"><div class="tabs">${tabsHTML}</div>${tabContentsHTML}</div></div>`;
+        }
+
         // Tab switching function
         function switchTab(event, tabName) {
             // Remove active class from all tabs
@@ -3187,7 +3334,8 @@
             program: { username: 'program.user', password: 'demo123', name: 'Program User', role: 'Program Team' },
             hr: { username: 'hr.user', password: 'demo123', name: 'HR User', role: 'HR Team' },
             admin: { username: 'admin.user', password: 'demo123', name: 'Admin User', role: 'Admin Team' },
-            employee: { username: 'employee', password: 'demo123', name: 'Employee User', role: 'Employee' }
+            employee: { username: 'employee', password: 'demo123', name: 'Employee User', role: 'Employee' },
+            donor: { username: 'donor.user', password: 'demo123', name: 'Donor User', role: 'Donor Portal' }
         };
 
         function selectUserType(type, element) {
@@ -3237,7 +3385,8 @@
                 'program': 'Program Team',
                 'hr': 'HR Team',
                 'admin': 'Admin Team',
-                'employee': 'Employee'
+                'employee': 'Employee',
+                'donor': 'Donor Portal'
             };
 
             currentUser = {
@@ -3247,8 +3396,13 @@
                 type: selectedUserType
             };
 
-            // Create dashboard screen dynamically with role-based sidebar
-            createDashboardWithRole();
+            // Donor users go directly to donor portal, others see dashboard
+            if (selectedUserType === 'donor') {
+                goToScreen('donor-portal');
+            } else {
+                // Create dashboard screen dynamically with role-based sidebar
+                createDashboardWithRole();
+            }
         }
 
         function createDashboardWithRole() {
@@ -3381,11 +3535,12 @@
 
         // Role-based access control
         const rolePermissions = {
-            management: ['dashboard', 'analytics', 'activities', 'budget', 'expenses', 'monitoring', 'reports', 'recruitment', 'employees', 'attendance', 'leave', 'performance', 'payroll', 'engagement', 'calendar', 'letters', 'ess', 'assets', 'insurance', 'travel', 'stationery', 'admin-expenses'],
-            program: ['dashboard', 'activities', 'budget', 'expenses', 'monitoring', 'reports', 'attendance', 'leave', 'ess'],
-            hr: ['dashboard', 'recruitment', 'employees', 'attendance', 'leave', 'performance', 'payroll', 'engagement', 'calendar', 'letters', 'ess'],
-            admin: ['dashboard', 'assets', 'insurance', 'travel', 'stationery', 'admin-expenses', 'attendance', 'leave', 'ess'],
-            employee: ['dashboard', 'attendance', 'leave', 'engagement', 'calendar', 'ess']  // General employees: Self-service + engagement + calendar
+            management: ['dashboard', 'analytics', 'settings', 'activities', 'budget', 'expenses', 'monitoring', 'reports', 'recruitment', 'employees', 'attendance', 'leave', 'performance', 'payroll', 'engagement', 'calendar', 'letters', 'ess', 'assets', 'insurance', 'travel', 'stationery', 'admin-expenses'],
+            program: ['dashboard', 'activities', 'budget', 'expenses', 'monitoring', 'reports', 'attendance', 'leave', 'ess', 'settings'],
+            hr: ['dashboard', 'recruitment', 'employees', 'attendance', 'leave', 'performance', 'payroll', 'engagement', 'calendar', 'letters', 'ess', 'settings'],
+            admin: ['dashboard', 'assets', 'insurance', 'travel', 'stationery', 'admin-expenses', 'attendance', 'leave', 'ess', 'settings'],
+            employee: ['dashboard', 'attendance', 'leave', 'engagement', 'calendar', 'ess', 'settings'],  // General employees: Self-service + engagement + calendar
+            donor: ['donor-portal', 'settings']  // Donor: Only donor portal access, no dashboard
         };
 
         function hasAccess(screenName) {

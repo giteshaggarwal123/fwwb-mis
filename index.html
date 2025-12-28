@@ -2829,7 +2829,7 @@
             }
 
             // SAVE SIDEBAR SCROLL POSITION to global variable BEFORE any DOM changes
-            const oldSidebar = document.querySelector('.sidebar');
+            const oldSidebar = document.querySelector('.screen.active .sidebar');
             if (oldSidebar) {
                 savedSidebarScrollPosition = oldSidebar.scrollTop;
                 console.log('Saved sidebar scroll position:', savedSidebarScrollPosition);
@@ -2856,17 +2856,27 @@
                 return;
             }
 
-            // Update active nav items
+            // Update active nav items in ALL sidebars (they share the same scroll position)
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
+                // Add active class to matching nav items
+                const onclick = item.getAttribute('onclick');
+                if (onclick && onclick.includes("'" + screenName + "'")) {
+                    item.classList.add('active');
+                }
             });
 
             // RESTORE SIDEBAR SCROLL POSITION from global variable
             const restoreScroll = () => {
                 const newSidebar = document.querySelector('.screen.active .sidebar');
                 if (newSidebar) {
+                    console.log('Before restore - current scrollTop:', newSidebar.scrollTop, 'target:', savedSidebarScrollPosition);
                     newSidebar.scrollTop = savedSidebarScrollPosition;
-                    console.log('Restored sidebar scroll to:', savedSidebarScrollPosition);
+                    console.log('After restore - actual scrollTop:', newSidebar.scrollTop);
+
+                    // Force reflow to ensure scroll is applied
+                    newSidebar.offsetHeight;
+                    newSidebar.scrollTop = savedSidebarScrollPosition;
                 }
 
                 // Scroll main content area to top (not the whole window)
@@ -2878,10 +2888,12 @@
 
             // Multiple restoration attempts with increasing delays to ensure DOM is fully rendered
             setTimeout(restoreScroll, 0); // Immediate (next tick)
-            setTimeout(restoreScroll, 10); // 10ms
+            setTimeout(restoreScroll, 20); // 20ms
             setTimeout(restoreScroll, 50); // 50ms
             setTimeout(restoreScroll, 100); // 100ms
             setTimeout(restoreScroll, 200); // 200ms (safety for slow renders)
+            setTimeout(restoreScroll, 300); // 300ms (extra safety)
+            setTimeout(restoreScroll, 500); // 500ms (very aggressive)
         }
 
         function createDynamicScreen(screenName) {

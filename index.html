@@ -2536,7 +2536,197 @@
 
         // ADMIN Screen Generation Functions
         function generateAssetsScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Asset Management</span></div><div class="tabs"><div class="tab active" onclick="switchTab(event, 'it-assets')">IT Assets</div><div class="tab" onclick="switchTab(event, 'non-it-assets')">Non-IT Assets</div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showAddAssetForm()">+ Add Asset</button><button class="btn btn-info" onclick="showAssignAssetForm()">Assign Asset</button><button class="btn btn-success" onclick="showBulkUploadAssetsForm()">Bulk Upload</button><button class="btn btn-secondary" onclick="exportToExcel('assets')">Export Register</button></div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by asset name, serial number, or assignee..."><select class="filter-select"><option>All Categories</option><option>Laptops</option><option>Desktops</option><option>Printers</option><option>Furniture</option><option>AC Units</option></select><select class="filter-select"><option>All Status</option><option>Active</option><option>In Repair</option><option>Scrapped</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container"><div class="table-header"><h3>IT Assets</h3></div><table><thead><tr><th>Asset ID</th><th>Category</th><th>Asset Name</th><th>Serial Number</th><th>Assigned To</th><th>Purchase Date</th><th>Warranty Expiry</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>IT-2023-045</td><td>Laptop</td><td>Dell Latitude 5420</td><td>DL9X8H3</td><td>Priya Sharma (EMP-001)</td><td>15-Mar-2023</td><td>14-Mar-2026</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewAssetDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="editAsset(this.closest('tr').querySelector('td').textContent)">Edit</a></div></td></tr><tr><td>IT-2024-012</td><td>Laptop</td><td>HP EliteBook 840</td><td>HP5Y2K9</td><td>Rahul Verma (EMP-042)</td><td>10-Jan-2024</td><td>09-Jan-2027</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewAssetDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="editAsset(this.closest('tr').querySelector('td').textContent)">Edit</a></div></td></tr><tr><td>IT-2022-089</td><td>Printer</td><td>Canon ImageRunner 2525</td><td>CN8H4P2</td><td>Admin Department</td><td>22-Aug-2022</td><td>21-Aug-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewAssetDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="editAsset(this.closest('tr').querySelector('td').textContent)">Edit</a></div></td></tr></tbody></table></div></div>`;
+            return `
+<div class="content">
+    <div class="breadcrumb">
+        <a href="#" onclick="goToScreen('dashboard')">Home</a>
+        <span>/</span>
+        <span>Asset Management</span>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab(event, 'it-assets-tab')">IT Assets</div>
+            <div class="tab" onclick="switchTab(event, 'non-it-assets-tab')">Non-IT Assets</div>
+        </div>
+
+        <!-- IT ASSETS TAB -->
+        <div id="it-assets-tab" class="tab-content active" style="display: block;">
+            <div style="margin-bottom: 24px; margin-top: 24px;">
+                <button class="btn btn-primary" onclick="showInfoModal('Add IT Asset', 'IT asset addition form will open here')">+ Add Asset</button>
+                <button class="btn btn-info" onclick="showInfoModal('Assign Asset', 'Asset assignment form will open here')">Assign Asset</button>
+                <button class="btn btn-success" onclick="showInfoModal('Bulk Upload', 'Bulk asset upload template will be downloaded')">Bulk Upload</button>
+                <button class="btn btn-secondary" onclick="exportToExcel('it-assets')">Export Register</button>
+            </div>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search by asset name, serial number, or assignee...">
+                <select class="filter-select">
+                    <option>All Categories</option>
+                    <option>Laptops</option>
+                    <option>Desktops</option>
+                    <option>Printers</option>
+                    <option>Servers</option>
+                </select>
+                <select class="filter-select">
+                    <option>All Status</option>
+                    <option>Active</option>
+                    <option>In Repair</option>
+                    <option>Scrapped</option>
+                </select>
+            </div>
+            <div class="table-container">
+                <div class="table-header"><h3>IT Assets Register</h3></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Asset ID</th>
+                            <th>Category</th>
+                            <th>Asset Name</th>
+                            <th>Serial Number</th>
+                            <th>Assigned To</th>
+                            <th>Purchase Date</th>
+                            <th>Warranty Expiry</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>IT-2023-045</td>
+                            <td>Laptop</td>
+                            <td>Dell Latitude 5420</td>
+                            <td>DL9X8H3</td>
+                            <td>Priya Sharma (EMP-001)</td>
+                            <td>15-Mar-2023</td>
+                            <td>14-Mar-2026</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Asset Details', 'IT asset IT-2023-045 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Edit Asset', 'Asset edit form will open here')">Edit</a>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>IT-2024-012</td>
+                            <td>Laptop</td>
+                            <td>HP EliteBook 840</td>
+                            <td>HP5Y2K9</td>
+                            <td>Rahul Verma (EMP-042)</td>
+                            <td>10-Jan-2024</td>
+                            <td>09-Jan-2027</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Asset Details', 'IT asset IT-2024-012 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Edit Asset', 'Asset edit form will open here')">Edit</a>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>IT-2022-089</td>
+                            <td>Printer</td>
+                            <td>Canon ImageRunner 2525</td>
+                            <td>CN8H4P2</td>
+                            <td>Admin Department</td>
+                            <td>22-Aug-2022</td>
+                            <td>21-Aug-2025</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Asset Details', 'IT asset IT-2022-089 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Edit Asset', 'Asset edit form will open here')">Edit</a>
+                            </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- NON-IT ASSETS TAB -->
+        <div id="non-it-assets-tab" class="tab-content">
+            <div style="margin-bottom: 24px; margin-top: 24px;">
+                <button class="btn btn-primary" onclick="showInfoModal('Add Non-IT Asset', 'Non-IT asset addition form will open here')">+ Add Asset</button>
+                <button class="btn btn-info" onclick="showInfoModal('Assign Asset', 'Asset assignment form will open here')">Assign Asset</button>
+                <button class="btn btn-success" onclick="showInfoModal('Bulk Upload', 'Bulk asset upload template will be downloaded')">Bulk Upload</button>
+                <button class="btn btn-secondary" onclick="exportToExcel('non-it-assets')">Export Register</button>
+            </div>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search by asset name, serial number, or location...">
+                <select class="filter-select">
+                    <option>All Categories</option>
+                    <option>Furniture</option>
+                    <option>AC Units</option>
+                    <option>Electrical</option>
+                    <option>Office Equipment</option>
+                </select>
+                <select class="filter-select">
+                    <option>All Status</option>
+                    <option>Active</option>
+                    <option>In Repair</option>
+                    <option>Scrapped</option>
+                </select>
+            </div>
+            <div class="table-container">
+                <div class="table-header"><h3>Non-IT Assets Register</h3></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Asset ID</th>
+                            <th>Category</th>
+                            <th>Asset Name</th>
+                            <th>Serial Number</th>
+                            <th>Location</th>
+                            <th>Purchase Date</th>
+                            <th>Warranty Expiry</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NIT-2022-156</td>
+                            <td>Furniture</td>
+                            <td>Executive Desk (Wooden)</td>
+                            <td>DESK-WD-789</td>
+                            <td>HO - Director's Office</td>
+                            <td>12-Apr-2022</td>
+                            <td>11-Apr-2027</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Asset Details', 'Non-IT asset NIT-2022-156 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Edit Asset', 'Asset edit form will open here')">Edit</a>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>NIT-2023-089</td>
+                            <td>AC Unit</td>
+                            <td>Split AC 1.5 Ton (Daikin)</td>
+                            <td>AC-DK-2345</td>
+                            <td>HO - Conference Hall</td>
+                            <td>28-Jun-2023</td>
+                            <td>27-Jun-2028</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Asset Details', 'Non-IT asset NIT-2023-089 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Edit Asset', 'Asset edit form will open here')">Edit</a>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>NIT-2024-012</td>
+                            <td>Electrical</td>
+                            <td>UPS 5KVA (APC)</td>
+                            <td>UPS-APC-567</td>
+                            <td>HO - Server Room</td>
+                            <td>15-Jan-2024</td>
+                            <td>14-Jan-2029</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Asset Details', 'Non-IT asset NIT-2024-012 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Edit Asset', 'Asset edit form will open here')">Edit</a>
+                            </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>`;
         }
 
         function generateInsuranceScreen() {

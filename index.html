@@ -2514,7 +2514,7 @@
         }
 
         function generateAttendanceScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Attendance Management</span></div><div class="alert alert-info"><span class="alert-icon">●</span><div><strong>GPS-based Attendance:</strong> Field staff can mark attendance using GPS location from mobile app. Biometric attendance available for Head Office.</div></div><div style="margin-bottom: 24px;"><button class="btn btn-success" onclick="showGPSLocationModal()">Mark Attendance (GPS)</button><button class="btn btn-primary" onclick="alert('Manual Attendance Entry\\n\\nIn production, this will:\\n● Select employee(s)\\n● Choose date\\n● Set check-in/out times\\n● Add notes/remarks\\n● Submit for approval\\n\\n[Opening manual entry form...]')">Manual Entry</button><button class="btn btn-info" onclick="generateReport('attendance')">Generate Report</button><button class="btn btn-secondary" onclick="exportToExcel('attendance')">Export Data</button></div><div class="card"><div class="card-title">Today's Attendance - ${new Date().toLocaleDateString()}</div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by employee name or ID..."><select class="filter-select"><option>All Status</option><option>Present</option><option>Absent</option><option>Half Day</option><option>On Leave</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container" style="box-shadow: none; border: none;"><table><thead><tr><th>Emp ID</th><th>Name</th><th>Department</th><th>Check In</th><th>Check Out</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>EMP-001</td><td>Priya Sharma</td><td>Programs</td><td>09:15 AM</td><td>06:30 PM</td><td>HO - Ahmedabad</td><td><span class="status-badge status-active">Present</span></td><td><div class="action-links"><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr><tr><td>EMP-042</td><td>Rahul Verma</td><td>Programs</td><td>08:45 AM</td><td>05:15 PM</td><td>GPS: Kheda</td><td><span class="status-badge status-active">Present</span></td><td><div class="action-links"><a class="action-link" onclick="alert('GPS Location Details\\n\\nEmployee: ' + this.closest('tr').querySelector('td').textContent + '\\nLocation: Kheda, Gujarat\\nCoordinates: 23.0225, 72.5714\\nAccuracy: 15 meters\\nTimestamp: ' + new Date().toLocaleString() + '\\n\\n[View on map]')">View</a></div></td></tr><tr><td>EMP-089</td><td>Anjali Patel</td><td>Finance</td><td>09:30 AM</td><td>—</td><td>HO - Ahmedabad</td><td><span class="status-badge status-active">Present</span></td><td><div class="action-links"><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr><tr><td>EMP-025</td><td>Amit Shah</td><td>Admin</td><td>—</td><td>—</td><td>—</td><td><span class="status-badge status-overdue">Absent</span></td><td><div class="action-links"><a class="action-link" onclick="markAttendance(this.closest('tr').querySelector('td').textContent)">Mark</a></div></td></tr></tbody></table></div></div></div>`;
+            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Attendance Management</span></div><div class="alert alert-info"><span class="alert-icon">●</span><div><strong>GPS-based Attendance:</strong> Field staff can mark attendance using GPS location from mobile app. Biometric attendance available for Head Office.</div></div><div style="margin-bottom: 24px;"><button class="btn btn-success" onclick="showGPSLocationModal()">Mark Attendance (GPS)</button><button class="btn btn-primary" onclick="showManualAttendanceEntry(\\n\\nIn production, this will:\\n● Select employee(s)\\n● Choose date\\n● Set check-in/out times\\n● Add notes/remarks\\n● Submit for approval\\n\\n[Opening manual entry form...]')">Manual Entry</button><button class="btn btn-info" onclick="generateReport('attendance')">Generate Report</button><button class="btn btn-secondary" onclick="exportToExcel('attendance')">Export Data</button></div><div class="card"><div class="card-title">Today's Attendance - ${new Date().toLocaleDateString()}</div><div class="search-bar"><input type="text" class="search-input" placeholder="Search by employee name or ID..."><select class="filter-select"><option>All Status</option><option>Present</option><option>Absent</option><option>Half Day</option><option>On Leave</option></select><button class="btn btn-secondary">Search</button></div><div class="table-container" style="box-shadow: none; border: none;"><table><thead><tr><th>Emp ID</th><th>Name</th><th>Department</th><th>Check In</th><th>Check Out</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>EMP-001</td><td>Priya Sharma</td><td>Programs</td><td>09:15 AM</td><td>06:30 PM</td><td>HO - Ahmedabad</td><td><span class="status-badge status-active">Present</span></td><td><div class="action-links"><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr><tr><td>EMP-042</td><td>Rahul Verma</td><td>Programs</td><td>08:45 AM</td><td>05:15 PM</td><td>GPS: Kheda</td><td><span class="status-badge status-active">Present</span></td><td><div class="action-links"><a class="action-link" onclick="showGPSLocationDetails(this.closest('tr').querySelector('td').textContent\\n\\nEmployee: ' + this.closest('tr').querySelector('td').textContent + '\\nLocation: Kheda, Gujarat\\nCoordinates: 23.0225, 72.5714\\nAccuracy: 15 meters\\nTimestamp: ' + new Date().toLocaleString() + '\\n\\n[View on map]')">View</a></div></td></tr><tr><td>EMP-089</td><td>Anjali Patel</td><td>Finance</td><td>09:30 AM</td><td>—</td><td>HO - Ahmedabad</td><td><span class="status-badge status-active">Present</span></td><td><div class="action-links"><a class="action-link" onclick="viewAttendanceDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr><tr><td>EMP-025</td><td>Amit Shah</td><td>Admin</td><td>—</td><td>—</td><td>—</td><td><span class="status-badge status-overdue">Absent</span></td><td><div class="action-links"><a class="action-link" onclick="markAttendance(this.closest('tr').querySelector('td').textContent)">Mark</a></div></td></tr></tbody></table></div></div></div>`;
         }
 
         function generateLeaveScreen() {
@@ -3603,16 +3603,16 @@
         }
 
         function resubmitExpense(expenseId) {
-            alert(`Resubmit Expense - ${expenseId}\n\nIn production, this will:\n● Load previous expense data\n● Allow corrections based on rejection reason\n● Upload new/corrected bills\n● Resubmit for approval\n\n[Opening resubmission form...]`);
+            showInfoModal('Resubmit Expense', `Expense ID: ${expenseId}\n\nIn production, this will:\n● Load previous expense data\n● Allow corrections based on rejection reason\n● Upload new/corrected bills\n● Resubmit for approval\n\n[Opening resubmission form...]`);
         }
 
         function viewRejectionReason(expenseId) {
-            alert(`Rejection Reason - ${expenseId}\n\n"Bill amount exceeds activity budget allocation. Please provide breakdown and justification."\n\n— Rejected by: Anjali Patel (Finance Manager)\n— Date: 20-Dec-2024\n— Action: Resubmit with corrections`);
+            showInfoModal('Rejection Reason', `Expense ID: ${expenseId}\n\n"Bill amount exceeds activity budget allocation. Please provide breakdown and justification."\n\n— Rejected by: Anjali Patel (Finance Manager)\n— Date: 20-Dec-2024\n— Action: Resubmit with corrections`);
         }
 
         // Monitoring & Data Actions
         function viewMonitoringData(entryId) {
-            alert(`Monitoring Data - ${entryId}\n\n● Field location & GPS\n● Beneficiary details\n● Survey responses\n● Photos captured\n● LFA indicators updated\n● Data collector info\n● Timestamp\n\n[In production: Detailed view with photos]`);
+            showInfoModal('Monitoring Data Details', `Entry ID: ${entryId}\n\n● Field location & GPS\n● Beneficiary details\n● Survey responses\n● Photos captured\n● LFA indicators updated\n● Data collector info\n● Timestamp\n\n[In production: Detailed view with photos]`);
         }
 
         function verifyMonitoringData(entryId) {
@@ -3694,11 +3694,11 @@
 
         // Payroll Actions
         function generatePayrollChallan(type) {
-            alert(`Generate ${type} Challan\n\nIn production, this will:\n● Calculate total amount\n● Generate ECR/challan file\n● Create payment form\n● Provide bank details\n● Set due date reminder\n\n[Generating challan...]`);
+            showInfoModal('Generate Challan', `${type} Challan\n\nIn production, this will:\n● Calculate total amount\n● Generate ECR/challan file\n● Create payment form\n● Provide bank details\n● Set due date reminder\n\n[Generating challan...]`);
         }
 
         function viewPayrollReceipt(type) {
-            alert(`View Payment Receipt - ${type}\n\n● Payment confirmation\n● Transaction ID\n● Date & amount\n● Bank reference\n● Download receipt\n\n[Opening receipt...]`);
+            showInfoModal('Payment Receipt', `${type} Payment\n\n● Payment confirmation\n● Transaction ID\n● Date & amount\n● Bank reference\n● Download receipt\n\n[Opening receipt...]`);
         }
 
         // ESS Actions
@@ -3707,37 +3707,37 @@
         }
 
         function viewForm16() {
-            alert(`View Form 16 - FY 2024-25\n\n● TDS certificate\n● Salary breakup\n● Deductions claimed\n● Tax computation\n● Employer details\n\nFormat: PDF (digitally signed)\n\n[Opening Form 16...]`);
+            showInfoModal('View Form 16', `FY 2024-25\n\n● TDS certificate\n● Salary breakup\n● Deductions claimed\n● Tax computation\n● Employer details\n\nFormat: PDF (digitally signed)\n\n[Opening Form 16...]`);
         }
 
         function applyLeave() {
-            alert(`Apply for Leave\n\nIn production, this will open form to:\n● Select leave type\n● Choose dates\n● Enter reason\n● Attach documents (if medical)\n● Submit for approval\n\n[Opening leave application form...]`);
+            showInfoModal('Apply for Leave', `\n\nIn production, this will open form to:\n● Select leave type\n● Choose dates\n● Enter reason\n● Attach documents (if medical)\n● Submit for approval\n\n[Opening leave application form...]`);
         }
 
         function raiseITTicket() {
-            alert(`Raise IT Support Ticket\n\nTicket categories:\n● Hardware issues\n● Software installation\n● Network problems\n● Email/access issues\n● New requirements\n\n[Opening support form...]`);
+            showInfoModal('Raise IT Support Ticket', `\n\nTicket categories:\n● Hardware issues\n● Software installation\n● Network problems\n● Email/access issues\n● New requirements\n\n[Opening support form...]`);
         }
 
         // Asset Management Actions
         function viewAssetDetails(assetId) {
-            alert(`Asset Details - ${assetId}\n\n● Asset category & name\n● Serial number\n● Purchase details\n● Current assignee\n● Warranty information\n● Service history\n● Condition status\n● QR code\n\n[In production: Full asset details]`);
+            showInfoModal('Asset Details', `Asset ID: ${assetId}\n\n● Asset category & name\n● Serial number\n● Purchase details\n● Current assignee\n● Warranty information\n● Service history\n● Condition status\n● QR code\n\n[In production: Full asset details]`);
         }
 
         function editAsset(assetId) {
-            alert(`Edit Asset - ${assetId}\n\nEditable fields:\n● Asset name\n● Category\n● Assignee\n● Location\n● Status\n● Maintenance notes\n● Warranty dates\n\n[Opening edit form...]`);
+            showInfoModal('Edit Asset', `Asset ID: ${assetId}\n\nEditable fields:\n● Asset name\n● Category\n● Assignee\n● Location\n● Status\n● Maintenance notes\n● Warranty dates\n\n[Opening edit form...]`);
         }
 
         function assignAsset(assetId) {
-            alert(`Assign Asset - ${assetId}\n\nIn production, this will:\n● Select employee\n● Set assignment date\n● Generate assignment letter\n● Send notification\n● Update asset register\n\n[Opening assignment form...]`);
+            showInfoModal('Assign Asset', `Asset ID: ${assetId}\n\nIn production, this will:\n● Select employee\n● Set assignment date\n● Generate assignment letter\n● Send notification\n● Update asset register\n\n[Opening assignment form...]`);
         }
 
         // Insurance Actions
         function viewPolicyDetails(policyId) {
-            alert(`Policy Details - ${policyId}\n\n● Policy number & provider\n● Coverage details\n● Sum insured\n● Premium amount\n● Covered members\n● Claim history\n● Renewal date\n● Documents\n\n[In production: Full policy view]`);
+            showInfoModal('Policy Details', `Policy ID: ${policyId}\n\n● Policy number & provider\n● Coverage details\n● Sum insured\n● Premium amount\n● Covered members\n● Claim history\n● Renewal date\n● Documents\n\n[In production: Full policy view]`);
         }
 
         function renewPolicy(policyId) {
-            alert(`Renew Policy - ${policyId}\n\nRenewal process:\n● Get renewal quote\n● Compare with other insurers\n● Review coverage\n● Process payment\n● Update policy dates\n● Archive old policy\n\n[Opening renewal workflow...]`);
+            showInfoModal('Renew Policy', `Policy ID: ${policyId}\n\nRenewal process:\n● Get renewal quote\n● Compare with other insurers\n● Review coverage\n● Process payment\n● Update policy dates\n● Archive old policy\n\n[Opening renewal workflow...]`);
         }
 
         // Travel Actions
@@ -3755,7 +3755,7 @@
         }
 
         function bookTickets(requestId) {
-            alert(`Book Tickets - ${requestId}\n\nIn production, this will:\n● Integrate with travel portal\n● Search flights/trains\n● Select best options\n● Process booking\n● Send tickets to employee\n● Update expense records\n\n[Opening booking interface...]`);
+            showInfoModal('Book Tickets', `Request ID: ${requestId}\n\nIn production, this will:\n● Integrate with travel portal\n● Search flights/trains\n● Select best options\n● Process booking\n● Send tickets to employee\n● Update expense records\n\n[Opening booking interface...]`);
         }
 
         // Stationery Actions
@@ -3773,11 +3773,11 @@
         }
 
         function fulfillStationeryRequest(requestId) {
-            alert(`Fulfill Request - ${requestId}\n\nIn production, this will:\n● Mark items as issued\n● Update stock levels\n● Record issue date\n● Get employee signature\n● Close request\n\n[Processing fulfillment...]`);
+            showInfoModal('Fulfill Request', `Request ID: ${requestId}\n\nIn production, this will:\n● Mark items as issued\n● Update stock levels\n● Record issue date\n● Get employee signature\n● Close request\n\n[Processing fulfillment...]`);
         }
 
         function reorderStationery(item) {
-            alert(`Reorder ${item}\n\nIn production, this will:\n● Create purchase requisition\n● Get vendor quotes\n● Generate PO\n● Track delivery\n● Update stock on receipt\n\n[Creating reorder request...]`);
+            showInfoModal('Reorder Stock', `Item: ${item}\n\nIn production, this will:\n● Create purchase requisition\n● Get vendor quotes\n● Generate PO\n● Track delivery\n● Update stock on receipt\n\n[Creating reorder request...]`);
         }
 
         // Admin Expense Actions
@@ -3792,6 +3792,25 @@
             if (reason && reason.trim()) {
                 showInfoModal("Action Required", ` Admin expense rejected - ${expenseId}\n\nReason: ${reason}`);
             }
+        }
+
+        // Helper functions for inline onclick handlers
+        function showManualAttendanceEntry() {
+            showInfoModal('Manual Attendance Entry', `\n\nIn production, this will:\n● Select employee(s)\n● Choose date\n● Set check-in/out times\n● Add notes/remarks\n● Submit for approval\n\n[Opening manual entry form...]`);
+        }
+
+        function showGPSLocationDetails(empId) {
+            showInfoModal('GPS Location Details', `Employee: ${empId}\n\nLocation: Kheda, Gujarat\nCoordinates: 23.0225, 72.5714\nAccuracy: 15 meters\nTimestamp: ${new Date().toLocaleString()}\n\n[View on map]`);
+        }
+
+        function showNotifications() {
+            const notifications = [
+                '● 3 insurance policies expiring soon',
+                '● 5 leave requests pending approval',
+                '● 2 recruitment positions open',
+                '● Budget review scheduled for next week'
+            ];
+            showInfoModal('Notifications', notifications.join('\n'));
         }
 
         // Initialize on page load

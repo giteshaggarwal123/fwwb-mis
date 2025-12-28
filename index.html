@@ -4018,6 +4018,145 @@
             }
         }, true); // Use capture phase to run before onclick
 
+        // ==============================================
+        // UTILITY FUNCTIONS - Formatting & Validation
+        // ==============================================
+
+        /**
+         * Format currency in Indian Rupee format
+         * @param {number} amount - Amount to format
+         * @returns {string} Formatted currency string (e.g., "₹12,500")
+         */
+        function formatCurrency(amount) {
+            if (!amount && amount !== 0) return '₹0';
+            return '₹' + Number(amount).toLocaleString('en-IN');
+        }
+
+        /**
+         * Format date in specified format
+         * @param {string|Date} date - Date to format
+         * @param {string} format - Format type ('DD-MMM-YYYY', 'YYYY-MM-DD', 'relative')
+         * @returns {string} Formatted date string
+         */
+        function formatDate(date, format = 'DD-MMM-YYYY') {
+            if (!date) return '-';
+            const d = new Date(date);
+            if (isNaN(d.getTime())) return '-';
+
+            const day = String(d.getDate()).padStart(2, '0');
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const month = monthNames[d.getMonth()];
+            const year = d.getFullYear();
+
+            switch(format) {
+                case 'DD-MMM-YYYY':
+                    return `${day}-${month}-${year}`;
+                case 'YYYY-MM-DD':
+                    return d.toISOString().split('T')[0];
+                case 'relative':
+                    return getRelativeTime(d);
+                default:
+                    return d.toLocaleDateString('en-IN');
+            }
+        }
+
+        /**
+         * Get relative time string (e.g., "2 hours ago")
+         * @param {Date} date - Date to convert
+         * @returns {string} Relative time string
+         */
+        function getRelativeTime(date) {
+            const now = new Date();
+            const diff = now - date;
+            const seconds = Math.floor(diff / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+
+            if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
+            if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+            if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+            return 'Just now';
+        }
+
+        /**
+         * Sanitize user input to prevent XSS attacks
+         * @param {string} input - Input string to sanitize
+         * @returns {string} Sanitized string
+         */
+        function sanitizeInput(input) {
+            if (!input) return '';
+            const div = document.createElement('div');
+            div.textContent = input;
+            return div.innerHTML;
+        }
+
+        /**
+         * Validate email format
+         * @param {string} email - Email to validate
+         * @returns {boolean} True if valid
+         */
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        /**
+         * Validate phone number (Indian format)
+         * @param {string} phone - Phone number to validate
+         * @returns {boolean} True if valid
+         */
+        function validatePhone(phone) {
+            const re = /^[6-9]\d{9}$/;
+            return re.test(phone.replace(/\s+/g, ''));
+        }
+
+        /**
+         * Validate file upload
+         * @param {File} file - File to validate
+         * @param {Array} allowedTypes - Allowed MIME types
+         * @param {number} maxSize - Maximum file size in bytes
+         * @returns {Object} {valid: boolean, error: string}
+         */
+        function validateFileUpload(file, allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'], maxSize = 5 * 1024 * 1024) {
+            if (!file) {
+                return { valid: false, error: 'No file selected' };
+            }
+
+            if (!allowedTypes.includes(file.type)) {
+                return { valid: false, error: 'Invalid file type. Allowed: ' + allowedTypes.join(', ') };
+            }
+
+            if (file.size > maxSize) {
+                return { valid: false, error: `File too large. Maximum size: ${(maxSize / (1024 * 1024)).toFixed(1)}MB` };
+            }
+
+            return { valid: true };
+        }
+
+        /**
+         * Calculate budget utilization percentage
+         * @param {number} spent - Amount spent
+         * @param {number} total - Total budget
+         * @returns {number} Percentage (0-100)
+         */
+        function calculateBudgetUtilization(spent, total) {
+            if (!total || total === 0) return 0;
+            return Math.min(Math.round((spent / total) * 100), 100);
+        }
+
+        /**
+         * Get status badge class based on percentage
+         * @param {number} percentage - Utilization percentage
+         * @returns {string} CSS class name
+         */
+        function getStatusClass(percentage) {
+            if (percentage >= 90) return 'status-overdue';
+            if (percentage >= 75) return 'status-warning';
+            if (percentage >= 50) return 'status-active';
+            return 'status-success';
+        }
+
         window.onload = function() {
             goToScreen('login');
         }
@@ -6246,13 +6385,10 @@
             alert('Downloading Payslip\n\nMonth: ' + month + '\n\nPDF will download automatically.');
         }
 
-        function viewForm16() {
-            alert('Form 16 - TDS Certificate\n\nAnnual tax deduction certificate\n\nPDF will download automatically.');
-        }
+        // viewForm16() is already defined earlier in the file (line 3776) - duplicate removed
 
-        function exportToExcel(type) {
-            alert('Exporting to Excel\n\nData type: ' + type + '\n\nFile will download automatically.');
-        }
+        // Note: exportToExcel() is also defined earlier (line 3574) - this is a duplicate
+        // Keeping this comment as a marker
 
         function generateReport(type) {
             alert('Generating Report\n\nReport type: ' + type + '\n\nProcessing...');

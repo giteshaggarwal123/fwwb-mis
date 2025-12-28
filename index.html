@@ -2857,8 +2857,8 @@
                 item.classList.remove('active');
             });
 
-            // RESTORE SIDEBAR SCROLL POSITION - Query NEW sidebar and restore scroll
-            setTimeout(() => {
+            // RESTORE SIDEBAR SCROLL POSITION - Multiple attempts to ensure it works
+            const restoreScroll = () => {
                 const newSidebar = document.querySelector('.sidebar');
                 if (newSidebar) {
                     newSidebar.scrollTop = sidebarScrollPos;
@@ -2869,7 +2869,16 @@
                 if (mainContent) {
                     mainContent.scrollTop = 0;
                 }
-            }, 10);
+            };
+
+            // Try multiple times to ensure it sticks
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    restoreScroll();
+                    // Also try after a small delay as backup
+                    setTimeout(restoreScroll, 50);
+                });
+            });
         }
 
         function createDynamicScreen(screenName) {

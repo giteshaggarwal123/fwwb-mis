@@ -3167,7 +3167,21 @@
         let currentUser = null;
         let savedSidebarScrollPosition = 0; // Global variable to preserve sidebar scroll
 
-        // User credentials for demo
+        // ==============================================
+        // ⚠️ CRITICAL SECURITY WARNING - FOR PROTOTYPE/DEMO ONLY ⚠️
+        // ==============================================
+        // These hardcoded credentials are ONLY for demonstration purposes
+        // NEVER use this approach in production!
+        //
+        // Production Requirements:
+        // 1. Remove ALL hardcoded credentials
+        // 2. Implement backend authentication (Node.js/Express + JWT)
+        // 3. Use bcrypt for password hashing
+        // 4. Implement proper session management
+        // 5. Add HTTPS/SSL encryption
+        // 6. Use environment variables for sensitive data
+        // 7. Implement rate limiting and brute force protection
+        // ==============================================
         const userCredentials = {
             management: { username: 'admin', password: 'demo123', name: 'Admin User', role: 'Management' },
             program: { username: 'program.user', password: 'demo123', name: 'Program User', role: 'Program Team' },
@@ -3177,7 +3191,6 @@
         };
 
         function selectUserType(type, element) {
-            console.log('selectUserType called with type:', type);
             selectedUserType = type;
 
             // Remove selected class from all cards
@@ -3188,25 +3201,17 @@
             // Add selected class to clicked card
             if (element) {
                 element.classList.add('selected');
-                console.log('Element selected:', element);
             }
 
             // Auto-populate credentials
             const creds = userCredentials[type];
-            console.log('Credentials:', creds);
 
             const usernameField = document.getElementById('username');
             const passwordField = document.getElementById('password');
 
-            console.log('Username field:', usernameField);
-            console.log('Password field:', passwordField);
-
             if (usernameField && passwordField && creds) {
                 usernameField.value = creds.username;
                 passwordField.value = creds.password;
-                console.log('Fields populated successfully');
-            } else {
-                console.error('ERROR: Fields or credentials not found!');
             }
 
             currentUser = creds;
@@ -3404,7 +3409,6 @@
             }
 
             // Note: Scroll position is already captured in mousedown event listener
-            console.log('goToScreen called with saved scroll position:', savedSidebarScrollPosition);
 
             // Hide all screens
             document.querySelectorAll('.screen').forEach(screen => {
@@ -3442,9 +3446,7 @@
                 // The ACTUAL scrolling element is .nav-menu inside .sidebar!
                 const navMenu = document.querySelector('.screen.active .nav-menu');
                 if (navMenu) {
-                    console.log('Before restore - current nav-menu scrollTop:', navMenu.scrollTop, 'target:', savedSidebarScrollPosition);
                     navMenu.scrollTop = savedSidebarScrollPosition;
-                    console.log('After restore - actual nav-menu scrollTop:', navMenu.scrollTop);
 
                     // Force reflow to ensure scroll is applied
                     navMenu.offsetHeight;
@@ -3570,11 +3572,6 @@
         // Notification functions
         // showNotifications() is defined later in the file with proper modal UI
 
-        // Activity Management functions
-        function showAddActivityForm() {
-            showInfoModal('Add New Activity', 'Add New Activity Form\n\nIn production, this will open a modal form to:\n- Enter activity details\n- Select project\n- Assign team members\n- Set budget and timeline\n- Add LFA indicators');
-        }
-
         // Export functions
         function exportToExcel(type) {
             const typeNames = {
@@ -3586,27 +3583,12 @@
             showInfoModal("Exporting", ` ${typeNames[type] || type} to Excel...\n\nFile will be downloaded as: ${type}_${new Date().toISOString().split('T')[0]}.xlsx`);
         }
 
-        // Budget Management functions
-        function showBudgetAllocationForm() {
-            showInfoModal('Budget Allocation', 'Budget Allocation Form\n\nIn production, this will open a form to:\n- Select project\n- Allocate budget to activities\n- Set budget categories\n- Define spending limits');
-        }
-
-        // Expense Management functions
-        function showExpenseSubmissionForm() {
-            showInfoModal('Submit Expense', 'Submit Expense Form\n\nIn production, this will open a form to:\n- Upload bills/receipts\n- Link to activity\n- Enter amount and description\n- Submit for approval workflow');
-        }
-
         function bulkUpload(type) {
             const typeNames = {
                 'expenses': 'Expenses',
                 'monitoring': 'Monitoring Data'
             };
             showInfoModal("Bulk Upload", ` ${typeNames[type]}\n\nIn production, this will:\n- Download Excel template\n- Allow bulk data upload\n- Validate data\n- Import into system`);
-        }
-
-        // Monitoring functions
-        function showFieldDataEntryForm() {
-            showInfoModal('Field Data Entry', 'Field Data Entry Form\n\nIn production, this will open a form to:\n- Capture beneficiary data\n- Upload photos\n- Tag GPS location\n- Update LFA indicators\n- Support offline mode');
         }
 
         function downloadOfflineApp() {
@@ -4018,34 +4000,8 @@
             showInfoModal('AI Processing', `Analyzing your question...\n\nQuery: "${query}"\n${category ? 'Category: ' + category : ''}\n\n● Searching relevant data\n● Applying AI models\n● Generating insights\n\n[In production: Real AI response will appear here]`);
         }
 
-        // Generic form handlers for all missing show*Form functions
-        function showAddActivityForm() { showInfoModal('Add Activity', 'Activity creation form will open here with fields for:\n● Activity name\n● Project selection\n● Budget allocation\n● Team assignment\n● Timeline'); }
-        function showBudgetAllocationForm() { showInfoModal('Budget Allocation', 'Budget allocation form will open here'); }
-        function showExpenseSubmissionForm() { showInfoModal('Submit Expense', 'Expense submission form will open here'); }
-        function showFieldDataEntryForm() { showInfoModal('Field Data Entry', 'Field data entry form will open here'); }
-        function showCreateJobPostingForm() { showInfoModal('Create Job Posting', 'Job posting form will open here'); }
-        function showAddEmployeeForm() { showInfoModal('Add Employee', 'Employee onboarding form will open here'); }
-        function showBulkUploadEmployeesForm() { showInfoModal('Bulk Upload Employees', 'Excel template download and upload interface will open here'); }
-        function showGPSLocationModal() { showInfoModal('Mark Attendance', 'GPS location will be captured and attendance will be marked'); }
-        function showSetKPIsForm() { showInfoModal('Set Goals & KPIs', 'Goal setting form will open here'); }
-        function showPerformanceDashboard() { showInfoModal('Performance Dashboard', 'Performance analytics dashboard will open here'); }
-        function showProcessPayrollForm() { showInfoModal('Process Payroll', 'Payroll processing interface will open here'); }
-        function showGeneratePayslipsForm() { showInfoModal('Generate Payslips', 'Payslip generation wizard will open here'); }
-        function showStatutoryReportsForm() { showInfoModal('Statutory Reports', 'Statutory report generation interface will open here'); }
-        function showUpdateProfileForm() { showInfoModal('Update Profile', 'Profile update form will open here'); }
-        function showAttendanceDetailsForm() { showInfoModal('Attendance Details', 'Detailed attendance report will be shown here'); }
-        function showViewApplicationsForm() { showInfoModal('View Applications', 'Job applications dashboard will open here'); }
-        function showRequestTravelForm() { showInfoModal('Request Travel', 'Travel request form will open here'); }
-        function showRequestStationeryForm() { showInfoModal('Request Stationery', 'Stationery request form will open here'); }
-        function showBudgetDashboard() { showInfoModal('Budget Dashboard', 'Budget analytics dashboard will open here'); }
-        function showRenewalDashboard() { showInfoModal('Renewal Dashboard', 'Insurance renewal dashboard will open here'); }
-        function showAddAssetForm() { showInfoModal('Add Asset', 'Asset registration form will open here'); }
-        function showAssignAssetForm() { showInfoModal('Assign Asset', 'Asset assignment form will open here'); }
-        function showBulkUploadAssetsForm() { showInfoModal('Bulk Upload Assets', 'Asset bulk upload template will be downloaded'); }
-        function showAddPolicyForm() { showInfoModal('Add Policy', 'Insurance policy form will open here'); }
-        function showRenewPolicyForm() { showInfoModal('Renew Policy', 'Policy renewal workflow will start'); }
-        function showBookTicketsForm() { showInfoModal('Book Tickets', 'Travel booking interface will open'); }
-        function showFulfillRequestForm() { showInfoModal('Fulfill Request', 'Request fulfillment form will open'); }
+        // Note: Main form handler functions (showAddActivityForm, showBudgetAllocationForm, etc.)
+        // are defined later in the file with full modal implementations
 
         // Initialize on page load
         // Capture sidebar scroll position BEFORE browser auto-scrolls on click
@@ -4058,7 +4014,6 @@
                 const navMenu = navItem.closest('.nav-menu');
                 if (navMenu) {
                     savedSidebarScrollPosition = navMenu.scrollTop;
-                    console.log('Pre-click captured nav-menu scroll:', savedSidebarScrollPosition);
                 }
             }
         }, true); // Use capture phase to run before onclick

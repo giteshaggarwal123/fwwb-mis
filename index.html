@@ -3568,16 +3568,7 @@
         }
 
         // Notification functions
-        function showNotifications() {
-            const notifications = [
-                '● 5 pending expense approvals',
-                '● 3 insurance policies expiring within 30 days',
-                '● 2 budget alerts - projects at >85% utilization',
-                '● 12 leave requests awaiting approval',
-                '● 4 resignations in notice period'
-            ];
-            alert('Notifications:\n\n' + notifications.join('\n'));
-        }
+        // showNotifications() is defined later in the file with proper modal UI
 
         // Activity Management functions
         function showAddActivityForm() {
@@ -3898,12 +3889,7 @@
         }
 
         function showNotifications() {
-            showUniversalModal(`
-                <h2 style="margin-bottom: 20px;">
-                    <span style="font-size: 24px; margin-right: 8px;">🔔</span>
-                    Notifications
-                </h2>
-
+            const bodyHTML = `
                 <div style="max-height: 400px; overflow-y: auto;">
                     <!-- Notification 1 -->
                     <div style="padding: 16px; background: #FFF5F5; border-left: 4px solid #e53e3e; border-radius: 4px; margin-bottom: 12px;">
@@ -3961,14 +3947,16 @@
                         </button>
                     </div>
                 </div>
+            `;
 
-                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #e2e8f0; text-align: center;">
-                    <button class="btn btn-secondary" onclick="closeUniversalModal()">Close</button>
-                    <button class="btn btn-primary" onclick="showInfoModal('Mark All Read', 'All notifications marked as read!');" style="margin-left: 8px;">
-                        Mark All as Read
-                    </button>
-                </div>
-            `);
+            const footerHTML = `
+                <button class="btn btn-secondary" onclick="closeUniversalModal()">Close</button>
+                <button class="btn btn-primary" onclick="showInfoModal('Mark All Read', 'All notifications marked as read!');" style="margin-left: 8px;">
+                    Mark All as Read
+                </button>
+            `;
+
+            showUniversalModal('🔔 Notifications', bodyHTML, footerHTML);
         }
 
         // Ask AI - Proper query interface

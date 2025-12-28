@@ -2828,12 +2828,8 @@
                 return;
             }
 
-            // SAVE SIDEBAR SCROLL POSITION to global variable BEFORE any DOM changes
-            const oldSidebar = document.querySelector('.screen.active .sidebar');
-            if (oldSidebar) {
-                savedSidebarScrollPosition = oldSidebar.scrollTop;
-                console.log('Saved sidebar scroll position:', savedSidebarScrollPosition);
-            }
+            // Note: Scroll position is already captured in mousedown event listener
+            console.log('goToScreen called with saved scroll position:', savedSidebarScrollPosition);
 
             // Hide all screens
             document.querySelectorAll('.screen').forEach(screen => {
@@ -3317,6 +3313,20 @@
         }
 
         // Initialize on page load
+        // Capture sidebar scroll position BEFORE browser auto-scrolls on click
+        document.addEventListener('mousedown', function(e) {
+            // Check if click is on a nav-item
+            const navItem = e.target.closest('.nav-item');
+            if (navItem) {
+                // Capture scroll position BEFORE the browser auto-scrolls the element into view
+                const sidebar = navItem.closest('.sidebar');
+                if (sidebar) {
+                    savedSidebarScrollPosition = sidebar.scrollTop;
+                    console.log('Pre-click captured sidebar scroll:', savedSidebarScrollPosition);
+                }
+            }
+        }, true); // Use capture phase to run before onclick
+
         window.onload = function() {
             goToScreen('login');
         }

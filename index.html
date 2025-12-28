@@ -2540,7 +2540,284 @@
         }
 
         function generateInsuranceScreen() {
-            return `<div class="content"><div class="breadcrumb"><a href="#" onclick="goToScreen('dashboard')">Home</a><span>/</span><span>Insurance Management</span></div><div class="alert alert-warning"><span class="alert-icon">●</span><div><strong>Renewal Alert:</strong> 3 insurance policies expiring within 30 days. Please review and renew.</div></div><div class="tabs"><div class="tab active" onclick="switchTab(event, 'medical')">Medical</div><div class="tab" onclick="switchTab(event, 'group-accident')">Group Accident</div><div class="tab" onclick="switchTab(event, 'vehicle')">Vehicle</div><div class="tab" onclick="switchTab(event, 'fire')">Fire & Safety</div></div><div style="margin-bottom: 24px;"><button class="btn btn-primary" onclick="showAddPolicyForm()">+ Add Policy</button><button class="btn btn-info" onclick="showRenewalDashboard()">Renewal Dashboard</button><button class="btn btn-secondary" onclick="exportToExcel('insurance')">Export Register</button></div><div class="table-container"><div class="table-header"><h3>Medical Insurance Policies</h3></div><table><thead><tr><th>Policy Number</th><th>Insurance Provider</th><th>Coverage Type</th><th>Employees Covered</th><th>Sum Insured</th><th>Start Date</th><th>Expiry Date</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>MED-2024-001</td><td>ICICI Lombard</td><td>Employee + Family</td><td>156</td><td>₹5,00,000</td><td>01-Apr-2024</td><td>31-Mar-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewPolicyDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="renewPolicy(this.closest('tr').querySelector('td').textContent)">Renew</a></div></td></tr><tr><td>MED-2024-002</td><td>Star Health</td><td>Top-up Coverage</td><td>42</td><td>₹10,00,000</td><td>01-Apr-2024</td><td>31-Mar-2025</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewPolicyDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="renewPolicy(this.closest('tr').querySelector('td').textContent)">Renew</a></div></td></tr></tbody></table></div><div class="table-container" style="margin-top: 24px;"><div class="table-header"><h3>Vehicle Insurance</h3></div><table><thead><tr><th>Vehicle Number</th><th>Vehicle Type</th><th>Insurance Provider</th><th>Policy Number</th><th>Start Date</th><th>Expiry Date</th><th>Premium</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>GJ-01-AB-1234</td><td>Car (Maruti Ertiga)</td><td>Bajaj Allianz</td><td>VEH-2024-045</td><td>15-Feb-2024</td><td>14-Feb-2025</td><td>₹18,500</td><td><span class="status-badge status-warning">Expiring Soon</span></td><td><div class="action-links"><a class="action-link" onclick="viewPolicyDetails(this.closest('tr').querySelector('td').textContent)">View</a><a class="action-link" onclick="renewPolicy(this.closest('tr').querySelector('td').textContent)">Renew</a></div></td></tr><tr><td>GJ-05-CD-5678</td><td>Bike (Honda Activa)</td><td>HDFC ERGO</td><td>VEH-2024-078</td><td>22-Jul-2024</td><td>21-Jul-2025</td><td>₹2,850</td><td><span class="status-badge status-active">Active</span></td><td><div class="action-links"><a class="action-link" onclick="viewPolicyDetails(this.closest('tr').querySelector('td').textContent)">View</a></div></td></tr></tbody></table></div></div>`;
+            return `
+<div class="content">
+    <div class="breadcrumb">
+        <a href="#" onclick="goToScreen('dashboard')">Home</a>
+        <span>/</span>
+        <span>Insurance Management</span>
+    </div>
+
+    <div class="alert alert-warning">
+        <span class="alert-icon">●</span>
+        <div><strong>Renewal Alert:</strong> 3 insurance policies expiring within 30 days. Please review and renew.</div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab(event, 'medical-tab')">Medical</div>
+            <div class="tab" onclick="switchTab(event, 'group-accident-tab')">Group Accident</div>
+            <div class="tab" onclick="switchTab(event, 'vehicle-tab')">Vehicle</div>
+            <div class="tab" onclick="switchTab(event, 'fire-tab')">Fire & Safety</div>
+        </div>
+
+        <!-- MEDICAL TAB -->
+        <div id="medical-tab" class="tab-content active" style="display: block;">
+            <div style="margin-bottom: 24px; margin-top: 24px;">
+                <button class="btn btn-primary" onclick="showInfoModal('Add Medical Policy', 'Medical insurance policy form will open here')">+ Add Policy</button>
+                <button class="btn btn-info" onclick="showInfoModal('Renewal Dashboard', 'Medical policy renewal dashboard will be shown here')">Renewal Dashboard</button>
+                <button class="btn btn-secondary" onclick="exportToExcel('medical-insurance')">Export Register</button>
+            </div>
+            <div class="table-container">
+                <div class="table-header"><h3>Medical Insurance Policies</h3></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Policy Number</th>
+                            <th>Insurance Provider</th>
+                            <th>Coverage Type</th>
+                            <th>Employees Covered</th>
+                            <th>Sum Insured</th>
+                            <th>Start Date</th>
+                            <th>Expiry Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MED-2024-001</td>
+                            <td>ICICI Lombard</td>
+                            <td>Employee + Family</td>
+                            <td>156</td>
+                            <td>₹5,00,000</td>
+                            <td>01-Apr-2024</td>
+                            <td>31-Mar-2025</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Policy Details', 'Medical policy MED-2024-001 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Renew Policy', 'Policy renewal form will open here')">Renew</a>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>MED-2024-002</td>
+                            <td>Star Health</td>
+                            <td>Top-up Coverage</td>
+                            <td>42</td>
+                            <td>₹10,00,000</td>
+                            <td>01-Apr-2024</td>
+                            <td>31-Mar-2025</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Policy Details', 'Medical policy MED-2024-002 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Renew Policy', 'Policy renewal form will open here')">Renew</a>
+                            </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- GROUP ACCIDENT TAB -->
+        <div id="group-accident-tab" class="tab-content">
+            <div style="margin-bottom: 24px; margin-top: 24px;">
+                <button class="btn btn-primary" onclick="showInfoModal('Add Group Accident Policy', 'Group accident policy form will open here')">+ Add Policy</button>
+                <button class="btn btn-info" onclick="showInfoModal('Claims Dashboard', 'Group accident claims dashboard will be shown here')">Claims Dashboard</button>
+                <button class="btn btn-secondary" onclick="exportToExcel('group-accident')">Export Register</button>
+            </div>
+            <div class="table-container">
+                <div class="table-header"><h3>Group Accident Insurance</h3></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Policy Number</th>
+                            <th>Insurance Provider</th>
+                            <th>Coverage</th>
+                            <th>Employees Covered</th>
+                            <th>Sum Insured</th>
+                            <th>Start Date</th>
+                            <th>Expiry Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GA-2024-001</td>
+                            <td>New India Assurance</td>
+                            <td>Accidental Death & Disability</td>
+                            <td>156</td>
+                            <td>₹10,00,000</td>
+                            <td>01-Apr-2024</td>
+                            <td>31-Mar-2025</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Policy Details', 'Group accident policy GA-2024-001 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Renew Policy', 'Policy renewal form will open here')">Renew</a>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>GA-2023-045</td>
+                            <td>United India Insurance</td>
+                            <td>Personal Accident</td>
+                            <td>156</td>
+                            <td>₹5,00,000</td>
+                            <td>15-Jan-2024</td>
+                            <td>14-Jan-2025</td>
+                            <td><span class="status-badge status-warning">Expiring Soon</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Policy Details', 'Group accident policy GA-2023-045 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Renew Policy', 'Policy renewal form will open here')">Renew</a>
+                            </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- VEHICLE TAB -->
+        <div id="vehicle-tab" class="tab-content">
+            <div style="margin-bottom: 24px; margin-top: 24px;">
+                <button class="btn btn-primary" onclick="showInfoModal('Add Vehicle Policy', 'Vehicle insurance policy form will open here')">+ Add Policy</button>
+                <button class="btn btn-info" onclick="showInfoModal('Vehicle Register', 'Complete vehicle register will be shown here')">Vehicle Register</button>
+                <button class="btn btn-secondary" onclick="exportToExcel('vehicle-insurance')">Export Report</button>
+            </div>
+            <div class="table-container">
+                <div class="table-header"><h3>Vehicle Insurance</h3></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Vehicle Number</th>
+                            <th>Vehicle Type</th>
+                            <th>Insurance Provider</th>
+                            <th>Policy Number</th>
+                            <th>Start Date</th>
+                            <th>Expiry Date</th>
+                            <th>Premium</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GJ-01-AB-1234</td>
+                            <td>Car (Maruti Ertiga)</td>
+                            <td>Bajaj Allianz</td>
+                            <td>VEH-2024-045</td>
+                            <td>15-Feb-2024</td>
+                            <td>14-Feb-2025</td>
+                            <td>₹18,500</td>
+                            <td><span class="status-badge status-warning">Expiring Soon</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Policy Details', 'Vehicle policy VEH-2024-045 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Renew Policy', 'Policy renewal form will open here')">Renew</a>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>GJ-05-CD-5678</td>
+                            <td>Bike (Honda Activa)</td>
+                            <td>HDFC ERGO</td>
+                            <td>VEH-2024-078</td>
+                            <td>22-Jul-2024</td>
+                            <td>21-Jul-2025</td>
+                            <td>₹2,850</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Policy Details', 'Vehicle policy VEH-2024-078 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Renew Policy', 'Policy renewal form will open here')">Renew</a>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>GJ-02-XY-9876</td>
+                            <td>Car (Toyota Innova)</td>
+                            <td>ICICI Lombard</td>
+                            <td>VEH-2024-112</td>
+                            <td>10-Sep-2024</td>
+                            <td>09-Sep-2025</td>
+                            <td>₹24,200</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Policy Details', 'Vehicle policy VEH-2024-112 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Renew Policy', 'Policy renewal form will open here')">Renew</a>
+                            </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FIRE & SAFETY TAB -->
+        <div id="fire-tab" class="tab-content">
+            <div style="margin-bottom: 24px; margin-top: 24px;">
+                <button class="btn btn-primary" onclick="showInfoModal('Add Fire Policy', 'Fire & safety insurance policy form will open here')">+ Add Policy</button>
+                <button class="btn btn-info" onclick="showInfoModal('Safety Audit', 'Fire safety audit dashboard will be shown here')">Safety Audit</button>
+                <button class="btn btn-secondary" onclick="exportToExcel('fire-insurance')">Export Report</button>
+            </div>
+            <div class="table-container">
+                <div class="table-header"><h3>Fire & Safety Insurance</h3></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Policy Number</th>
+                            <th>Insurance Provider</th>
+                            <th>Office Location</th>
+                            <th>Coverage Amount</th>
+                            <th>Equipment Covered</th>
+                            <th>Start Date</th>
+                            <th>Expiry Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>FIRE-2024-001</td>
+                            <td>Oriental Insurance</td>
+                            <td>Head Office - Ahmedabad</td>
+                            <td>₹2,00,00,000</td>
+                            <td>Building, Furniture, IT Equipment</td>
+                            <td>01-Jan-2024</td>
+                            <td>31-Dec-2024</td>
+                            <td><span class="status-badge status-danger">Expired</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Policy Details', 'Fire policy FIRE-2024-001 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Renew Policy', 'Policy renewal form will open here')">Renew</a>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>FIRE-2024-002</td>
+                            <td>National Insurance</td>
+                            <td>Field Office - Kheda</td>
+                            <td>₹50,00,000</td>
+                            <td>Building, Office Equipment</td>
+                            <td>15-Mar-2024</td>
+                            <td>14-Mar-2025</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Policy Details', 'Fire policy FIRE-2024-002 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Renew Policy', 'Policy renewal form will open here')">Renew</a>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>FIRE-2024-003</td>
+                            <td>United India Insurance</td>
+                            <td>Branch Office - Gandhinagar</td>
+                            <td>₹75,00,000</td>
+                            <td>Building, Computers, Server Room</td>
+                            <td>20-Jun-2024</td>
+                            <td>19-Jun-2025</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><div class="action-links">
+                                <a class="action-link" onclick="showInfoModal('Policy Details', 'Fire policy FIRE-2024-003 details will be shown here')">View</a>
+                                <a class="action-link" onclick="showInfoModal('Renew Policy', 'Policy renewal form will open here')">Renew</a>
+                            </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>`;
         }
 
         function generateTravelScreen() {
@@ -2580,9 +2857,23 @@
             // Add active class to clicked tab
             event.target.classList.add('active');
 
-            // Here you would normally switch the content
-            // For wireframes, we'll just show an alert
-            alert('Switching to ' + tabName + ' tab view');
+            // Find all tab content containers in the current screen
+            const tabContainer = event.target.closest('.tabs-container') || event.target.closest('.content');
+            if (tabContainer) {
+                // Hide all tab content
+                const allTabContents = tabContainer.querySelectorAll('.tab-content');
+                allTabContents.forEach(content => {
+                    content.classList.remove('active');
+                    content.style.display = 'none';
+                });
+
+                // Show the selected tab content
+                const selectedTab = tabContainer.querySelector('#' + tabName);
+                if (selectedTab) {
+                    selectedTab.classList.add('active');
+                    selectedTab.style.display = 'block';
+                }
+            }
         }
     </script>
 

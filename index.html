@@ -1552,85 +1552,11 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- DASHBOARD SCREEN -->
+    <!-- DASHBOARD SCREEN - Will be dynamically replaced on login -->
     <!-- ============================================ -->
-    <div class="screen" id="screen-dashboard">
+    <div class="screen" id="screen-dashboard" style="display: none;">
+        <!-- This static dashboard is hidden and replaced by role-based dashboard on login -->
         <div class="app-container">
-            <aside class="sidebar">
-                <div class="sidebar-header">
-                    <h2>FWWB India</h2>
-                    <div class="org-name">Integrated Management System</div>
-                    <div class="user-badge" id="userRole">Management</div>
-                </div>
-                <nav class="nav-menu">
-                    <div class="nav-section">
-                        <div class="nav-section-title">Main</div>
-                        <div class="nav-item active" onclick="goToScreen('dashboard')">
-                            <span class="nav-icon">■</span> Dashboard
-                        </div>
-                    </div>
-                    <div class="nav-section">
-                        <div class="nav-section-title">Program Management</div>
-                        <div class="nav-item" onclick="goToScreen('activities')">
-                            <span class="nav-icon">▪</span> Activities
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('budget')">
-                            <span class="nav-icon">▪</span> Budget Management
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('expenses')">
-                            <span class="nav-icon">▪</span> Expenses & Bills
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('monitoring')">
-                            <span class="nav-icon">▪</span> Monitoring & Data
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('reports')">
-                            <span class="nav-icon">▪</span> Reports
-                        </div>
-                    </div>
-                    <div class="nav-section">
-                        <div class="nav-section-title">HRMS</div>
-                        <div class="nav-item" onclick="goToScreen('recruitment')">
-                            <span class="nav-icon">▪</span> Recruitment
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('employees')">
-                            <span class="nav-icon">▪</span> Employees
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('attendance')">
-                            <span class="nav-icon">▪</span> Attendance
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('leave')">
-                            <span class="nav-icon">▪</span> Leave Management
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('performance')">
-                            <span class="nav-icon">▪</span> Performance
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('payroll')">
-                            <span class="nav-icon">▪</span> Payroll
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('ess')">
-                            <span class="nav-icon">▪</span> Employee Self Service
-                        </div>
-                    </div>
-                    <div class="nav-section">
-                        <div class="nav-section-title">Administration</div>
-                        <div class="nav-item" onclick="goToScreen('assets')">
-                            <span class="nav-icon">▪</span> Asset Management
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('insurance')">
-                            <span class="nav-icon">▪</span> Insurance
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('travel')">
-                            <span class="nav-icon">▪</span> Travel Booking
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('stationery')">
-                            <span class="nav-icon">▪</span> Stationery
-                        </div>
-                        <div class="nav-item" onclick="goToScreen('admin-expenses')">
-                            <span class="nav-icon">▪</span> Admin Expenses
-                        </div>
-                    </div>
-                </nav>
-            </aside>
 
             <main class="main-content">
                 <div class="topbar">
@@ -1810,8 +1736,14 @@
 
         // Generate sidebar navigation
         function generateSidebar(activeScreen = '') {
-            const userType = selectedUserType;
+            // Get user type from currentUser or selectedUserType
+            const userType = (currentUser && currentUser.type) ? currentUser.type : selectedUserType;
             const permissions = rolePermissions[userType] || [];
+
+            // Debug: Log if no permissions found
+            if (permissions.length === 0) {
+                console.warn('No permissions found for user type:', userType);
+            }
 
             // Module definitions with cleaner icons
             const modules = {

@@ -3847,7 +3847,328 @@
 
         // Activity Management Actions
         function viewActivityDetails(activityId) {
-            showInfoModal("Activity Details", ` - ${activityId}\n\n● Activity Name\n● Project Assignment\n● Budget Allocation\n● Timeline & Milestones\n● Team Members\n● Progress Status\n● Documents & Reports\n● LFA Indicators\n\n[In production: Modal with full details]`);
+            // This would typically fetch data from a backend
+            // For demo purposes, we'll show a modal with detailed information
+
+            const activityData = {
+                'SUPRAJA-2024-001': {
+                    id: 'SUPRAJA-2024-001',
+                    quarter: 'Oct - Dec 2022',
+                    activityType: 'Training on FE & BMS - Level 1',
+                    batchNo: '1',
+                    date: '10th - 12th Oct',
+                    location: 'Phesama - Nagaland',
+                    trainingDays: 3,
+                    expectedParticipants: 25,
+                    actualParticipants: 66,
+                    totalTrained: 22,
+                    budgetAllocated: 11250.0,
+                    logisticalExpBudget: 11250.0,
+                    otherExpBudget: 0,
+                    actualLogistic: 9900.0,
+                    actualTravel: 0,
+                    actualOther: 0,
+                    totalExpense: 9900.0,
+                    approvalStatus: 'Approved',
+                    trainingStatus: 'Completed',
+                    budgetHead: `Head A: Direct Cost  - Training of Mass Beneficiaries`,
+                    billStatus: 'Paid',
+                    remarks: `Paid based on the invoice received`
+                },
+                'SUPRAJA-2024-002': {
+                    id: 'SUPRAJA-2024-002',
+                    quarter: 'Oct - Dec 2022',
+                    activityType: 'Training on FE & BMS - Level 2',
+                    batchNo: '1',
+                    date: '24th & 25th Oct',
+                    location: 'Phesama - Nagaland',
+                    trainingDays: 2,
+                    expectedParticipants: 25,
+                    actualParticipants: 44,
+                    totalTrained: 22,
+                    budgetAllocated: 7500.0,
+                    logisticalExpBudget: 7500.0,
+                    otherExpBudget: 0,
+                    actualLogistic: 6600.0,
+                    actualTravel: 0,
+                    actualOther: 0,
+                    totalExpense: 6600.0,
+                    approvalStatus: 'Approved',
+                    trainingStatus: 'Completed',
+                    budgetHead: `Head A: Direct Cost  - Training of Mass Beneficiaries`,
+                    billStatus: 'Paid',
+                    remarks: `Paid based on the invoice received`
+                },
+                'SUPRAJA-2024-003': {
+                    id: 'SUPRAJA-2024-003',
+                    quarter: 'Oct - Dec 2022',
+                    activityType: 'Training on Skill Development',
+                    batchNo: '1',
+                    date: '24th & 25th Oct',
+                    location: 'Ahmedabad, Gujarat',
+                    trainingDays: 15,
+                    expectedParticipants: 25,
+                    actualParticipants: 45,
+                    totalTrained: 0,
+                    budgetAllocated: 45000.0,
+                    logisticalExpBudget: 0,
+                    otherExpBudget: 45000.0,
+                    actualLogistic: 0,
+                    actualTravel: 0,
+                    actualOther: 50000.0,
+                    totalExpense: 50000.0,
+                    approvalStatus: 'Approved',
+                    trainingStatus: 'Completed',
+                    budgetHead: `Head A: Direct Cost  - Training of Mass Beneficiaries`,
+                    billStatus: 'Paid',
+                    remarks: `Paid based on the invoice received`
+                },
+                'SUPRAJA-2024-004': {
+                    id: 'SUPRAJA-2024-004',
+                    quarter: 'Oct - Dec 2022',
+                    activityType: 'Training on developing business plans',
+                    batchNo: '2',
+                    date: '13th - 15th Oct',
+                    location: 'Jakhama - Nagaland',
+                    trainingDays: 3,
+                    expectedParticipants: 25,
+                    actualParticipants: 30,
+                    totalTrained: 10,
+                    budgetAllocated: 11250.0,
+                    logisticalExpBudget: 11250.0,
+                    otherExpBudget: 0,
+                    actualLogistic: 4500.0,
+                    actualTravel: 0,
+                    actualOther: 0,
+                    totalExpense: 4500.0,
+                    approvalStatus: 'Approved',
+                    trainingStatus: 'Completed',
+                    budgetHead: `Head A: Direct Cost  - Support to 360 beneficiaries`,
+                    billStatus: 'Paid',
+                    remarks: `Paid based on the invoice received`
+                },
+                'SUPRAJA-2024-005': {
+                    id: 'SUPRAJA-2024-005',
+                    quarter: 'Oct - Dec 2022',
+                    activityType: 'Partner NGOs Meet',
+                    batchNo: 'N/A',
+                    date: '1st to 4th Oct',
+                    location: 'Ahmedabad, Gujarat',
+                    trainingDays: 4,
+                    expectedParticipants: 40,
+                    actualParticipants: 50,
+                    totalTrained: 0,
+                    budgetAllocated: 450000.0,
+                    logisticalExpBudget: 50000.0,
+                    otherExpBudget: 400000.0,
+                    actualLogistic: 65000.0,
+                    actualTravel: 20000.0,
+                    actualOther: 500000.0,
+                    totalExpense: 585000.0,
+                    approvalStatus: 'Approved',
+                    trainingStatus: 'Completed',
+                    budgetHead: `Head A: Direct Cost  - Partner NGOs Meet`,
+                    billStatus: 'Paid',
+                    remarks: `Paid based on the quotation and invoice received`
+                },
+                'SUPRAJA-2024-006': {
+                    id: 'SUPRAJA-2024-006',
+                    quarter: 'Oct - Dec 2022',
+                    activityType: 'Training of Trainers',
+                    batchNo: '1',
+                    date: '1st to 4th Oct',
+                    location: 'Imphal, Manipur',
+                    trainingDays: 4,
+                    expectedParticipants: 40,
+                    actualParticipants: 50,
+                    totalTrained: 0,
+                    budgetAllocated: 450000.0,
+                    logisticalExpBudget: 50000.0,
+                    otherExpBudget: 400000.0,
+                    actualLogistic: 65000.0,
+                    actualTravel: 20000.0,
+                    actualOther: 500000.0,
+                    totalExpense: 585000.0,
+                    approvalStatus: 'Approved',
+                    trainingStatus: 'Completed',
+                    budgetHead: `Head A: Direct Cost  - Training of Trainers`,
+                    billStatus: 'Paid',
+                    remarks: `Paid based on the quotation and invoice received`
+                },
+                'SUPRAJA-2024-007': {
+                    id: 'SUPRAJA-2024-007',
+                    quarter: 'Oct - Dec 2022',
+                    activityType: 'Workboork Printing',
+                    batchNo: 'N/A',
+                    date: '2023-04-01 00:00:00',
+                    location: 'Ahmedabad, Gujarat',
+                    trainingDays: 0,
+                    expectedParticipants: 3000,
+                    actualParticipants: 3000,
+                    totalTrained: 0,
+                    budgetAllocated: 750000.0,
+                    logisticalExpBudget: 750000.0,
+                    otherExpBudget: 0,
+                    actualLogistic: 750000.0,
+                    actualTravel: 0,
+                    actualOther: 0,
+                    totalExpense: 750000.0,
+                    approvalStatus: 'Approved',
+                    trainingStatus: 'Completed',
+                    budgetHead: `Head A: Direct Cost  - Workbook/training material cost`,
+                    billStatus: 'Paid',
+                    remarks: `Paid based on the quotation and invoice received`
+                },
+            };
+
+            const activity = activityData[activityId];
+            if (!activity) {
+                alert('Activity not found');
+                return;
+            }
+
+            const variance = activity.budgetAllocated - activity.totalExpense;
+            const variancePercent = activity.budgetAllocated > 0 ? ((variance / activity.budgetAllocated) * 100).toFixed(1) : 0;
+            const participationRate = activity.expectedParticipants > 0 ? ((activity.actualParticipants / activity.expectedParticipants) * 100).toFixed(1) : 0;
+
+            const modalHTML = `
+                <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px;" onclick="this.remove()">
+                    <div style="background: white; border-radius: 8px; max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 24px;" onclick="event.stopPropagation()">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 2px solid #e9ecef; padding-bottom: 16px;">
+                            <h2 style="color: #2E3192; margin: 0;">Activity Details: ${activity.id}</h2>
+                            <button onclick="this.closest('[style*=fixed]').remove()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #6c757d;">&times;</button>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                            <div>
+                                <h3 style="color: #2E3192; margin-bottom: 16px; font-size: 18px;">Basic Information</h3>
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Quarter:</td>
+                                        <td style="padding: 12px 8px;">${activity.quarter}</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Activity Type:</td>
+                                        <td style="padding: 12px 8px;">${activity.activityType}</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Batch No:</td>
+                                        <td style="padding: 12px 8px;">${activity.batchNo}</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Date:</td>
+                                        <td style="padding: 12px 8px;">${activity.date}</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Location:</td>
+                                        <td style="padding: 12px 8px;">${activity.location}</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Training Days:</td>
+                                        <td style="padding: 12px 8px;">${activity.trainingDays} days</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Budget Head:</td>
+                                        <td style="padding: 12px 8px; font-size: 13px;">${activity.budgetHead}</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div>
+                                <h3 style="color: #2E3192; margin-bottom: 16px; font-size: 18px;">Status & Approval</h3>
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Approval Status:</td>
+                                        <td style="padding: 12px 8px;"><span class="status-badge status-approved">${activity.approvalStatus}</span></td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Training Status:</td>
+                                        <td style="padding: 12px 8px;"><span class="status-badge status-completed">${activity.trainingStatus}</span></td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Bill Status:</td>
+                                        <td style="padding: 12px 8px;"><span class="status-badge status-completed">${activity.billStatus}</span></td>
+                                    </tr>
+                                </table>
+
+                                <h3 style="color: #2E3192; margin: 24px 0 16px; font-size: 18px;">Participants</h3>
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Expected:</td>
+                                        <td style="padding: 12px 8px;">${activity.expectedParticipants}</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Actual Attended:</td>
+                                        <td style="padding: 12px 8px; font-weight: 600; color: #28a745;">${activity.actualParticipants}</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Participation Rate:</td>
+                                        <td style="padding: 12px 8px; font-weight: 600;">${participationRate}%</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px 8px; font-weight: 500; color: #6c757d;">Total Trained/Batch:</td>
+                                        <td style="padding: 12px 8px;">${activity.totalTrained}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 24px;">
+                            <h3 style="color: #2E3192; margin-bottom: 16px; font-size: 18px;">Budget & Expenses Breakdown</h3>
+                            <table style="width: 100%; border-collapse: collapse; border: 1px solid #e9ecef;">
+                                <thead>
+                                    <tr style="background: #f8f9fa;">
+                                        <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Category</th>
+                                        <th style="padding: 12px; text-align: right; border-bottom: 2px solid #dee2e6;">Budgeted Amount</th>
+                                        <th style="padding: 12px; text-align: right; border-bottom: 2px solid #dee2e6;">Actual Expense</th>
+                                        <th style="padding: 12px; text-align: right; border-bottom: 2px solid #dee2e6;">Variance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px;">Logistical Expenses</td>
+                                        <td style="padding: 12px; text-align: right;">₹${activity.logisticalExpBudget.toLocaleString()}</td>
+                                        <td style="padding: 12px; text-align: right;">₹${activity.actualLogistic.toLocaleString()}</td>
+                                        <td style="padding: 12px; text-align: right; color: ${(activity.logisticalExpBudget - activity.actualLogistic) >= 0 ? '#28a745' : '#dc3545'};">₹${(activity.logisticalExpBudget - activity.actualLogistic).toLocaleString()}</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px;">Travel & TA/DA</td>
+                                        <td style="padding: 12px; text-align: right;">-</td>
+                                        <td style="padding: 12px; text-align: right;">₹${activity.actualTravel.toLocaleString()}</td>
+                                        <td style="padding: 12px; text-align: right;">-</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #e9ecef;">
+                                        <td style="padding: 12px;">Other Expenses</td>
+                                        <td style="padding: 12px; text-align: right;">₹${activity.otherExpBudget.toLocaleString()}</td>
+                                        <td style="padding: 12px; text-align: right;">₹${activity.actualOther.toLocaleString()}</td>
+                                        <td style="padding: 12px; text-align: right; color: ${(activity.otherExpBudget - activity.actualOther) >= 0 ? '#28a745' : '#dc3545'};">₹${(activity.otherExpBudget - activity.actualOther).toLocaleString()}</td>
+                                    </tr>
+                                    <tr style="background: #f8f9fa; font-weight: 600; border-top: 2px solid #dee2e6;">
+                                        <td style="padding: 12px;">TOTAL</td>
+                                        <td style="padding: 12px; text-align: right;">₹${activity.budgetAllocated.toLocaleString()}</td>
+                                        <td style="padding: 12px; text-align: right;">₹${activity.totalExpense.toLocaleString()}</td>
+                                        <td style="padding: 12px; text-align: right; color: ${variance >= 0 ? '#28a745' : '#dc3545'};">₹${variance.toLocaleString()} (${variancePercent}%)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        ${activity.remarks !== 'N/A' ? `
+                        <div style="margin-top: 24px; padding: 16px; background: #f8f9fa; border-radius: 4px;">
+                            <h4 style="color: #2E3192; margin: 0 0 8px 0; font-size: 16px;">Remarks:</h4>
+                            <p style="margin: 0; color: #6c757d;">${activity.remarks}</p>
+                        </div>
+                        ` : ''}
+
+                        <div style="margin-top: 24px; text-align: right;">
+                            <button onclick="this.closest('[style*=fixed]').remove()" class="btn btn-secondary">Close</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+        }\n\n● Activity Name\n● Project Assignment\n● Budget Allocation\n● Timeline & Milestones\n● Team Members\n● Progress Status\n● Documents & Reports\n● LFA Indicators\n\n[In production: Modal with full details]`);
         }
 
         function editActivity(activityId) {
